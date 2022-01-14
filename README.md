@@ -2,14 +2,14 @@
 A travel advisory web application.
 
 Team Members:
-Harshitha Patel Velpula
-Vishesha Sadu
-Meghamala Gupta
-Arijit Dutta
+1. Harshitha Patel Velpula
+2. Vishesha Sadu
+3. Meghamala Gupta
+4. Arijit Dutta
 
 Tech Stack:
-Frontend - Angular JS
-Backend - Go
+1. Frontend - Angular JS
+2. Backend - Go
 
 Functionality:
 Globe Scanner is the one stop destination for people who are planning their next trip. We have two types of users in our application.
