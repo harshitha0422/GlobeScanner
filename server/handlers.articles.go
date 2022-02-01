@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func showIndexPage(c *gin.Context) {
+func showSearchPlacesPage(c *gin.Context) {
 
 	fmt.Println("Inside showIndex")
 	name := c.Param("name")
