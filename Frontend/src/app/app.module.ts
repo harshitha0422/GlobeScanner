@@ -16,13 +16,17 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component'
 import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomePageComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
