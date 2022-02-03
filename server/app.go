@@ -12,31 +12,6 @@ import (
 	// "github.com/jinzhu/gorm"
 )
 
-type GeoResponse struct {
-	Country    string  `json:"country"`
-	Timezone   string  `json:"timezone"`
-	Name       string  `json:"name"`
-	Lon        float64 `json:"lon"`
-	Lat        float64 `json:"lat"`
-	Population int64   `json:"population"`
-}
-
-type RadiusResponse struct {
-	Xid      string  `json:"xid"`
-	Name     string  `json:"name"`
-	Dist     float64 `json:"dist"`
-	Rate     int64   `json:"rate"`
-	Wikidata string  `json:"wikidata"`
-	Kinds    string  `json:"kinds"`
-	Osm      string  `json:"osm"`
-	P        Point   `json:"point"`
-}
-
-type Point struct {
-	Lon float64 `json:"lon"`
-	Lat float64 `json:"lat"`
-}
-
 // returns the api url string
 func apiGet(method string, query string) string {
 
@@ -54,7 +29,7 @@ func apiGet(method string, query string) string {
 
 }
 
-func searchPlaces(name string) []RadiusResponse {
+func searchPlaces(name string) []SearchPlacesResponse {
 
 	fmt.Println("Inside search Places")
 	fmt.Println("Place" + name)
@@ -86,7 +61,7 @@ func searchPlaces(name string) []RadiusResponse {
 	//calling the radius api
 	//eg: https://api.opentripmap.com/0.1/en/places/radius?apikey=5ae2e3f221c38a28845f05b6ddba4f8e8b04b5c6bbb6c180ea77c286&radius=100000&lon=-82.32483&lat=29.65163&format=json
 
-	radiusApi := apiGet("radius", "radius=100000&lon="+longitude+"&lat="+latitude+"&format=json")
+	radiusApi := apiGet("radius", "radius=1000&lon="+longitude+"&lat="+latitude+"&format=json")
 	fmt.Println(radiusApi)
 	radresponse, err := http.Get(radiusApi)
 	if err != nil {
@@ -101,7 +76,33 @@ func searchPlaces(name string) []RadiusResponse {
 
 	var radiusResponse []RadiusResponse
 	json.Unmarshal(radresponseData, &radiusResponse)
+	placesResponseList := make([]SearchPlacesResponse, 0)
+	l := len(radiusResponse)
+	for i := 0; i < l; i++ {
+		item := radiusResponse[i]
+		xid := item.Xid
+		objectApi := apiGet("xid/"+xid, "")
+		fmt.Println(objectApi)
+		objresponse, err := http.Get(objectApi)
+		if err != nil {
+			fmt.Print(err.Error())
+			os.Exit(1)
+		}
+		objresponseData, err := ioutil.ReadAll(objresponse.Body)
 
-	return radiusResponse
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		var objectResponse ObjectResponse
+		json.Unmarshal(objresponseData, &objectResponse)
+		//fmt.Print(objectResponse)
+		var spResponse SearchPlacesResponse
+		spResponse = SearchPlacesResponse{Xid: objectResponse.Xid, Name: objectResponse.Name, Kinds: objectResponse.Kinds, Prev: objectResponse.Prev, Wiki_ext: objectResponse.Wiki_ext, Inf: objectResponse.Inf}
+		placesResponseList = append(placesResponseList, spResponse)
+
+	}
+
+	return placesResponseList
 
 }
