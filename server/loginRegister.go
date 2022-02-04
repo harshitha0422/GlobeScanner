@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -8,6 +9,8 @@ import (
 )
 
 func userRegister(c *gin.Context) {
+
+	fmt.Print("sign up req")
 	// Parse input request
 	type Req struct {
 		Email    string `json:"email" binding:"required,email"`
@@ -59,6 +62,7 @@ func userLogin(c *gin.Context) {
 	type Req struct {
 		Email    string `json:"email" binding:"required,email"`
 		Password string `json:"password" binding:"required,min=8,max=20"`
+		Role     string `json:"role"`
 	}
 	req := Req{}
 	err := c.ShouldBindJSON(&req)
@@ -77,12 +81,20 @@ func userLogin(c *gin.Context) {
 		})
 		return
 	}
+	res1 := DB.Where("role = ?", req.Role).First(&register)
+	if res1.Error != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "Role does not match",
+		})
+		return
+	}
 	// Check if the password match
 	err = bcrypt.CompareHashAndPassword([]byte(register.Password), []byte(req.Password))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "wrong password",
 		})
+
 		return
 	}
 

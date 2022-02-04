@@ -9,32 +9,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//
 func showSearchPlacesPage(c *gin.Context) {
 
 	fmt.Println("Inside showIndex")
 	name := c.Param("name")
 	fmt.Print(name)
-	articles := searchPlaces(name)
+	places := searchPlaces(name)
 
-	fmt.Print(articles)
+	fmt.Print(places)
 
-	// Call the HTML method of the Context to render a template
-	// c.HTML(
-	// 	// Set the HTTP status to 200 (OK)
-	// 	http.StatusOK,
-	// 	// Use the index.html template
-	// 	 "index.html",
-	// 	// Pass the data that the page uses
-	// 	gin.H{
-	// 		"title":   "Home Page",
-	// 		"payload": articles,
-	// 	},
-	// )
-
-	c.JSON(http.StatusOK, gin.H{"msg": articles})
+	c.JSON(http.StatusOK, gin.H{"msg": places})
 
 }
 
+//fetch all the users (guide & tourist)
 func getallUsers(c *gin.Context) {
 	var register []Register
 	if err := DB.Find(&register).Error; err != nil {
@@ -45,6 +34,7 @@ func getallUsers(c *gin.Context) {
 	}
 }
 
+// get all tourist's profiles
 func getallTouristprofile(c *gin.Context) {
 	var userprofile []UserProfile
 	if err := DB.Find(&userprofile).Error; err != nil {
@@ -55,6 +45,7 @@ func getallTouristprofile(c *gin.Context) {
 	}
 }
 
+// get all travel guides profiles
 func getallGuideprofile(c *gin.Context) {
 	var guideprofile []GuideProfile
 	if err := DB.Find(&guideprofile).Error; err != nil {
@@ -65,6 +56,7 @@ func getallGuideprofile(c *gin.Context) {
 	}
 }
 
+// get all comments
 func getallComments(c *gin.Context) {
 
 	var comments []Comment
@@ -77,6 +69,7 @@ func getallComments(c *gin.Context) {
 
 }
 
+// get one particular user(tourist and travel guide) by email
 func getUser(c *gin.Context) {
 
 	email := c.Params.ByName("email")
@@ -89,7 +82,8 @@ func getUser(c *gin.Context) {
 	}
 }
 
-func getUserProfile(c *gin.Context) {
+// get particular tourist profile by email
+func getTouristProfile(c *gin.Context) {
 
 	email := c.Params.ByName("email")
 	var userprofile UserProfile
@@ -101,6 +95,7 @@ func getUserProfile(c *gin.Context) {
 	}
 }
 
+// get one travel guide profile by email
 func getGuideProfile(c *gin.Context) {
 
 	email := c.Params.ByName("email")
@@ -113,6 +108,7 @@ func getGuideProfile(c *gin.Context) {
 	}
 }
 
+// get comments by location
 func getLocationComments(c *gin.Context) {
 
 	location := c.Params.ByName("location")
@@ -125,7 +121,8 @@ func getLocationComments(c *gin.Context) {
 	}
 }
 
-func createUserProfile(c *gin.Context) {
+// create the tourist profile
+func createTouristProfile(c *gin.Context) {
 	var userprofile UserProfile
 	c.BindJSON(&userprofile)
 	if err := DB.Create(&userprofile).Error; err != nil {
@@ -136,6 +133,7 @@ func createUserProfile(c *gin.Context) {
 	c.JSON(200, userprofile)
 }
 
+// create the guide profile
 func createGuideProfile(c *gin.Context) {
 	var guideprofile GuideProfile
 	c.BindJSON(&guideprofile)
@@ -158,7 +156,7 @@ func createComments(c *gin.Context) {
 	c.JSON(200, comment)
 }
 
-func updateUserProfile(c *gin.Context) {
+func updateTouristProfile(c *gin.Context) {
 	var userprofile UserProfile
 	email := c.Params.ByName("email")
 	if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
@@ -182,7 +180,7 @@ func updateGuideProfile(c *gin.Context) {
 	c.JSON(200, guideprofile)
 }
 
-func DeleteUserProfile(c *gin.Context) {
+func DeleteTouristProfile(c *gin.Context) {
 	email := c.Params.ByName("email")
 	var userprofile UserProfile
 	d := DB.Where("email = ?", email).Delete(&userprofile)
