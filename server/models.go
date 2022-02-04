@@ -1,5 +1,7 @@
 package main
 
+import "github.com/jinzhu/gorm"
+
 type GeoResponse struct {
 	Country    string  `json:"country"`
 	Timezone   string  `json:"timezone"`
@@ -91,4 +93,38 @@ type SearchPlacesResponse struct {
 	Prev     Preview            `json:"preview"`
 	Wiki_ext WikiPedia_Extracts `json:"wikipedia_extracts"`
 	Inf      Info               `json:"info"`
+}
+
+type Register struct {
+	gorm.Model
+	Email    string `gorm:"primaryKey" json:"email"`
+	Password string `json:"password" binding:"required,min=8,max=20"`
+	Role     string `json:"role"`
+}
+
+type UserProfile struct {
+	Email string `gorm:"primaryKey" json:"email"`
+	Name  string `json:"name"`
+	About string `json:"about"`
+	Age   uint   `json:"age"`
+	Fav1  string `json:"fav1"`
+	Fav2  string `json:"fav2"`
+	Fav3  string `json:"fav3"`
+}
+
+type GuideProfile struct {
+	Email    string `gorm:"primaryKey" json:"email"`
+	Name     string `json:"name"`
+	About    string `json:"about"`
+	Age      uint   `json:"age"`
+	Address  string `json:"address"`
+	Location string `json:"location"`
+	Vehicle  string `json:"vehicle"`
+}
+
+type Comment struct {
+	Comment  string   `json:"comment"`
+	Email    string   `json:"email"`
+	Location string   `json:"location"`
+	Register Register `gorm:"foreignKey:Email; json:"register"`
 }
