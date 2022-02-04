@@ -12,12 +12,12 @@ import (
 //
 func showSearchPlacesPage(c *gin.Context) {
 
-	fmt.Println("Inside showIndex")
+	//fmt.Println("Inside showIndex")
 	name := c.Param("name")
-	fmt.Print(name)
+	//fmt.Print(name)
 	places := searchPlaces(name)
 
-	fmt.Print(places)
+	//fmt.Print(places)
 
 	c.JSON(http.StatusOK, gin.H{"msg": places})
 
