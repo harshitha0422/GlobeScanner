@@ -23,6 +23,7 @@ Backend:
 
 Database:
 We have used the SQLLite3 database and GORM library for CRUD operations.
+Web Framework:gin -gonic(for routing)
 
 1. ‘Register’ → stores the login mail and password of the users while signing up and checks while user login.
  Fields: Email(Primary Key),Password,Role.
@@ -36,10 +37,8 @@ Fields: Email(Primary Key),name, about,Age, Address, Location, Vehicle
 4. ’Comment’→stores  user comments
 Fields: Comments,email,location,Register( Foreign key).
 
-Web Framework:
-
-gin -gonic
 
 
 
+drive link of demo video: https://drive.google.com/file/d/1dQcxMBZp8c5ThFYLK4w2YCVlUWSW3cPR/view?usp=sharing
 
