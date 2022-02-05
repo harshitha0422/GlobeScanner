@@ -1,0 +1,22 @@
+<br><br><br>
+<div *ngFor = "let p of places">
+<mat-card class="example-card">
+    <mat-card-title-group>
+      <mat-card-title>{{p.name}}</mat-card-title>
+      <mat-card-subtitle>{{p.kinds}}</mat-card-subtitle>
+      <img mat-card-xl-image [src]=p.preview.source  >
+    </mat-card-title-group>
+    <mat-card-content>
+    {{p.wikipedia_extracts.text}}
+    </mat-card-content>
+    <mat-card-content>
+    {{p.wikipedia_extracts.title}}
+  </mat-card-content>
+  </mat-card>
+  </div>
+  
+  
+  
+  
+   
+  
