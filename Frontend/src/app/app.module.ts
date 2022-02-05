@@ -18,6 +18,9 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PlaceFetchService } from './place-fetch.service';
+import { PlaceListComponent } from './place-list/place-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     LogInComponent,
     RegisterComponent,
     HomePageComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    PlaceListComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +40,10 @@ import { AboutUsComponent } from './about-us/about-us.component';
     AngularMaterialModule,
     FlexLayoutModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PlaceFetchService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
