@@ -61,7 +61,7 @@ func searchPlaces(name string) []SearchPlacesResponse {
 	//calling the radius api
 	//eg: https://api.opentripmap.com/0.1/en/places/radius?apikey=5ae2e3f221c38a28845f05b6ddba4f8e8b04b5c6bbb6c180ea77c286&radius=100000&lon=-82.32483&lat=29.65163&format=json
 
-	radiusApi := apiGet("radius", "radius=1000&lon="+longitude+"&lat="+latitude+"&format=json")
+	radiusApi := apiGet("radius", "radius=1000&lon="+longitude+"&lat="+latitude+"&rate=2&format=json")
 	//fmt.Println(radiusApi)
 	radresponse, err := http.Get(radiusApi)
 	if err != nil {
