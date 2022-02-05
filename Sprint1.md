@@ -42,3 +42,5 @@ Fields: Comments,email,location,Register( Foreign key).
 
 drive link of demo video: https://drive.google.com/file/d/1dQcxMBZp8c5ThFYLK4w2YCVlUWSW3cPR/view?usp=sharing
 
+![](https://github.com/arijitd97/GlobeScanner/blob/main/Search_places.gif)
+
