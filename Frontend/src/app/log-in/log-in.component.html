@@ -16,17 +16,17 @@
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Email"
                   type="text"
-                  name="username"
-                  [(ngModel)]="form.username"
+                  name="email"
+                  [(ngModel)]="form.email"
                   required
-                  #username="ngModel"
+                  #email="ngModel"
             />
             <div
               class="alert alert-danger"
               role="alert"
-              *ngIf="username.errors && f.submitted"
+              *ngIf="email.errors && f.submitted"
             >
-              Username is required!
+              Email is required!
             </div>
           </mat-form-field>
   
