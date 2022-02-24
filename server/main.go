@@ -49,6 +49,10 @@ func main() {
 	r.DELETE("/userprofile/:email", DeleteTouristProfile)
 	r.DELETE("/guideprofile/:email", DeleteGuideProfile)
 
+	r.POST("/token/refresh", Refresh)
+	r.POST("/todo", TokenAuthMiddleware(), CreateTodo)
+	r.POST("/logout", TokenAuthMiddleware(), Logout)
+
 	//initializeRoutes()
 	err = r.Run()
 	if err != nil {
