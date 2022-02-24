@@ -1,94 +1,123 @@
 <div class="container">
-    <div class="main-body">
-    
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-            </ol>
-          </nav>
-          <!-- /Breadcrumb -->
-    
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="assets/images/profile_image.jpeg" alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4>John Doe</h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                      <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button>
-                    </div>
+  <div class="main-body">
+  
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol>
+        </nav>
+        <!-- /Breadcrumb -->
+  
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img src="assets/images/profile_image.jpeg" alt="Admin" class="rounded-circle" width="150">
+                  <div class="mt-3">
+                    <h4>{{userProfile.name}}</h4>
+                    <p class="text-secondary mb-1">{{userProfile.about}}</p>
+                    <p class="text-muted font-size-sm"> {{userProfile.fav1}}, {{userProfile.fav2}}, {{userProfile.fav3}}</p>
+                    <button class="btn btn-primary">Follow</button>
+                    <button class="btn btn-outline-primary">Message</button>
                   </div>
                 </div>
               </div>
-            
             </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <input type="text" class="form-control" value="John Doe">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <input type="text" class="form-control" value="john@example.com">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <input type="text" class="form-control" value="(239) 816-9029">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Mobile</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <input type="text" class="form-control" value="(320) 380-4539">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
-                    </div>
-                  </div>
-                  <hr>
-                  
-                  <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-9 text-secondary">
-                        <input type="button" class="btn btn-primary px-4"  routerLink="/edit-profile/view-profile" routerLinkActive="active" value="Save Changes">
-                    </div>
-                </div>
-                </div>
-              </div>
-
-            </div>
+          
           </div>
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <form action="/action_page.php" method="post">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Full Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value={{userProfile.name}}>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value={{userProfile.email}}>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Age</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value={{userProfile.age}}>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Mobile</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value={{userProfile.mobile}}>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Location</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value={{userProfile.location}}>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">First Favourite Place</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value={{userProfile.fav1}}>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Second Favourite Place</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value={{userProfile.fav2}}>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Third Favourite Place</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value={{userProfile.fav3}}>
+                  </div>
+                </div>
+                <hr>
+                
+                <div class="row">
+                  <div class="col-sm-3"></div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="button" class="btn btn-primary px-4"  routerLink="/edit-profile/view-profile" routerLinkActive="active" value="Save Changes">
+                  </div>
+              </div>
+              </div>
+            </form>
+            </div>
 
+          </div>
         </div>
-    </div>
+
+      </div>
+  </div>
