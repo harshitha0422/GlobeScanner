@@ -98,7 +98,23 @@ func userLogin(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
+	ts, err := CreateToken(uint64(register.ID))
+	if err != nil {
+		c.JSON(http.StatusUnprocessableEntity, err.Error())
+		return
+	}
+
+	saveErr := CreateAuth(uint64(register.ID), ts)
+	if saveErr != nil {
+		c.JSON(http.StatusUnprocessableEntity, saveErr.Error())
+	}
+	tokens := map[string]string{
+		"access_token":  ts.AccessToken,
+		"refresh_token": ts.RefreshToken,
+	}
+	c.JSON(http.StatusOK, tokens)
+
+	/*c.JSON(http.StatusOK, gin.H{
 		"status": "ok",
-	})
+	})*/
 }
