@@ -21,6 +21,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PlaceFetchService } from './place-fetch.service';
 import { PlaceListComponent } from './place-list/place-list.component';
+import { GetUserDataService } from './get-user-data.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { PlaceListComponent } from './place-list/place-list.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [PlaceFetchService],
+  providers: [PlaceFetchService, GetUserDataService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
