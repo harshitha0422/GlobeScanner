@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetUserDataService} from '../get-user-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-profile',
@@ -8,7 +9,7 @@ import { GetUserDataService} from '../get-user-data.service';
 })
 export class ViewProfileComponent implements OnInit {
   public userProfile:any = [] ;
-  constructor(private getUser :  GetUserDataService) { }
+  constructor(private getUser :  GetUserDataService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUser.getUserInfo()
@@ -17,6 +18,9 @@ export class ViewProfileComponent implements OnInit {
         this.userProfile = data;
       }
       );
+  }
+  saveProfileChanges(){
+    this.router.navigateByUrl('/view-profile/edit-profile');
   }
 
 }

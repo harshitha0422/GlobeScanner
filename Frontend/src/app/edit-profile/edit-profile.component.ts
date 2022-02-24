@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetUserDataService} from '../get-user-data.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,7 +11,7 @@ import { GetUserDataService} from '../get-user-data.service';
 export class EditProfileComponent implements OnInit {
   public userProfile:any = [] ;
 
-  constructor(private getUser :  GetUserDataService) { }
+  constructor(private getUser :  GetUserDataService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUser.getUserInfo()
@@ -18,6 +20,10 @@ export class EditProfileComponent implements OnInit {
         this.userProfile = data;
       }
       );
+  }
+
+  userInfoPage(){
+    this.router.navigateByUrl('/edit-profile/view-profile');
   }
 
 }
