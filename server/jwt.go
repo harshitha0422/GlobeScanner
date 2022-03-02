@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -24,16 +23,17 @@ type TokenDetails struct {
 }
 
 type Todo struct {
-	UserID uint64 `json:"user_id"`
+	UserID string `json:"user_id"`
 	Title  string `json:"title"`
 }
 
 type AccessDetails struct {
 	AccessUuid string
-	UserId     uint64
+	Email      string `json:"email"`
+	Role       string `json:"role"`
 }
 
-func CreateToken(userid uint64) (*TokenDetails, error) {
+func CreateToken(email string, role string) (*TokenDetails, error) {
 	td := &TokenDetails{}
 	td.AtExpires = time.Now().Add(time.Minute * 15).Unix()
 	td.AccessUuid = uuid.NewV4().String()
@@ -47,7 +47,8 @@ func CreateToken(userid uint64) (*TokenDetails, error) {
 	atClaims := jwt.MapClaims{}
 	atClaims["authorized"] = true
 	atClaims["access_uuid"] = td.AccessUuid
-	atClaims["user_id"] = userid
+	atClaims["Email"] = email
+	atClaims["Role"] = role
 	atClaims["exp"] = td.AtExpires
 	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
 	td.AccessToken, err = at.SignedString([]byte(os.Getenv("ACCESS_SECRET")))
@@ -58,7 +59,8 @@ func CreateToken(userid uint64) (*TokenDetails, error) {
 	os.Setenv("REFRESH_SECRET", "mcmvmkmsdnfsdmfdsjf") //this should be in an env file
 	rtClaims := jwt.MapClaims{}
 	rtClaims["refresh_uuid"] = td.RefreshUuid
-	rtClaims["user_id"] = userid
+	rtClaims["Email"] = email
+	rtClaims["Role"] = role
 	rtClaims["exp"] = td.RtExpires
 	rt := jwt.NewWithClaims(jwt.SigningMethodHS256, rtClaims)
 	td.RefreshToken, err = rt.SignedString([]byte(os.Getenv("REFRESH_SECRET")))
@@ -85,16 +87,16 @@ func init() {
 	}
 }
 
-func CreateAuth(userid uint64, td *TokenDetails) error {
+func CreateAuth(email string, role string, td *TokenDetails) error {
 	at := time.Unix(td.AtExpires, 0) //converting Unix to UTC(to Time object)
 	rt := time.Unix(td.RtExpires, 0)
 	now := time.Now()
 
-	errAccess := client.Set(td.AccessUuid, strconv.Itoa(int(userid)), at.Sub(now)).Err()
+	errAccess := client.Set(td.AccessUuid, email, at.Sub(now)).Err()
 	if errAccess != nil {
 		return errAccess
 	}
-	errRefresh := client.Set(td.RefreshUuid, strconv.Itoa(int(userid)), rt.Sub(now)).Err()
+	errRefresh := client.Set(td.RefreshUuid, email, rt.Sub(now)).Err()
 	if errRefresh != nil {
 		return errRefresh
 	}
@@ -148,25 +150,24 @@ func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
 		if !ok {
 			return nil, err
 		}
-		userId, err := strconv.ParseUint(fmt.Sprintf("%.f", claims["user_id"]), 10, 64)
-		if err != nil {
+		email, ok := claims["email"].(string)
+		if !ok {
 			return nil, err
 		}
 		return &AccessDetails{
 			AccessUuid: accessUuid,
-			UserId:     userId,
+			Email:      email,
 		}, nil
 	}
 	return nil, err
 }
 
-func FetchAuth(authD *AccessDetails) (uint64, error) {
-	userid, err := client.Get(authD.AccessUuid).Result()
+func FetchAuth(authD *AccessDetails) (string, error) {
+	email, err := client.Get(authD.Email).Result()
 	if err != nil {
-		return 0, err
+		return "", err
 	}
-	userID, _ := strconv.ParseUint(userid, 10, 64)
-	return userID, nil
+	return email, nil
 }
 
 func CreateTodo(c *gin.Context) {
@@ -261,7 +262,7 @@ func Refresh(c *gin.Context) {
 			c.JSON(http.StatusUnprocessableEntity, err)
 			return
 		}
-		userId, err := strconv.ParseUint(fmt.Sprintf("%.f", claims["user_id"]), 10, 64)
+		email, ok := claims["Email"].(string)
 		if err != nil {
 			c.JSON(http.StatusUnprocessableEntity, "Error occurred")
 			return
@@ -273,13 +274,13 @@ func Refresh(c *gin.Context) {
 			return
 		}
 		//Create new pairs of refresh and access tokens
-		ts, createErr := CreateToken(userId)
+		ts, createErr := CreateToken(email)
 		if createErr != nil {
 			c.JSON(http.StatusForbidden, createErr.Error())
 			return
 		}
 		//save the tokens metadata to redis
-		saveErr := CreateAuth(userId, ts)
+		saveErr := CreateAuth(email, ts)
 		if saveErr != nil {
 			c.JSON(http.StatusForbidden, saveErr.Error())
 			return
