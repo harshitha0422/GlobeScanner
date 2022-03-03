@@ -101,13 +101,13 @@ func userLogin(c *gin.Context) {
 		return
 	}
 
-	ts, err := CreateToken(register.Email)
+	ts, err := CreateToken(register.Email, register.Role)
 	if err != nil {
 		c.JSON(http.StatusUnprocessableEntity, err.Error())
 		return
 	}
 
-	saveErr := CreateAuth(register.Email, ts)
+	saveErr := CreateAuth(register.Email, register.Role, ts)
 	if saveErr != nil {
 		c.JSON(http.StatusUnprocessableEntity, saveErr.Error())
 	}

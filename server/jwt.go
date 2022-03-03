@@ -47,8 +47,8 @@ func CreateToken(email string, role string) (*TokenDetails, error) {
 	atClaims := jwt.MapClaims{}
 	atClaims["authorized"] = true
 	atClaims["access_uuid"] = td.AccessUuid
-	atClaims["Email"] = email
-	atClaims["Role"] = role
+	atClaims["email"] = email
+	atClaims["role"] = role
 	atClaims["exp"] = td.AtExpires
 	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
 	td.AccessToken, err = at.SignedString([]byte(os.Getenv("ACCESS_SECRET")))
@@ -145,6 +145,9 @@ func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
 		return nil, err
 	}
 	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok {
+		return nil, err
+	}
 	if ok && token.Valid {
 		accessUuid, ok := claims["access_uuid"].(string)
 		if !ok {
@@ -154,9 +157,14 @@ func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
 		if !ok {
 			return nil, err
 		}
+		role, ok := claims["role"].(string)
+		if !ok {
+			return nil, err
+		}
 		return &AccessDetails{
 			AccessUuid: accessUuid,
 			Email:      email,
+			Role:       role,
 		}, nil
 	}
 	return nil, err
@@ -263,6 +271,7 @@ func Refresh(c *gin.Context) {
 			return
 		}
 		email, ok := claims["Email"].(string)
+		role, ok := claims["Role"].(string)
 		if err != nil {
 			c.JSON(http.StatusUnprocessableEntity, "Error occurred")
 			return
@@ -274,13 +283,13 @@ func Refresh(c *gin.Context) {
 			return
 		}
 		//Create new pairs of refresh and access tokens
-		ts, createErr := CreateToken(email)
+		ts, createErr := CreateToken(email, role)
 		if createErr != nil {
 			c.JSON(http.StatusForbidden, createErr.Error())
 			return
 		}
 		//save the tokens metadata to redis
-		saveErr := CreateAuth(email, ts)
+		saveErr := CreateAuth(email, role, ts)
 		if saveErr != nil {
 			c.JSON(http.StatusForbidden, saveErr.Error())
 			return
