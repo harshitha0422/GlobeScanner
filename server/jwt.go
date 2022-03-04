@@ -170,12 +170,11 @@ func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
 	return nil, err
 }
 
-func FetchAuth(authD *AccessDetails) (string, error) {
-	email, err := client.Get(authD.Email).Result()
-	if err != nil {
-		return "", err
-	}
-	return email, nil
+func FetchAuth(authD *AccessDetails) string {
+	//email, err := client.Get(authD.Email).Result()
+	//if err != nil {
+	//	return "", err}
+	return authD.Email
 }
 
 func CreateTodo(c *gin.Context) {
@@ -189,11 +188,11 @@ func CreateTodo(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, "unauthorized")
 		return
 	}
-	userId, err := FetchAuth(tokenAuth)
-	if err != nil {
+	userId := FetchAuth(tokenAuth)
+	/*if err != nil {
 		c.JSON(http.StatusUnauthorized, "unauthorized")
 		return
-	}
+	}*/
 	td.UserID = userId
 
 	//you can proceed to save the Todo to a database
@@ -272,7 +271,7 @@ func Refresh(c *gin.Context) {
 		}
 		email, ok := claims["Email"].(string)
 		role, ok := claims["Role"].(string)
-		if err != nil {
+		if ok != true {
 			c.JSON(http.StatusUnprocessableEntity, "Error occurred")
 			return
 		}

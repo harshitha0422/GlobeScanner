@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -9,6 +8,20 @@ import (
 
 var DB *gorm.DB
 var r *gin.Engine
+
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token,x-access-token,X-Access-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+		c.Next()
+	}
+}
 
 func main() {
 
@@ -23,26 +36,27 @@ func main() {
 	db.LogMode(true)
 	r := gin.Default()
 
-	r.Use(cors.New(cors.Config{
+	/*r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "accept", "origin", "Cache-Control", "X-Requested-With"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "accept", "origin", "Cache-Control", "X-Requested-With","*"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
-	}))
+	}))*/
+	r.Use(CORSMiddleware())
 	r.GET("/searchPlaces/:name", showSearchPlacesPage)
 	r.POST("/signup", userRegister)
 	r.POST("/login", userLogin)
 	r.GET("/users", getallUsers)
-	r.GET("/userprofile", getallTouristprofile)
-	r.GET("/guideprofile", getallGuideprofile)
+	r.GET("/userprofiles", TokenAuthMiddleware(), getallTouristprofile)
+	r.GET("/guideprofiles", getallGuideprofile)
 	r.GET("/comments", getallComments)
-	r.GET("/users/:email", getUser)
-	r.GET("/userprofile/:email", getTouristProfile)
+	//r.GET("/users", getUser)
+	r.GET("/userprofile", getTouristProfile)
 	r.GET("/guideprofile/:email", getGuideProfile)
 	r.GET("/comments/:location", getLocationComments)
-	r.POST("/userprofile", createTouristProfile)
-	r.POST("/guideprofile", createGuideProfile)
+	r.POST("/userprofiles", createTouristProfile)
+	r.POST("/guideprofiles", createGuideProfile)
 	r.POST("/comments", createComments)
 	r.PUT("/userprofile/:email", updateTouristProfile)
 	r.PUT("/guideprofile/:email", updateGuideProfile)

@@ -77,14 +77,14 @@ func getUser(c *gin.Context) {
 
 	tokenAuth, err := ExtractTokenMetadata(c.Request)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized")
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
 		return
 	}
-	email, err := FetchAuth(tokenAuth)
-	if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized")
+	email := FetchAuth(tokenAuth)
+	/*if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
 		return
-	}
+	}*/
 
 	//email := c.Params.ByName("email")
 	var register Register
@@ -98,8 +98,19 @@ func getUser(c *gin.Context) {
 
 // get particular tourist profile by email
 func getTouristProfile(c *gin.Context) {
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
+		return
+	}
+	email := FetchAuth(tokenAuth)
+	/*if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		fmt.Println(err)
+		return
+	}*/
 
-	email := c.Params.ByName("email")
+	//email := c.Params.ByName("email")
 	var userprofile UserProfile
 	if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
 		c.AbortWithStatus(404)
