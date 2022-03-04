@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetUserDataService} from '../get-user-data.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
@@ -19,7 +20,9 @@ export class ViewProfileComponent implements OnInit {
       }
       );
   }
-  saveProfileChanges(){
+  
+ 
+  editInfoPage(){
     this.router.navigateByUrl('/view-profile/edit-profile');
   }
 

@@ -29,16 +29,22 @@
             </div>
           
           </div>
+
+
+
+          
+
+
           <div class="col-md-8">
             <div class="card mb-3">
-              <form action="/action_page.php" method="post">
+              <!-- <form [formGroup]="form" (ngSubmit)="submit()" > -->
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Full Name</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value={{userProfile.name}}>
+                  <div class="col-sm-9 text-secondary form-group">
+                      <input type="text" class="form-control" value={{userProfile.name}} name = "fullName" placeholder = "name" formControlName="fullName">
                   </div>
                 </div>
                 <hr>
@@ -46,8 +52,8 @@
                   <div class="col-sm-3">
                     <h6 class="mb-0">Email</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value={{userProfile.email}}>
+                  <div class="col-sm-9 text-secondary form-group" >
+                      <input type="text" class="form-control" value={{userProfile.email}} placeholder = "email" name = "fullName" formControlName="fullName">
                   </div>
                 </div>
                 <hr>
@@ -55,8 +61,8 @@
                   <div class="col-sm-3">
                     <h6 class="mb-0">Age</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value={{userProfile.age}}>
+                  <div class="col-sm-9 text-secondary form-group">
+                      <input type="text" class="form-control" value={{userProfile.age}} placeholder = "age" name = "age" formControlName="age">
                   </div>
                 </div>
                 <hr>
@@ -64,8 +70,8 @@
                   <div class="col-sm-3">
                     <h6 class="mb-0">Mobile</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value={{userProfile.mobile}}>
+                  <div class="col-sm-9 text-secondary form-group">
+                      <input type="text" class="form-control" value={{userProfile.mobile}} placeholder = "mobile" name = "mobile" formControlName="mobile">
                   </div>
                 </div>
                 <hr>
@@ -73,8 +79,8 @@
                   <div class="col-sm-3">
                     <h6 class="mb-0">Location</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value={{userProfile.location}}>
+                  <div class="col-sm-9 text-secondary form-group">
+                      <input type="text" class="form-control" value={{userProfile.location}} placeholder = "location" name = "location" formControlName="location">
                   </div>
                 </div>
                 <hr>
@@ -82,8 +88,8 @@
                   <div class="col-sm-3">
                     <h6 class="mb-0">First Favourite Place</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value={{userProfile.fav1}}>
+                  <div class="col-sm-9 text-secondary form-group">
+                      <input type="text" class="form-control" value={{userProfile.fav1}} placeholder = "first favourite place" name = "fav_1" formControlName="fav_1">
                   </div>
                 </div>
                 <hr>
@@ -91,8 +97,8 @@
                   <div class="col-sm-3">
                     <h6 class="mb-0">Second Favourite Place</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value={{userProfile.fav2}}>
+                  <div class="col-sm-9 text-secondary form-group">
+                      <input type="text" class="form-control" value={{userProfile.fav2}} placeholder = "second favourite place" name = "fav_2" formControlName="fav_2">
                   </div>
                 </div>
                 <hr>
@@ -100,25 +106,26 @@
                   <div class="col-sm-3">
                     <h6 class="mb-0">Third Favourite Place</h6>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value={{userProfile.fav3}}>
+                  <div class="col-sm-9 text-secondary form-group">
+                      <input type="text" class="form-control" value={{userProfile.fav3}} placeholder = "third favourite place" name = "fav_3" formControlName="fav_3">
                   </div>
                 </div>
                 <hr>
                 
                 <div class="row">
                   <div class="col-sm-3"></div>
-                  <div class="col-sm-9 text-secondary">
+                  <div class="col-sm-9 text-secondary form-group">
                       <button type="button" class="btn btn-primary px-4"
-      (click)='userInfoPage()'>Save Changes</button>
+                    (click)='saveProfileChanges()'>Save Changes</button>
                   </div>
               </div>
               </div>
-            </form>
+            <!-- </form> -->
             </div>
 
           </div>
         </div>
 
       </div>
-  </div>
+    </div>
+  
