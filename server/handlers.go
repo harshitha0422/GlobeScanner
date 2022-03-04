@@ -75,7 +75,18 @@ func getallComments(c *gin.Context) {
 // get one particular user(tourist and travel guide) by email
 func getUser(c *gin.Context) {
 
-	email := c.Params.ByName("email")
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized")
+		return
+	}
+	email, err := FetchAuth(tokenAuth)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized")
+		return
+	}
+
+	//email := c.Params.ByName("email")
 	var register Register
 	if err := DB.Where("email = ?", email).First(&register).Error; err != nil {
 		c.AbortWithStatus(404)
