@@ -3,23 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LogInComponent } from './log-in.component';
 
 describe('LogInComponent', () => {
-  let component: LogInComponent;
-  let fixture: ComponentFixture<LogInComponent>;
-
+  let fixture: LogInComponent;
+ let authServiceMock;
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ LogInComponent ]
-    })
-    .compileComponents();
+   fixture = new LogInComponent();
+    
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LogInComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  
+  
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture).toBeTruthy();
   });
 });
