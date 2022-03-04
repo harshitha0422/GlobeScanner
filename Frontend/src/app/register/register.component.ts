@@ -9,11 +9,12 @@ import { AuthService } from '../services/auth.service';
 export class RegisterComponent implements OnInit {
 
   Roles: any = ['Tourist', 'Guide'];
-  role: any = 'Tourist';
+  // role: any = 'Tourist';
   form: any = {
     username: null,
     email: null,
-    password: null
+    password: null,
+    role: null
   };
   isSuccessful = false;
   isSignUpFailed = false;
@@ -25,8 +26,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, email, password } = this.form;
-    this.authService.register(username, email, password, this.role).subscribe(
+    
+    const { username, email, password, role } = this.form;
+    console.log(role)
+    this.authService.register(username, email, password, role).subscribe(
     // this.authService.register(email, password, this.role).subscribe(
       data => {
         console.log(data);
