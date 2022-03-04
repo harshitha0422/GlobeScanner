@@ -21,6 +21,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PlaceFetchService } from './place-fetch.service';
 import { PlaceListComponent } from './place-list/place-list.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { PlaceListComponent } from './place-list/place-list.component';
     RegisterComponent,
     HomePageComponent,
     AboutUsComponent,
-    PlaceListComponent
+    PlaceListComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,7 @@ import { PlaceListComponent } from './place-list/place-list.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [PlaceFetchService],
+  providers: [PlaceFetchService,authInterceptorProviders],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
