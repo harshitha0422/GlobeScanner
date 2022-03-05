@@ -12,11 +12,14 @@ export class PlaceListComponent implements OnInit {
   constructor(private plyFetch :  PlaceFetchService) { }
 
   ngOnInit(): void {
-    this.plyFetch.getPlaces()
+    this.getPlacesList();
+  }
+  getPlacesList(){
+  this.plyFetch.getPlaces()
     .subscribe(
       (data) => {console.log(data.msg[0]);
         this.places = data.msg;
       }
       );
-  }
+    }
 }

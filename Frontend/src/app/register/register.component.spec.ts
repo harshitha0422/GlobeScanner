@@ -1,25 +1,17 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { RegisterComponent } from './register.component';
+import { RegisterComponent } from './register.component';
 
-// describe('RegisterComponent', () => {
-//   let component: RegisterComponent;
-//   let fixture: ComponentFixture<RegisterComponent>;
+describe('RegisterComponent', () => {
+  let fixture: RegisterComponent;
+  let authServiceMock: any;
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ RegisterComponent ]
-//     })
-//     .compileComponents();
-//   });
+  beforeEach(async () => {
+     fixture = new RegisterComponent(authServiceMock);
+    
+  });
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(RegisterComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should create', () => {
+    expect(fixture).toBeTruthy();
+  });
+});

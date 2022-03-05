@@ -4,9 +4,13 @@ import { LogInComponent } from './log-in.component';
 
 describe('LogInComponent', () => {
   let fixture: LogInComponent;
- let authServiceMock;
+  let authServiceMock: any;
+  let tokenStorageMock: any;
   beforeEach(async () => {
-   fixture = new LogInComponent();
+   fixture = new LogInComponent(
+    authServiceMock,
+    tokenStorageMock
+   );
     
   });
 

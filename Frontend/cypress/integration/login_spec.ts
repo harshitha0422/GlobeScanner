@@ -10,7 +10,6 @@ describe('login', () => {
 
   it('Should login if the form is valid', () => {
    cy.login('saduvishesha@gmail.com','12345');
-    cy.url().should('not.include', 'home-page');
-
+    cy.url().should('include', 'home-page');
   });
 });

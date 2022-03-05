@@ -3,7 +3,5 @@ describe('homepage', () => {
       cy.visit('/home-page')
       cy.url().should('include','home-page');
       
-    });
-  
-   
+    });  
   });
