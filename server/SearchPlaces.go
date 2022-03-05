@@ -30,6 +30,10 @@ func apiGet(method string, query string) string {
 }
 
 func searchPlaces(name string) []SearchPlacesResponse {
+	var empty []SearchPlacesResponse
+	if name == "" {
+		return empty
+	}
 
 	// fmt.Println("Inside search Places")
 	// fmt.Println("Place" + name)

@@ -30,7 +30,7 @@ func main() {
 		panic("can't connect to database")
 	}
 	DB = db
-	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{})
+	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
 	//seed(db)
 
 	db.LogMode(true)
@@ -45,6 +45,7 @@ func main() {
 	}))*/
 	r.Use(CORSMiddleware())
 	r.GET("/searchPlaces/:name", showSearchPlacesPage)
+	r.POST("/addPackages", addPackages)
 	r.POST("/signup", userRegister)
 	r.POST("/login", userLogin)
 	r.GET("/users", getallUsers)
