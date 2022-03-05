@@ -4,7 +4,10 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -72,7 +75,18 @@ func getallComments(c *gin.Context) {
 // get one particular user(tourist and travel guide) by email
 func getUser(c *gin.Context) {
 
-	email := c.Params.ByName("email")
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
+		return
+	}
+	email := FetchAuth(tokenAuth)
+	/*if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		return
+	}*/
+
+	//email := c.Params.ByName("email")
 	var register Register
 	if err := DB.Where("email = ?", email).First(&register).Error; err != nil {
 		c.AbortWithStatus(404)
@@ -84,8 +98,19 @@ func getUser(c *gin.Context) {
 
 // get particular tourist profile by email
 func getTouristProfile(c *gin.Context) {
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
+		return
+	}
+	email := FetchAuth(tokenAuth)
+	/*if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		fmt.Println(err)
+		return
+	}*/
 
-	email := c.Params.ByName("email")
+	//email := c.Params.ByName("email")
 	var userprofile UserProfile
 	if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
 		c.AbortWithStatus(404)
@@ -194,4 +219,24 @@ func DeleteGuideProfile(c *gin.Context) {
 	d := DB.Where("email = ?", email).Delete(&guideprofile)
 	fmt.Println(d)
 	c.JSON(200, gin.H{"profile with Email #" + email: " deleted"})
+}
+
+func upload(c *gin.Context) {
+	file, header, err := c.Request.FormFile("file")
+	if err != nil {
+		c.String(http.StatusBadRequest, fmt.Sprintf("file err : %s", err.Error()))
+		return
+	}
+	filename := header.Filename
+	out, err := os.Create("public/" + filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer out.Close()
+	_, err = io.Copy(out, file)
+	if err != nil {
+		log.Fatal(err)
+	}
+	filepath := "http://localhost:8080/file/" + filename
+	c.JSON(http.StatusOK, gin.H{"filepath": filepath})
 }

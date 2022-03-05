@@ -13,15 +13,17 @@ func userRegister(c *gin.Context) {
 	fmt.Print("sign up req")
 	// Parse input request
 	type Req struct {
+		Username string `json:"username"`
 		Email    string `json:"email" binding:"required,email"`
-		Password string `json:"password" binding:"required,min=8,max=20"`
+		Password string `json:"password" binding:"required,min=6,max=20"`
 		Role     string `json:"role"`
 	}
+
 	req := Req{}
 	err := c.ShouldBindJSON(&req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "incorrect parameters, password should be between 8 to 20 chars",
+			"error": "incorrect parameters, password should be between 6 to 20 chars",
 		})
 		return
 	}
@@ -44,6 +46,7 @@ func userRegister(c *gin.Context) {
 	}
 	// Insert into database
 	registers := Register{
+		Username: req.Username,
 		Email:    req.Email,
 		Password: string(hashedPassword),
 		Role:     req.Role,
@@ -98,7 +101,23 @@ func userLogin(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
+	ts, err := CreateToken(register.Email, register.Role)
+	if err != nil {
+		c.JSON(http.StatusUnprocessableEntity, err.Error())
+		return
+	}
+
+	saveErr := CreateAuth(register.Email, register.Role, ts)
+	if saveErr != nil {
+		c.JSON(http.StatusUnprocessableEntity, saveErr.Error())
+	}
+	tokens := map[string]string{
+		"access_token":  ts.AccessToken,
+		"refresh_token": ts.RefreshToken,
+	}
+	c.JSON(http.StatusOK, tokens)
+
+	/*c.JSON(http.StatusOK, gin.H{
 		"status": "ok",
-	})
+	})*/
 }
