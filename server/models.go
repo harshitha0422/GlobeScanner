@@ -104,13 +104,15 @@ type Register struct {
 }
 
 type UserProfile struct {
-	Email string `gorm:"primaryKey" json:"email"`
-	Name  string `json:"name"`
-	About string `json:"about"`
-	Age   uint   `json:"age"`
-	Fav1  string `json:"fav1"`
-	Fav2  string `json:"fav2"`
-	Fav3  string `json:"fav3"`
+	Email    string `gorm:"primaryKey" json:"email"`
+	Name     string `json:"name"`
+	About    string `json:"about"`
+	Age      uint   `json:"age"`
+	Mobile   string `json:"mobile"`
+	Location string `json:"location"`
+	Fav1     string `json:"fav1"`
+	Fav2     string `json:"fav2"`
+	Fav3     string `json:"fav3"`
 }
 
 type GuideProfile struct {

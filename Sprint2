@@ -1,0 +1,30 @@
+Sprint 2
+
+User stories:
+1. Redesigned and developed login and register functionality using JWT token.
+2. Travel guides can add tour pacakages
+3. Users can add/view and edit details on their profile.
+
+
+
+Backend:
+
+Travel guides can add tour packages which will have the following details:
+GuideEmail   
+Duration     
+Location     
+Accomodation
+Itinerary    
+Included
+    
+A new table called Package is created with the above details. The email id which they provide on the tour package needs to exist in our system. Also,
+the travel guide needs to be registered in our system as one, meaning, a person registered as tourist cannot add a tour package. If a person wants to d
+act as both tourist and travel guide, they have to register with each of these roles. These cases have been handled in the code and returns errors.
+
+Unit Testing for SearchPlaces api (implemented in Sprint 1) has been done. Following cases has been handled:
+1. When search string=""
+2. When search string doesnot match any valid place name
+3. When search string matches a valid place name
+4. When search string is similar to a valid place name but not exactly same.
+5. When search string= " "
+

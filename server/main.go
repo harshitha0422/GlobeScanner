@@ -53,7 +53,7 @@ func main() {
 	r.GET("/guideprofiles", getallGuideprofile)
 	r.GET("/comments", getallComments)
 	//r.GET("/users", getUser)
-	r.GET("/userprofile", getTouristProfile)
+	r.GET("/userprofile", TokenAuthMiddleware(), getTouristProfile)
 	r.GET("/guideprofile/:email", getGuideProfile)
 	r.GET("/comments/:location", getLocationComments)
 	r.POST("/userprofiles", createTouristProfile)
