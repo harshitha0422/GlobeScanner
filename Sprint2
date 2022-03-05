@@ -6,6 +6,28 @@ User stories:
 3. Users can add/view and edit details on their profile.
 
 
+Frontend Testing:
+Manual tests are slow, labor-intensive and cannot be repeated often. They are unspecific from a developer perspective: If the test fails, we cannot easily pin down which part of the application is responsible or which code change causes the regression.
+We need automated tests that take the user’s perspective. This is what end-to-end (E2E) tests do. We use cypress framework for end to end testing.
+Frameworks for end-to-end tests allow navigating to URLs, simulating user input and inspecting the page content. Apart from that, they have little in common. The test syntax and the way the tests are run differ widely. On such framework is Cypress.
+
+Once we install cypress, in the project directory, you will find a sub-directory called cypress. It contains:
+* A tsconfig.json configuration for all TypeScript files in the directory,
+* an integration directory for the end-to-end tests,
+* a support directory for custom commands,
+* a plugin directory for Cypress plugins,
+* a fixtures directory for test data.
+
+
+In our first Cypress test, we have checked the we login successfully. The test needs to perform the following steps:
+1. Navigate to “/login”.
+2. Check if the url contains ‘login’.
+3. Find the name element of the login form and automate typing in some name.
+4. Similarly, find the password element and automate giving the password.
+5. Find the button element and click on it.
+6. After login, check if it is navigate to home page.
+7. Check if the url contains ‘home-page’
+We have used cy.visit(‘/login’) to navigate to an login page. The path “/” translates to http://localhost:4200/login since this is the configured baseUrl.
 
 Backend:
 
