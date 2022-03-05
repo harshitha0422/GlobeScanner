@@ -97,6 +97,7 @@ type SearchPlacesResponse struct {
 
 type Register struct {
 	gorm.Model
+	Username string `json:"username"`
 	Email    string `gorm:"primaryKey" json:"email"`
 	Password string `json:"password" binding:"required,min=8,max=20"`
 	Role     string `json:"role"`
