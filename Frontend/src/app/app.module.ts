@@ -21,6 +21,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PlaceFetchService } from './place-fetch.service';
 import { PlaceListComponent } from './place-list/place-list.component';
+import { GetUserDataService } from './get-user-data.service';
 import { ProfileComponent } from './profile/profile.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
@@ -47,7 +48,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [PlaceFetchService,authInterceptorProviders],
+  providers: [PlaceFetchService,authInterceptorProviders,GetUserDataService,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

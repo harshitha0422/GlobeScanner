@@ -6,8 +6,8 @@
       <a mat-button routerLink="register">Register</a>
     </div>
     <div routerLinkActive="active" *ngIf="isLoggedIn"> 
+      <a mat-button routerLink="view-profile">View Profile</a>
       <a mat-button routerLink="home-page" (click)="logout()">LogOut</a>
     </div>
 </mat-toolbar>
   
-
