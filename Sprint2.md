@@ -6,6 +6,7 @@ User stories:
 3. Users can add/view and edit details on their profile.
 
 Sprint2 video drive link added: https://drive.google.com/file/d/1iR2mwzMeOfCW2NH2g255VCTOeuuYeHlx/view?usp=sharing
+
 Frontend Testing:
 Manual tests are slow, labor-intensive and cannot be repeated often. They are unspecific from a developer perspective: If the test fails, we cannot easily pin down which part of the application is responsible or which code change causes the regression.
 We need automated tests that take the user’s perspective. This is what end-to-end (E2E) tests do. We use cypress framework for end to end testing.
