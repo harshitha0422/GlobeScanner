@@ -1,7 +1,7 @@
 Sprint 2
 
 User stories:
-1. Redesigned and developed login and register functionality using JWT token.
+1. Redesigned and developed login and register functionality using JWT token authentication.
 2. Travel guides can add tour pacakages
 3. Users can add/view and edit details on their profile.
 
@@ -28,3 +28,11 @@ Unit Testing for SearchPlaces api (implemented in Sprint 1) has been done. Follo
 4. When search string is similar to a valid place name but not exactly same.
 5. When search string= " "
 
+jwt tokenization backend:
+jwt tokenization is done using the user given mail and user role fields. there are two types of tokens: 
+access token and refresh token. Access token is checked whenever user tries to access the authenticated rotes.
+refresh token is used to refresh the token for user covinience, as the access token will expire in shorter time. 
+The metadata will be stored in redis middleware. whenever a user logout, the token will be removed from the middleware .
+
+
+CRUD operations for the User profile,Guide Profile, Register and Comments table.
