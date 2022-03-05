@@ -48,7 +48,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [PlaceFetchService,authInterceptorProviders,GetUserDataService],
+  providers: [PlaceFetchService,authInterceptorProviders,GetUserDataService,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
