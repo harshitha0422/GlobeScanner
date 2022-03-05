@@ -17,6 +17,13 @@ func showSearchPlacesPage(c *gin.Context) {
 
 	//fmt.Println("Inside showIndex")
 	name := c.Param("name")
+	// if len(name) == 0 {
+	// 	c.JSON(http.StatusNotFound, gin.H{
+	// 		"error": " Search name cannot be empty",
+	// 	})
+	// 	return
+	// }
+
 	//fmt.Print(name)
 	places := searchPlaces(name)
 
