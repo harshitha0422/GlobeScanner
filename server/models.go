@@ -129,3 +129,13 @@ type Comment struct {
 	Location string   `json:"location"`
 	Register Register `gorm:"foreignKey:Email; json:"register"`
 }
+
+type Package struct {
+	gorm.Model
+	GuideEmail   string `json:"guideEmail" gorm:"not null"`
+	Duration     string `json: "duration"`
+	Location     string `json:"location"`
+	Accomodation string `json:"accomodation"`
+	Itinerary    string `json:"itinerary"`
+	Included     string `json:"included"`
+}
