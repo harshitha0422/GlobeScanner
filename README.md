@@ -2,10 +2,10 @@
 A travel advisory web application.
 
 Team Members:
-1. Harshitha Patel Velpula
-2. Vishesha Sadu
-3. Meghamala Gupta
-4. Arijit Dutta
+1. Harshitha Patel Velpula (Frontend)
+2. Vishesha Sadu  (Backend)
+3. Meghamala Gupta (Backend)
+4. Arijit Dutta (Frontend)
 
 Tech Stack:
 1. Frontend - Angular JS
