@@ -105,6 +105,7 @@ func getUser(c *gin.Context) {
 
 // get particular tourist profile by email
 func getTouristProfile(c *gin.Context) {
+	fmt.Println("inside get tourist profile")
 	tokenAuth, err := ExtractTokenMetadata(c.Request)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, "unauthorized1")

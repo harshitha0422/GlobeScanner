@@ -62,9 +62,10 @@ func userRegister(c *gin.Context) {
 }
 
 func userLogin(c *gin.Context) {
+	fmt.Println("user login")
 	type Req struct {
 		Email    string `json:"email" binding:"required,email"`
-		Password string `json:"password" binding:"required,min=8,max=20"`
+		Password string `json:"password" binding:"required,min=6,max=20"`
 		Role     string `json:"role"`
 	}
 	req := Req{}
