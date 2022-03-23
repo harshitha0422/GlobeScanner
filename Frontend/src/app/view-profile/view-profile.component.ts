@@ -13,12 +13,12 @@ export class ViewProfileComponent implements OnInit {
   constructor(private getUser :  GetUserDataService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getUser.getUserInfo()
-    .subscribe(
-      (data) => {console.log(data);
-        this.userProfile = data;
-      }
-      );
+    // this.getUser.getUserInfo()
+    // .subscribe(
+    //   (data) => {console.log(data);
+    //     this.userProfile = data;
+    //   }
+    //   );
   }
   
  

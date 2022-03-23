@@ -10,15 +10,20 @@ const TOKEN_HEADER_KEY = 'x-access-token';
   export class AuthInterceptor implements HttpInterceptor {
   constructor(private token: TokenStorageService) { }
   // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    console.log(req);
     let authReq = req;
     const token = this.token.getToken();
     // if (token != null) {
     //   authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
     // }
     if (token != null) {
-      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, token) });
+      // authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, token) });
+      // console.log(token);
+      authReq = req.clone({ setHeaders: { Authorization: `Bearer ${token}` } });
     }
+    // console.log(authReq);
+    
     return next.handle(authReq);
   }
 }
