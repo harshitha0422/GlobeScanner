@@ -104,15 +104,17 @@ func getUser(c *gin.Context) {
 }
 
 // get particular tourist profile by email
-func getTouristProfile(c *gin.Context) {
-	fmt.Println("inside get tourist profile")
+func getUserProfile(c *gin.Context) {
+	fmt.Println("inside get user profile")
 	tokenAuth, err := ExtractTokenMetadata(c.Request)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, "unauthorized1")
 		return
 	}
 	email := FetchAuth(tokenAuth)
+	role := FetchRole(tokenAuth)
 	fmt.Println(email)
+	fmt.Println(role)
 	/*if err != nil {
 		c.JSON(http.StatusUnauthorized, "unauthorized2")
 		fmt.Println(err)
@@ -120,27 +122,39 @@ func getTouristProfile(c *gin.Context) {
 	}*/
 
 	//email := c.Params.ByName("email")
-	var userprofile UserProfile
-	if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
+
+	if role == "Tourist" {
+
+		var userprofile UserProfile
+		if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
+			c.AbortWithStatus(404)
+			fmt.Println(err)
+		} else {
+			c.JSON(200, userprofile)
+		}
 	} else {
-		c.JSON(200, userprofile)
+		var guideprofile GuideProfile
+		if err := DB.Where("email = ?", email).First(&guideprofile).Error; err != nil {
+			c.AbortWithStatus(404)
+			fmt.Println(err)
+		} else {
+			c.JSON(200, guideprofile)
+		}
 	}
 }
 
-// get one travel guide profile by email
-func getGuideProfile(c *gin.Context) {
+// // get one travel guide profile by email
+// func getGuideProfile(c *gin.Context) {
 
-	email := c.Params.ByName("email")
-	var guideprofile GuideProfile
-	if err := DB.Where("email = ?", email).First(&guideprofile).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		c.JSON(200, guideprofile)
-	}
-}
+// 	email := c.Params.ByName("email")
+// 	var guideprofile GuideProfile
+// 	if err := DB.Where("email = ?", email).First(&guideprofile).Error; err != nil {
+// 		c.AbortWithStatus(404)
+// 		fmt.Println(err)
+// 	} else {
+// 		c.JSON(200, guideprofile)
+// 	}
+// }
 
 // get comments by location
 func getLocationComments(c *gin.Context) {
@@ -190,28 +204,38 @@ func createComments(c *gin.Context) {
 	c.JSON(200, comment)
 }
 
-func updateTouristProfile(c *gin.Context) {
-	var userprofile UserProfile
-	email := c.Params.ByName("email")
-	if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
+func updateUserProfile(c *gin.Context) {
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
+		return
 	}
-	c.BindJSON(&userprofile)
-	DB.Save(&userprofile)
-	c.JSON(200, userprofile)
-}
+	email := FetchAuth(tokenAuth)
+	role := FetchRole(tokenAuth)
 
-func updateGuideProfile(c *gin.Context) {
-	var guideprofile GuideProfile
-	email := c.Params.ByName("email")
-	if err := DB.Where("email = ?", email).First(&guideprofile).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
+	if role == "Tourist" {
+		var userprofile UserProfile
+		if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
+			c.AbortWithStatus(404)
+			fmt.Println(err)
+		}
+		c.BindJSON(&userprofile)
+		DB.Save(&userprofile)
+		c.JSON(200, gin.H{
+			"success": "Tourist data successfully updated.",
+		})
+	} else {
+		var guideprofile GuideProfile
+		if err := DB.Where("email = ?", email).First(&guideprofile).Error; err != nil {
+			c.AbortWithStatus(404)
+			fmt.Println(err)
+		}
+		c.BindJSON(&guideprofile)
+		DB.Save(&guideprofile)
+		c.JSON(200, gin.H{
+			"success": "Guide data successfully updated.",
+		})
 	}
-	c.BindJSON(&guideprofile)
-	DB.Save(&guideprofile)
-	c.JSON(200, guideprofile)
 }
 
 func DeleteTouristProfile(c *gin.Context) {
