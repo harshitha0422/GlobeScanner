@@ -55,6 +55,7 @@ func main() {
 	r.GET("/comments", getallComments)
 	//r.GET("/users", getUser)
 	r.GET("/userprofile", TokenAuthMiddleware(), getUserProfile)
+	r.POST("/userprofile", TokenAuthMiddleware(), createUserProfile)
 	//r.GET("/guideprofile/:email", getGuideProfile)
 	r.GET("/comments/:location", getLocationComments)
 	//r.POST("/userprofiles", createTouristProfile)

@@ -170,12 +170,24 @@ func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
 	return nil, err
 }
 
-func FetchAuth(authD *AccessDetails) string {
-	//email, err := client.Get(authD.Email).Result()
-	//if err != nil {
-	//	return "", err}
+func FetchEmail(authD *AccessDetails) string {
+	// uuid, err := client.Get(authD.AccessUuid).Result()
+	// if err != nil {
+	// 	return "", err }
+	// return uuid, nil
 	return authD.Email
 }
+
+func FetchAuth(authD *AccessDetails) error {
+	userid, err := client.Get(authD.AccessUuid).Result()
+	if err != nil {
+		return err
+	}
+	fmt.Println(userid)
+	//userID, _ := strconv.ParseUint(userid, 10, 64)
+	return nil
+}
+
 func FetchRole(authD *AccessDetails) string {
 	//email, err := client.Get(authD.Email).Result()
 	//if err != nil {
@@ -193,7 +205,7 @@ func CreateTodo(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, "unauthorized")
 		return
 	}
-	userId := FetchAuth(tokenAuth)
+	userId := FetchEmail(tokenAuth)
 	/*if err != nil {
 		c.JSON(http.StatusUnauthorized, "unauthorized")
 		return

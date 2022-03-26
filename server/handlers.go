@@ -111,17 +111,17 @@ func getUserProfile(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, "unauthorized1")
 		return
 	}
-	email := FetchAuth(tokenAuth)
+	err1 := FetchAuth(tokenAuth)
+	if err1 != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		fmt.Println(err1)
+		return
+	}
+	//email := c.Params.ByName("email")
+	email := FetchEmail(tokenAuth)
 	role := FetchRole(tokenAuth)
 	fmt.Println(email)
 	fmt.Println(role)
-	/*if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized2")
-		fmt.Println(err)
-		return
-	}*/
-
-	//email := c.Params.ByName("email")
 
 	if role == "Tourist" {
 
@@ -167,6 +167,47 @@ func getLocationComments(c *gin.Context) {
 	} else {
 		c.JSON(200, locationcomment)
 	}
+}
+
+func createUserProfile(c *gin.Context) {
+	fmt.Println("inside get user profile")
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
+		return
+	}
+	err1 := FetchAuth(tokenAuth)
+	if err1 != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		fmt.Println(err1)
+		return
+	}
+	//email := c.Params.ByName("email")
+	email := FetchEmail(tokenAuth)
+	role := FetchRole(tokenAuth)
+	fmt.Println(email)
+	fmt.Println(role)
+
+	if role == "Tourist" {
+		var userprofile UserProfile
+		c.BindJSON(&userprofile)
+		if err := DB.Create(&userprofile).Error; err != nil {
+			fmt.Println("cannot create user profile", err)
+			c.AbortWithStatus(502)
+
+		}
+		c.JSON(200, userprofile)
+	} else {
+		var guideprofile GuideProfile
+		c.BindJSON(&guideprofile)
+		if err := DB.Create(&guideprofile).Error; err != nil {
+			fmt.Println("cannot create user profile", err)
+			c.AbortWithStatus(502)
+
+		}
+		c.JSON(200, guideprofile)
+	}
+
 }
 
 // create the tourist profile
