@@ -37,5 +37,23 @@ func seed(db *gorm.DB) {
 	}
 	for _, cmnt := range comments {
 		db.Create(&cmnt)
+
+	}
+	// type Req struct {
+	// 	GuideEmail   string `json:"guideEmail" gorm:"not null"`
+	// 	Duration     string `json: "duration"`
+	// 	Location     string `json:"location"`
+	// 	Accomodation string `json:"accomodation"`
+	// 	Itinerary    string `json:"itinerary"`
+	// 	Included     string `json:"included"`
+	// 	Price        string `json:"price"`
+	// }
+	packages := []Package{
+		{GuideEmail: "visheshas@gmail.com", Duration: "2 weeks", Location: "Florida", Accomodation: "Hyatt Regency", Itinerary: "Day1:Miami, Day2: Fort Lauderdale, Day3: Orlando", Included: "Breakfast,Dinner, Sight-seeing", Price: "$100"},
+		{GuideEmail: "arijitd@gmail.com", Duration: "1 weeks", Location: "New Delhi", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+	}
+	for _, pkg := range packages {
+		db.Create(&pkg)
+
 	}
 }

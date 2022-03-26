@@ -18,6 +18,7 @@ func addPackages(c *gin.Context) {
 		Accomodation string `json:"accomodation"`
 		Itinerary    string `json:"itinerary"`
 		Included     string `json:"included"`
+		Price        string `json:"price"`
 	}
 	req := Req{}
 	//var newPackage Package
@@ -56,6 +57,7 @@ func addPackages(c *gin.Context) {
 		Accomodation: req.Accomodation,
 		Itinerary:    req.Itinerary,
 		Included:     req.Included,
+		Price:        req.Price,
 	}
 	result = DB.Create(&newPackage)
 	if result.Error != nil {

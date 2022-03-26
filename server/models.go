@@ -140,4 +140,5 @@ type Package struct {
 	Accomodation string `json:"accomodation"`
 	Itinerary    string `json:"itinerary"`
 	Included     string `json:"included"`
+	Price        string `json:"price"`
 }

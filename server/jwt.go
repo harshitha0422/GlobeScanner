@@ -176,7 +176,12 @@ func FetchAuth(authD *AccessDetails) string {
 	//	return "", err}
 	return authD.Email
 }
-
+func FetchRole(authD *AccessDetails) string {
+	//email, err := client.Get(authD.Email).Result()
+	//if err != nil {
+	//	return "", err}
+	return authD.Role
+}
 func CreateTodo(c *gin.Context) {
 	var td *Todo
 	if err := c.ShouldBindJSON(&td); err != nil {

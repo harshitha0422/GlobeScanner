@@ -112,6 +112,7 @@ func getTouristProfile(c *gin.Context) {
 		return
 	}
 	email := FetchAuth(tokenAuth)
+	fmt.Println(email)
 	/*if err != nil {
 		c.JSON(http.StatusUnauthorized, "unauthorized2")
 		fmt.Println(err)
