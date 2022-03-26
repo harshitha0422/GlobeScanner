@@ -31,7 +31,7 @@ func main() {
 	}
 	DB = db
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
-	//seed(db)
+	seed(db)
 
 	db.LogMode(true)
 	r := gin.Default()
@@ -54,15 +54,15 @@ func main() {
 	r.GET("/guideprofiles", getallGuideprofile)
 	r.GET("/comments", getallComments)
 	//r.GET("/users", getUser)
-	r.GET("/userprofile", TokenAuthMiddleware(), getTouristProfile)
-	r.GET("/guideprofile/:email", getGuideProfile)
+	r.GET("/userprofile", TokenAuthMiddleware(), getUserProfile)
+	//r.GET("/guideprofile/:email", getGuideProfile)
 	r.GET("/comments/:location", getLocationComments)
 	//r.POST("/userprofiles", createTouristProfile)
-	r.POST("/guideprofiles", createGuideProfile)
+	//r.POST("/guideprofiles", createGuideProfile)
 	r.POST("/comments", createComments)
-	r.PUT("/userprofile/:email", updateTouristProfile)
-	r.PUT("/guideprofile/:email", updateGuideProfile)
-	//r.DELETE("/userprofile/:email", DeleteTouristProfile)
+	r.PUT("/updateUserProfile", TokenAuthMiddleware(), updateUserProfile)
+	//r.PUT("/guideprofile/:email", updateGuideProfile)
+	r.DELETE("/userprofile/:email", DeleteTouristProfile)
 	r.DELETE("/guideprofile/:email", DeleteGuideProfile)
 
 	r.POST("/token/refresh", Refresh)
