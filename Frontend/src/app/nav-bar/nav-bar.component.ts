@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Router } from '@angular/router';
 import { GetUserDataService } from '../get-user-data.service';
+import { DataSharingService } from '../services/data-sharing.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,7 +17,11 @@ export class NavBarComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService:TokenStorageService, private router: Router, private getUserDataService:GetUserDataService) { }
+  constructor(private tokenStorageService:TokenStorageService, private router: Router, private getUserDataService:GetUserDataService, private dataSharingService:DataSharingService) {
+    this.dataSharingService.isUserLoggedIn.subscribe( value => {
+      this.isLoggedIn = value;
+  });
+   }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -30,20 +35,7 @@ export class NavBarComponent implements OnInit {
   }
   viewProfile(): void{
     if(this.isLoggedIn){
-      // const user = this.tokenStorageService.getUser();
-      this.getUserDataService.getUserInfo().subscribe(
-        // this.authService.register(email, password, this.role).subscribe(
-          data => {
-            console.log("get user info")
-            console.log(data);
-            // this.isSuccessful = true;
-            // this.isSignUpFailed = false;
-          },
-          err => {
-            // this.errorMessage = err.error.message;
-            // this.isSignUpFailed = true;
-          }
-        );
+      this.router.navigateByUrl('/view-profile');
     }
   }
   logout(): void {
