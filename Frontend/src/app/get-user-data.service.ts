@@ -17,8 +17,11 @@ export class GetUserDataService {
 
   constructor(private http : HttpClient) { }
   getUserInfo(): Observable<any>{
-    return this.http.get<any>("http://10.20.158.45:8080/userprofile",httpOptions);
+    return this.http.get<any>("http://10.192.167.246:8080/userprofile",httpOptions);
+    // return this.http.get<any>("http://10.20.158.45:8080/userprofile",httpOptions);
     // return this.http.get<any>("http://10.20.106.116:8080/userprofile",httpOptions);
     // return this.http.get<any>("http://localhost:8080/userprofile",httpOptions);
+
+    
   }
 }

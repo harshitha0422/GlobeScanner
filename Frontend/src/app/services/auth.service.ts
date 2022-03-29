@@ -12,7 +12,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // const AUTH_API = 'http://localhost:8080/';
 // const AUTH_API = 'http://10.20.106.116:8080/';
-const AUTH_API = 'http://10.20.158.45:8080/';
+// const AUTH_API = 'http://10.20.158.45:8080/';
+const AUTH_API = 'http://10.192.167.246:8080/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };

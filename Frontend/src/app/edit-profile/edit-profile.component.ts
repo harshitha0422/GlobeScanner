@@ -21,43 +21,30 @@ export class EditProfileComponent implements OnInit {
   form: any = {
     // fullName: new FormControl(''),
     // age: new FormControl('')
-    fullName: null,
+    name: null,
     age: null,
+    mobile : null,
+    location : null,
+    fav1 : null,
+    fav2 : null,
+    fav3 : null
   };
-  // fullName : any = null;
-  // age : any = null;
-  mobile : any = null;
-  location : any = null;
-  fav1 : any = null;
-  fav2 : any = null;
-  fav3 : any = null;
-  constructor(private getUser :  GetUserDataService, private router: Router, private sendSavedChanges :  SendUserDataService, public fb: FormBuilder) { 
-    // this.form = this.fb.group({
-    //   fullName: [''],  
-    //   email: [''],
-    //   message: ['']
-    // });
-  }
+  
+  constructor(private getUser :  GetUserDataService, private router: Router, private sendSavedChanges :  SendUserDataService, public fb: FormBuilder) {}
 
   ngOnInit(): void {
-    // this.getUser.getUserInfo()
-    // .subscribe(
-    //   (data) => {console.log(data);
-    //     this.userProfile = data;
-    //   }
-    //   );
     this.getUser.getUserInfo().subscribe(
       data => {
         this.userProfile = data;
         console.log("edit user info")
         console.log(data);
-        this.form.fullName = data.name;
+        this.form.name = data.name;
         this.form.age = data.age;
-        this.mobile = data.mobile;
-        this.location = data.location;
-        this.fav1 = data.fav1;
-        this.fav2 = data.fav2;
-        this.fav3 = data.fav3;
+        this.form.mobile = data.mobile;
+        this.form.location = data.location;
+        this.form.fav1 = data.fav1;
+        this.form.fav2 = data.fav2;
+        this.form.fav3 = data.fav3;
       },
       err => {
         console.log(err.error.message);
