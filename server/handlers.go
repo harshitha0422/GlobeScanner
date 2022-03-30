@@ -260,11 +260,16 @@ func updateUserProfile(c *gin.Context) {
 			c.AbortWithStatus(404)
 			fmt.Println(err)
 		}
-		c.BindJSON(&userprofile)
-		DB.Save(&userprofile)
+		c.JSON(http.StatusOK, gin.H{"data": userprofile})
+		var userprofile1 UserProfile
+		c.BindJSON(&userprofile1)
+		c.JSON(http.StatusOK, gin.H{"data": userprofile1})
+		//DB.Save(&userprofile)
+		DB.Model(&userprofile).Updates(userprofile1)
 		c.JSON(200, gin.H{
 			"success": "Tourist data successfully updated.",
 		})
+		c.JSON(http.StatusOK, gin.H{"data": userprofile})
 	} else {
 		var guideprofile GuideProfile
 		if err := DB.Where("email = ?", email).First(&guideprofile).Error; err != nil {
