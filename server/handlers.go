@@ -204,40 +204,6 @@ func createComments(c *gin.Context) {
 	c.JSON(200, comment)
 }
 
-func updateUserProfile(c *gin.Context) {
-	tokenAuth, err := ExtractTokenMetadata(c.Request)
-	if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized1")
-		return
-	}
-	email := FetchAuth(tokenAuth)
-	role := FetchRole(tokenAuth)
-
-	if role == "Tourist" {
-		var userprofile UserProfile
-		if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
-			c.AbortWithStatus(404)
-			fmt.Println(err)
-		}
-		c.BindJSON(&userprofile)
-		DB.Save(&userprofile)
-		c.JSON(200, gin.H{
-			"success": "Tourist data successfully updated.",
-		})
-	} else {
-		var guideprofile GuideProfile
-		if err := DB.Where("email = ?", email).First(&guideprofile).Error; err != nil {
-			c.AbortWithStatus(404)
-			fmt.Println(err)
-		}
-		c.BindJSON(&guideprofile)
-		DB.Save(&guideprofile)
-		c.JSON(200, gin.H{
-			"success": "Guide data successfully updated.",
-		})
-	}
-}
-
 func DeleteTouristProfile(c *gin.Context) {
 	email := c.Params.ByName("email")
 	var userprofile UserProfile
