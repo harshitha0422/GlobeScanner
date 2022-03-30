@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Router } from '@angular/router';
+import { DataSharingService } from '../services/data-sharing.service';
 
 @Component({
   selector: 'app-log-in',
@@ -20,7 +21,7 @@ export class LogInComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   // roles: string[] = [];
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router:Router) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router:Router, private dataSharingService:DataSharingService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -41,7 +42,11 @@ export class LogInComponent implements OnInit {
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser().roles;
         // this.reloadPage();
-        // this.router.navigateByUrl('/home-page');
+        // this.router.navigateByUrl('/nav-bar');
+        // this.router.navigate(['nav-bar']);
+        // window.location.reload();
+        this.dataSharingService.isUserLoggedIn.next(true);
+        this.router.navigateByUrl('/home-page');
       },
       err => {
         this.errorMessage = err.error.message;

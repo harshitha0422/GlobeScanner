@@ -7,12 +7,15 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PlaceListComponent } from './place-list/place-list.component';
 import { AddPackageComponent } from './add-package/add-package.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home-page' },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home-page', component: HomePageComponent},
+  { path: 'nav-bar', component: NavBarComponent},
   { path: 'place-list', component: PlaceListComponent},
   { path: 'view-profile', component: ViewProfileComponent},
   { path:'view-profile/edit-profile',component:EditProfileComponent},

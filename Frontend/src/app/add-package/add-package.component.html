@@ -3,14 +3,16 @@
  
             <div class="col-md-8">
               <div class="card mb-3">
-                <!-- <form [formGroup]="form" (ngSubmit)="submit()" > -->
+                <form (ngSubmit)="onsubmit()" >
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Guide Email</h6>
+                      <h6 class="mb-0" style="font-size:15px;">Guide Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" class="form-control"  name = "guideemail" placeholder = "guide email" formControlName="fullName">
+                        <input type="text" [(ngModel)]="form.email" value={{form.email}}   
+                        name = "guideemail" placeholder = "guide email" 
+                        [ngModelOptions]="{standalone: true}" >
                     </div>
                   </div>
                   <hr>
@@ -19,64 +21,70 @@
                       <h6 class="mb-0" style="font-size:15px;">Location</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group" >
-                        <input type="text" class="form-control"  placeholder = "location" name = "location" formControlName="fullName">
+                        <input type="text"   [(ngModel)]="form.location" value={{form.location}}   placeholder = "location" name = "location" 
+                        [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Included</h6>
+                      <h6 class="mb-0" style="font-size:15px;">Included</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" class="form-control"  placeholder = "included" name = "included" formControlName="mobile">
+                        <input type="text" [(ngModel)]="form.included" value={{form.included}}    placeholder = "included" name = "included" 
+                        [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Duration</h6>
+                      <h6 class="mb-0" style="font-size:15px;">Duration</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" class="form-control"  placeholder = "duration" name = "duration" formControlName="age">
+                        <input type="text" [(ngModel)]="form.duration" value={{form.duration}}    placeholder = "duration" name = "duration" 
+                         [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Itinerary</h6>
+                      <h6 class="mb-0" style="font-size:15px;">Itinerary</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" class="form-control"  placeholder = "itinerary" name = "itinerary" formControlName="mobile">
+                        <input type="text" [(ngModel)]="form.itinerary" value={{form.itinerary}}   placeholder = "itinerary" name = "itinerary"  
+                        [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Accomodation</h6>
+                      <h6 class="mb-0" style="font-size:15px;">Accomodation</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" class="form-control"  placeholder = "accomodation" name = "accomodation" formControlName="location">
+                        <input type="text"  [(ngModel)]="form.accomodation" value={{form.accomodation}   placeholder = "accomodation" name = "accomodation"  
+                        [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Price</h6>
+                      <h6 class="mb-0" style="font-size:15px;">Price</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" class="form-control"  placeholder = "price" name = "price" formControlName="fav_2">
+                        <input type="text" [(ngModel)]="form.price" value={{form.price}    placeholder = "price" name = "price"  [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-9 text-secondary form-group">
-                         <button type="button" class="btn btn-primary px-4" id="saveChanges"
-                      >Save Changes</button> 
+                         <button type="button" class="btn btn-primary px-4" id="saveChanges"  
+                         (click)='addPackage()'
+                      >Add</button> 
                     </div>
                 </div>
                 </div>
-              <!-- </form> -->
+              </form>
               </div>
   
             </div>

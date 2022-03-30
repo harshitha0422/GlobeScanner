@@ -23,9 +23,13 @@ import { PlaceFetchService } from './place-fetch.service';
 import { PlaceListComponent } from './place-list/place-list.component';
 import { GetUserDataService } from './get-user-data.service';
 import { ProfileComponent } from './profile/profile.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AddPackageComponent } from './add-package/add-package.component';
+import { DataSharingService } from './services/data-sharing.service';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +41,9 @@ import { AddPackageComponent } from './add-package/add-package.component';
     AboutUsComponent,
     PlaceListComponent,
     ProfileComponent,
-    AddPackageComponent
+    AddPackageComponent,
+    ViewProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,7 @@ import { AddPackageComponent } from './add-package/add-package.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [PlaceFetchService,authInterceptorProviders,GetUserDataService,
+  providers: [PlaceFetchService,authInterceptorProviders,GetUserDataService,DataSharingService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
