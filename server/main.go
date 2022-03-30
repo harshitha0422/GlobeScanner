@@ -30,6 +30,7 @@ func main() {
 		panic("can't connect to database")
 	}
 	DB = db
+	db.Delete(&GuideProfile{})
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
 	seed(db)
 
@@ -62,6 +63,7 @@ func main() {
 	//r.POST("/guideprofiles", createGuideProfile)
 	r.POST("/comments", createComments)
 	r.PUT("/updateUserProfile", TokenAuthMiddleware(), updateUserProfile)
+	r.PUT("/updateGuideProfile", TokenAuthMiddleware(), updateGuideProfile)
 	//r.PUT("/guideprofile/:email", updateGuideProfile)
 	r.DELETE("/userprofile/:email", DeleteTouristProfile)
 	r.DELETE("/guideprofile/:email", DeleteGuideProfile)

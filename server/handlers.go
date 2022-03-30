@@ -245,6 +245,7 @@ func createComments(c *gin.Context) {
 	c.JSON(200, comment)
 }
 
+<<<<<<< HEAD
 func updateUserProfile(c *gin.Context) {
 	tokenAuth, err := ExtractTokenMetadata(c.Request)
 	if err != nil {
@@ -284,6 +285,8 @@ func updateUserProfile(c *gin.Context) {
 	}
 }
 
+=======
+>>>>>>> 5e1da19d7ebf71ef42240de00125a6e381f66205
 func DeleteTouristProfile(c *gin.Context) {
 	email := c.Params.ByName("email")
 	var userprofile UserProfile
