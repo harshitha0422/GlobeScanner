@@ -25,6 +25,7 @@ import { GetUserDataService } from './get-user-data.service';
 import { ProfileComponent } from './profile/profile.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { AddPackageComponent } from './add-package/add-package.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     HomePageComponent,
     AboutUsComponent,
     PlaceListComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddPackageComponent
   ],
   imports: [
     BrowserModule,
