@@ -31,9 +31,10 @@ type AccessDetails struct {
 	AccessUuid string
 	Email      string `json:"email"`
 	Role       string `json:"role"`
+	Name       string `json:"name"`
 }
 
-func CreateToken(email string, role string) (*TokenDetails, error) {
+func CreateToken(email string, role string, name string) (*TokenDetails, error) {
 	td := &TokenDetails{}
 	td.AtExpires = time.Now().Add(time.Minute * 15).Unix()
 	td.AccessUuid = uuid.NewV4().String()
@@ -49,6 +50,7 @@ func CreateToken(email string, role string) (*TokenDetails, error) {
 	atClaims["access_uuid"] = td.AccessUuid
 	atClaims["email"] = email
 	atClaims["role"] = role
+	atClaims["name"] = name
 	atClaims["exp"] = td.AtExpires
 	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
 	td.AccessToken, err = at.SignedString([]byte(os.Getenv("ACCESS_SECRET")))
@@ -60,6 +62,7 @@ func CreateToken(email string, role string) (*TokenDetails, error) {
 	rtClaims := jwt.MapClaims{}
 	rtClaims["refresh_uuid"] = td.RefreshUuid
 	rtClaims["Email"] = email
+	rtClaims["Name"] = name
 	rtClaims["Role"] = role
 	rtClaims["exp"] = td.RtExpires
 	rt := jwt.NewWithClaims(jwt.SigningMethodHS256, rtClaims)
@@ -157,6 +160,10 @@ func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
 		if !ok {
 			return nil, err
 		}
+		name, ok := claims["name"].(string)
+		if !ok {
+			return nil, err
+		}
 		role, ok := claims["role"].(string)
 		if !ok {
 			return nil, err
@@ -165,22 +172,41 @@ func ExtractTokenMetadata(r *http.Request) (*AccessDetails, error) {
 			AccessUuid: accessUuid,
 			Email:      email,
 			Role:       role,
+			Name:       name,
 		}, nil
 	}
 	return nil, err
 }
 
-func FetchAuth(authD *AccessDetails) string {
-	//email, err := client.Get(authD.Email).Result()
-	//if err != nil {
-	//	return "", err}
+func FetchEmail(authD *AccessDetails) string {
+	// uuid, err := client.Get(authD.AccessUuid).Result()
+	// if err != nil {
+	// 	return "", err }
+	// return uuid, nil
 	return authD.Email
 }
+
+func FetchAuth(authD *AccessDetails) error {
+	userid, err := client.Get(authD.AccessUuid).Result()
+	if err != nil {
+		return err
+	}
+	fmt.Println(userid)
+	//userID, _ := strconv.ParseUint(userid, 10, 64)
+	return nil
+}
+
 func FetchRole(authD *AccessDetails) string {
 	//email, err := client.Get(authD.Email).Result()
 	//if err != nil {
 	//	return "", err}
 	return authD.Role
+}
+func FetchName(authD *AccessDetails) string {
+	//email, err := client.Get(authD.Email).Result()
+	//if err != nil {
+	//	return "", err}
+	return authD.Name
 }
 func CreateTodo(c *gin.Context) {
 	var td *Todo
@@ -193,7 +219,7 @@ func CreateTodo(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, "unauthorized")
 		return
 	}
-	userId := FetchAuth(tokenAuth)
+	userId := FetchEmail(tokenAuth)
 	/*if err != nil {
 		c.JSON(http.StatusUnauthorized, "unauthorized")
 		return
@@ -276,6 +302,7 @@ func Refresh(c *gin.Context) {
 		}
 		email, ok := claims["Email"].(string)
 		role, ok := claims["Role"].(string)
+		name, ok := claims["Name"].(string)
 		if ok != true {
 			c.JSON(http.StatusUnprocessableEntity, "Error occurred")
 			return
@@ -287,7 +314,7 @@ func Refresh(c *gin.Context) {
 			return
 		}
 		//Create new pairs of refresh and access tokens
-		ts, createErr := CreateToken(email, role)
+		ts, createErr := CreateToken(email, role, name)
 		if createErr != nil {
 			c.JSON(http.StatusForbidden, createErr.Error())
 			return

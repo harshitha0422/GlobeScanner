@@ -95,18 +95,27 @@ type SearchPlacesResponse struct {
 	Inf      Info               `json:"info"`
 }
 
+// type Register struct {
+// 	gorm.Model
+// 	Username string `json:"username"`
+// 	Email    string `gorm:"primaryKey" json:"email"`
+// 	Password string `json:"password" binding:"required,min=8,max=20"`
+// 	Role     string `gorm:"primaryKey" json:"role"`
+// }
+
 type Register struct {
 	gorm.Model
-	Username string `json:"username"`
-	Email    string `gorm:"primaryKey; auto_increment:false" json:"email"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
 	Password string `json:"password" binding:"required,min=8,max=20"`
-	Role     string `gorm:"primaryKey;auto_increment:false" json:"role"`
+	Role     string `json:"role"`
 }
 
 type UserProfile struct {
-	gorm.Model
-	Email    string `gorm:"primaryKey" json:"email"`
-	Name     string `json:"name"`
+	Email string `gorm:"primaryKey" json:"email"`
+	Name  string `json:"name"`
+	//Password string `json:"password" binding:"required,min=8,max=20"`
+	Role     string `json:"role"`
 	About    string `json:"about"`
 	Age      uint   `json:"age"`
 	Mobile   string `json:"mobile"`
@@ -117,9 +126,10 @@ type UserProfile struct {
 }
 
 type GuideProfile struct {
-	gorm.Model
-	Email    string `gorm:"primaryKey" json:"email"`
+	Email string `gorm:"primaryKey" json:"email"`
+	//Password string `json:"name"`
 	Name     string `json:"name"`
+	Role     string `json:"role"`
 	About    string `json:"about"`
 	Age      uint   `json:"age"`
 	Address  string `json:"address"`
@@ -128,15 +138,17 @@ type GuideProfile struct {
 }
 
 type Comment struct {
-	Comment  string   `json:"comment"`
-	Email    string   `json:"email"`
-	Location string   `json:"location"`
-	Register Register `gorm:"foreignKey:Email; json:"register"`
+	Comment  string `json:"comment"`
+	Email    string `json:"email"`
+	Name     string `json:"name"`
+	Location string `json:"location"`
+	Rating   string `json:"rating"`
+	//Register Register `gorm:"foreignKey:Email; json:"register"`
 }
 
 type Package struct {
 	gorm.Model
-	GuideEmail   string `json:"guideEmail" gorm:"not null"`
+	Email        string `json:"email"`
 	Duration     string `json: "duration"`
 	Location     string `json:"location"`
 	Accomodation string `json:"accomodation"`

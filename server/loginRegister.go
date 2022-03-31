@@ -13,7 +13,7 @@ func userRegister(c *gin.Context) {
 	fmt.Print("sign up req")
 	// Parse input request
 	type Req struct {
-		Username string `json:"username"`
+		Name     string `json:"name"`
 		Email    string `json:"email" binding:"required,email"`
 		Password string `json:"password" binding:"required,min=6,max=20"`
 		Role     string `json:"role"`
@@ -27,38 +27,102 @@ func userRegister(c *gin.Context) {
 		})
 		return
 	}
-	// Check if other user already exists with the same Email
-	register := Register{}
-	result := DB.Where("email = ?", req.Email).First(&register)
-	if result.RowsAffected == 1 {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "this Email is already taken by other user",
-		})
-		return
+	if req.Role == "Tourist" {
+		// Check if other user already exists with the same Email
+		var userprofile UserProfile
+		result := DB.Where("email = ?", req.Email).First(&userprofile)
+		if result.RowsAffected == 1 {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": "this Email is already taken by other user",
+			})
+			return
+		}
+		// Hash password
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": "interval server error",
+			})
+			return
+		}
+		// Insert into database
+		user := UserProfile{
+			Name:  req.Name,
+			Email: req.Email,
+			Role:  req.Role,
+		}
+		register := Register{
+			Name:     req.Name,
+			Email:    req.Email,
+			Password: string(hashedPassword),
+			Role:     req.Role,
+		}
+		result = DB.Create(&user)
+		if result.Error != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": "error creating user register in user profile DB",
+			})
+			return
+		}
+		result = DB.Create(&register)
+		if result.Error != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": "error creating user register DB",
+			})
+			return
+		}
+		c.JSON(http.StatusOK, user)
 	}
-	// Hash password
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "interval server error",
-		})
-		return
+
+	if req.Role == "Guide" {
+		// Check if other user already exists with the same Email
+		//register := Register{}
+		var guideprofile GuideProfile
+		result := DB.Where("email = ?", req.Email).First(&guideprofile)
+		if result.RowsAffected == 1 {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": "this Email is already taken by other user",
+			})
+			return
+		}
+		// Hash password
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": "interval server error",
+			})
+			return
+		}
+		// Insert into database
+		user := GuideProfile{
+			Name:  req.Name,
+			Email: req.Email,
+			Role:  req.Role,
+		}
+		register := Register{
+			Name:     req.Name,
+			Email:    req.Email,
+			Password: string(hashedPassword),
+			Role:     req.Role,
+		}
+		result = DB.Create(&user)
+		if result.Error != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": "error creating register DB",
+			})
+			return
+		}
+
+		result = DB.Create(&register)
+		if result.Error != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": "error creating user register DB",
+			})
+			return
+		}
+		c.JSON(http.StatusOK, user)
 	}
-	// Insert into database
-	registers := Register{
-		Username: req.Username,
-		Email:    req.Email,
-		Password: string(hashedPassword),
-		Role:     req.Role,
-	}
-	result = DB.Create(&registers)
-	if result.Error != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "error creating register DB",
-		})
-		return
-	}
-	c.JSON(http.StatusOK, register)
+
 }
 
 func userLogin(c *gin.Context) {
@@ -78,10 +142,10 @@ func userLogin(c *gin.Context) {
 	}
 	// Check if the user exists
 	register := Register{}
-	res := DB.Where("email = ?", req.Email).First(&register)
+	res := DB.Where("email = ? AND role = ?", req.Email, req.Role).Find(&register)
 	if res.Error != nil {
 		c.JSON(http.StatusNotFound, gin.H{
-			"error": "user not found",
+			"error": "user not found or role does not match",
 		})
 		return
 	}
@@ -102,7 +166,7 @@ func userLogin(c *gin.Context) {
 		return
 	}
 
-	ts, err := CreateToken(register.Email, register.Role)
+	ts, err := CreateToken(register.Email, register.Role, register.Name)
 	if err != nil {
 		c.JSON(http.StatusUnprocessableEntity, err.Error())
 		return
