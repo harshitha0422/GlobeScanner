@@ -51,7 +51,7 @@ func searchPackage(c *gin.Context) {
 	}
 
 	//email := c.Params.ByName("email"
-	pkg := Package{}
+	pkg := []Package{}
 	packages := DB.Where("location = ?", location).Find(&pkg)
 	if packages.Error != nil {
 		c.JSON(http.StatusNotFound, gin.H{
@@ -59,6 +59,6 @@ func searchPackage(c *gin.Context) {
 		})
 		return
 	} else {
-		c.JSON(200, packages)
+		c.JSON(200, pkg)
 	}
 }

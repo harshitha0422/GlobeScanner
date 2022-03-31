@@ -30,9 +30,10 @@ func main() {
 		panic("can't connect to database")
 	}
 	DB = db
-	db.Delete(&GuideProfile{})
+	//db.Delete(&GuideProfile{})
+	//db.Delete(&UserProfile{})
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
-	seed(db)
+	//seed(db)
 
 	db.LogMode(true)
 	r := gin.Default()
@@ -58,7 +59,7 @@ func main() {
 	r.GET("/userprofile", TokenAuthMiddleware(), getUserProfile)
 	//r.GET("/guideprofile/:email", getGuideProfile)
 	r.GET("/comments/:location", getLocationComments)
-	//r.POST("/userprofiles", createTouristProfile)
+	r.POST("/userprofiles", TokenAuthMiddleware(), createTouristProfile)
 	//r.POST("/guideprofiles", createGuideProfile)
 	r.POST("/comments", createComments)
 	r.PUT("/updateUserProfile", TokenAuthMiddleware(), updateUserProfile)
