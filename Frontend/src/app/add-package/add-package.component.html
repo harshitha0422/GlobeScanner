@@ -7,10 +7,10 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0" style="font-size:15px;">Guide Email</h6>
+                      <h6 class="mb-0">Guide Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" [(ngModel)]="form.email" value={{form.email}}   
+                        <input type="text" style="width:240px" [(ngModel)]="form.guideEmail" value={{form.guideEmail}}   
                         name = "guideemail" placeholder = "guide email" 
                         [ngModelOptions]="{standalone: true}" >
                     </div>
@@ -18,60 +18,60 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0" style="font-size:15px;">Location</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary form-group" >
-                        <input type="text"   [(ngModel)]="form.location" value={{form.location}}   placeholder = "location" name = "location" 
-                        [ngModelOptions]="{standalone: true}">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0" style="font-size:15px;">Included</h6>
+                      <h6 class="mb-0">Duration</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" [(ngModel)]="form.included" value={{form.included}}    placeholder = "included" name = "included" 
-                        [ngModelOptions]="{standalone: true}">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0" style="font-size:15px;">Duration</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" [(ngModel)]="form.duration" value={{form.duration}}    placeholder = "duration" name = "duration" 
+                        <input type="text" style="width:240px" [(ngModel)]="form.duration" value={{form.duration}}    placeholder = "duration" name = "duration" 
                          [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0" style="font-size:15px;">Itinerary</h6>
+                      <h6 class="mb-0">Location</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" [(ngModel)]="form.itinerary" value={{form.itinerary}}   placeholder = "itinerary" name = "itinerary"  
+                    <div class="col-sm-9 text-secondary form-group" >
+                        <input type="text" style="width:240px"   [(ngModel)]="form.location" value={{form.location}}   placeholder = "location" name = "location" 
                         [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0" style="font-size:15px;">Accomodation</h6>
+                      <h6 class="mb-0">Accomodation</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text"  [(ngModel)]="form.accomodation" value={{form.accomodation}   placeholder = "accomodation" name = "accomodation"  
+                        <input type="text"  style="width:240px" [(ngModel)]="form.accomodation" value={{form.accomodation}   placeholder = "accomodation" name = "accomodation"  
                         [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0" style="font-size:15px;">Price</h6>
+                      <h6 class="mb-0">Itinerary</h6>
                     </div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <input type="text" [(ngModel)]="form.price" value={{form.price}    placeholder = "price" name = "price"  [ngModelOptions]="{standalone: true}">
+                        <input type="text" style="width:240px" [(ngModel)]="form.itinerary" value={{form.itinerary}}   placeholder = "itinerary" name = "itinerary"  
+                        [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Included</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary form-group">
+                        <input type="text" style="width:240px" [(ngModel)]="form.included" value={{form.included}}    placeholder = "included" name = "included" 
+                        [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Price</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary form-group">
+                        <input type="text" style="width:240px" [(ngModel)]="form.price" value={{form.price}    placeholder = "price" name = "price"  [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                   <hr>
@@ -79,10 +79,16 @@
                     <div class="col-sm-3"></div>
                     <div class="col-sm-9 text-secondary form-group">
                          <button type="button" class="btn btn-primary px-4" id="saveChanges"  
-                         (click)='addPackage()'
+                         (click)='addPackage()' style="background-color:#b22222"
                       >Add</button> 
                     </div>
                 </div>
+                </div>
+                <div class="alert alert-warning" *ngIf=" isNotAdded">
+                  Package not added!<br />{{ errorText }}
+                </div>
+                <div class="alert alert-success" *ngIf="isPackage">
+                  Your package is successfully added!
                 </div>
               </form>
               </div>
@@ -90,6 +96,8 @@
             </div>
           </div>
   
+       
+         
         </div>
      
     

@@ -15,7 +15,7 @@ export class AddPackageComponent implements OnInit {
   form: any = {
     // fullName: new FormControl(''),
     // age: new FormControl('')
-    email: null,
+    guidEmail: null,
     location: null,
     included : null,
     duration : null,
@@ -26,17 +26,23 @@ export class AddPackageComponent implements OnInit {
 
   constructor(private ap :  AddPackageService, private router: Router) { }
 
+  isPackage = false;
+  isNotAdded = false;
+  errorText = '';
   ngOnInit(): void {
-    document.body.className = "image-lookup";
+    document.body.className = "";
   }
   addPackage(){
-   
+    console.log("inside add package function now");
     this.ap.addNewPackage(this.form).subscribe(
       data => {
           console.log(data);
+          this.isPackage = true;
       },
       err => {
         console.log(err.error.message);
+        this.isNotAdded = true;
+        this.errorText = err.error.message;
       }
     );
    

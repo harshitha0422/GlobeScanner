@@ -8,6 +8,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PlaceListComponent } from './place-list/place-list.component';
 import { AddPackageComponent } from './add-package/add-package.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ViewPackagesComponent } from './view-packages/view-packages.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'view-profile', component: ViewProfileComponent},
   { path:'view-profile/edit-profile',component:EditProfileComponent},
   { path:'edit-profile/view-profile',component:ViewProfileComponent},
-  { path: 'add-package', component:AddPackageComponent}
+  {path: 'place-list/view-packages', component:ViewPackagesComponent},
+  { path: 'place-list/add-package', component:AddPackageComponent}
 ];
 
 

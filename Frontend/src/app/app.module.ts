@@ -29,6 +29,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AddPackageComponent } from './add-package/add-package.component';
 import { DataSharingService } from './services/data-sharing.service';
+import { ViewPackagesComponent } from './view-packages/view-packages.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { DataSharingService } from './services/data-sharing.service';
     ProfileComponent,
     AddPackageComponent,
     ViewProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ViewPackagesComponent
   ],
   imports: [
     BrowserModule,
