@@ -11,25 +11,28 @@ import 'zone.js/dist/zone-testing';
 
 
 describe('PlaceListComponent', () => {
-  let fixture: PlaceListComponent;
+
+  let component: PlaceListComponent
+  let fixture: ComponentFixture<PlaceListComponent>;
   let plyFetch: any;
-  
+
   beforeEach(async () => {
-  fixture = new PlaceListComponent(plyFetch);
-  
+    await TestBed.configureTestingModule({
+      declarations: [ PlaceListComponent ]
+    })
+    .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PlaceListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(fixture).toBeTruthy();
   });
 
-  it('should call ngOnInit', () => {
-    const fixture = TestBed.createComponent(PlaceListComponent);
-    const component = fixture.debugElement.componentInstance;
-    let spy_getPostDetails = spyOn(component,"getPlacesList").and.returnValue([]);
-    component.ngOnInit();
-    expect(component.places).toEqual(![]);
-  })
 
 //   it('should call getPostDetails and get response as array', fakeAsync(() => {
 //     const fixture = TestBed.createComponent(PlaceListComponent);
