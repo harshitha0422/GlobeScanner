@@ -98,12 +98,13 @@ type SearchPlacesResponse struct {
 type Register struct {
 	gorm.Model
 	Username string `json:"username"`
-	Email    string `gorm:"primaryKey" json:"email"`
+	Email    string `gorm:"primaryKey; auto_increment:false" json:"email"`
 	Password string `json:"password" binding:"required,min=8,max=20"`
-	Role     string `gorm:"primaryKey" json:"role"`
+	Role     string `gorm:"primaryKey;auto_increment:false" json:"role"`
 }
 
 type UserProfile struct {
+	gorm.Model
 	Email    string `gorm:"primaryKey" json:"email"`
 	Name     string `json:"name"`
 	About    string `json:"about"`
@@ -116,6 +117,7 @@ type UserProfile struct {
 }
 
 type GuideProfile struct {
+	gorm.Model
 	Email    string `gorm:"primaryKey" json:"email"`
 	Name     string `json:"name"`
 	About    string `json:"about"`

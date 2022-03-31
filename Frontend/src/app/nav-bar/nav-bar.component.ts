@@ -11,31 +11,43 @@ import { DataSharingService } from '../services/data-sharing.service';
 })
 export class NavBarComponent implements OnInit {
 
-  private roles: string[] = [];
+  email?: string;
+  role?: string;
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
-  username?: string;
 
   constructor(private tokenStorageService:TokenStorageService, private router: Router, private getUserDataService:GetUserDataService, private dataSharingService:DataSharingService) {
     this.dataSharingService.isUserLoggedIn.subscribe( value => {
       this.isLoggedIn = value;
-  });
+    });
+    this.dataSharingService.userRole.subscribe( value => {
+      this.role = value;
+    });
+    this.dataSharingService.userEmail.subscribe( value => {
+      this.email = value;
+    });
    }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if(this.isLoggedIn){
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-      // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-      this.username = user.username;
+      this.email = user.email;
+      this.role = user.role;
     }
   }
   viewProfile(): void{
     if(this.isLoggedIn){
-      this.router.navigateByUrl('/view-profile');
+      console.log("In nav init - ", this.email, this.role);
+      if(this.role=="Tourist"){
+        console.log(this.role);
+        this.router.navigateByUrl('/view-profile');
+      }
+      else if(this.role=="Guide"){
+        console.log(this.role);
+        this.router.navigateByUrl('/view-guide-profile');
+      }
     }
   }
   logout(): void {

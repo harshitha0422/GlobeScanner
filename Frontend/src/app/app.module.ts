@@ -30,6 +30,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AddPackageComponent } from './add-package/add-package.component';
 import { DataSharingService } from './services/data-sharing.service';
 import { ViewPackagesComponent } from './view-packages/view-packages.component';
+import { ViewGuideProfileComponent } from './view-guide-profile/view-guide-profile.component';
+import { EditGuideProfileComponent } from './edit-guide-profile/edit-guide-profile.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { ViewPackagesComponent } from './view-packages/view-packages.component';
     AddPackageComponent,
     ViewProfileComponent,
     EditProfileComponent,
-    ViewPackagesComponent
+    ViewPackagesComponent,
+    ViewGuideProfileComponent,
+    EditGuideProfileComponent
   ],
   imports: [
     BrowserModule,

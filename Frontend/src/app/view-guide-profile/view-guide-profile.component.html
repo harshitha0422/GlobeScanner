@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="main-body">
+  
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="assets/images/profile_image.jpeg" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{userProfile.name}}</h4>
+                      <p class="text-secondary mb-1">{{userProfile.about}}</p>
+                      <!-- <button class="btn btn-primary">Follow</button>
+                      <button class="btn btn-outline-primary">Message</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{userProfile.name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{userProfile.email}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Age</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{userProfile.age}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{userProfile.address}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Location</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{userProfile.location}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Vehicle</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{userProfile.vehicle}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-9 text-secondary">
+                        <button type="button" class="btn btn-primary px-4"
+                        (click)='editInfoPage()'>Edit Profile</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+    </div>
+  
