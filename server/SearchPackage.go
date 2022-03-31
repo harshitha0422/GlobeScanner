@@ -35,12 +35,12 @@ func searchPackage(c *gin.Context) {
 		return
 	}*/
 
-	if role == "Guide" {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"error": "User needs to be a tourist. Please register as a tourist.",
-		})
-		return
-	}
+	// if role == "Guide" {
+	// 	c.JSON(http.StatusUnauthorized, gin.H{
+	// 		"error": "User needs to be a tourist. Please register as a tourist.",
+	// 	})
+	// 	return
+	// }
 
 	if location == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
