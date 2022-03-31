@@ -30,9 +30,9 @@ func main() {
 		panic("can't connect to database")
 	}
 	DB = db
-	db.Delete(&GuideProfile{})
+	//db.Delete(&GuideProfile{})
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
-	seed(db)
+	//seed(db)
 
 	db.LogMode(true)
 	r := gin.Default()
@@ -46,27 +46,34 @@ func main() {
 	}))*/
 	r.Use(CORSMiddleware())
 	r.GET("/searchPlaces/:name", showSearchPlacesPage)
-	r.GET("/searchPackage/:location", searchPackage)
-	r.POST("/addPackages", addPackages)
+
+	r.GET("/searchPackage/:location", TokenAuthMiddleware(), searchPackage)
+	r.GET("/searchPackage", TokenAuthMiddleware(), getPackage)
+	r.GET("/getAllPackage", TokenAuthMiddleware(), getallPackages)
+	r.POST("/addPackages", TokenAuthMiddleware(), addPackages)
+
 	r.POST("/signup", userRegister)
 	r.POST("/login", userLogin)
-	r.GET("/users", getallUsers)
-	// r.GET("/userprofiles", TokenAuthMiddleware(), getallTouristprofile)
-	r.GET("/guideprofiles", getallGuideprofile)
-	r.GET("/comments", getallComments)
-	//r.GET("/users", getUser)
+
 	r.GET("/userprofile", TokenAuthMiddleware(), getUserProfile)
-	r.POST("/userprofile", TokenAuthMiddleware(), createUserProfile)
-	//r.GET("/guideprofile/:email", getGuideProfile)
-	r.GET("/comments/:location", getLocationComments)
-	//r.POST("/userprofiles", createTouristProfile)
-	//r.POST("/guideprofiles", createGuideProfile)
-	r.POST("/comments", createComments)
+	r.DELETE("/deleteProfile/", TokenAuthMiddleware(), DeleteUserProfile)
+
 	r.PUT("/updateUserProfile", TokenAuthMiddleware(), updateUserProfile)
 	r.PUT("/updateGuideProfile", TokenAuthMiddleware(), updateGuideProfile)
-	//r.PUT("/guideprofile/:email", updateGuideProfile)
-	r.DELETE("/userprofile/:email", DeleteTouristProfile)
-	r.DELETE("/guideprofile/:email", DeleteGuideProfile)
+
+	r.GET("/userprofiles", TokenAuthMiddleware(), getallTouristprofile)
+	r.GET("/guideprofiles", TokenAuthMiddleware(), getallGuideprofile)
+
+	//r.GET("/users", getUser)
+	//r.POST("/userprofile", TokenAuthMiddleware(), createUserProfile)
+	//r.GET("/guideprofile/:email", getGuideProfile)
+
+	//r.POST("/userprofiles", createTouristProfile)
+	//r.POST("/guideprofiles", createGuideProfile)
+	r.GET("/comments", TokenAuthMiddleware(), getallComments)
+	r.GET("/mycomments", TokenAuthMiddleware(), getUserComments)
+	r.POST("/comments", TokenAuthMiddleware(), createComments)
+	r.GET("/comments/:location", TokenAuthMiddleware(), getLocationComments)
 
 	r.POST("/token/refresh", Refresh)
 	r.POST("/todo", TokenAuthMiddleware(), CreateTodo)
