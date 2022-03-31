@@ -26,6 +26,7 @@ func seed(db *gorm.DB) {
 	profiles2 := []GuideProfile{
 		{Email: "visheshasadu@gmail.com", Name: "visheshaSadu", About: "travel freak", Age: 23, Location: "Gainesville", Vehicle: "Ferrari car"}, //User: sv, Register: sv_reg
 		{Email: "meghna@gmail.com", Name: "meghamala", About: "Friendly and funny tour guide", Age: 24, Location: "Gainesville", Vehicle: "Ferrari car"},
+		//{Email: "meghna@gmail.com", Name: "meghamala", About: "Friendly and funny tour guide", Age: 26, Location: "Gainesville", Vehicle: "Ferrari car"},
 	}
 
 	for _, pr2 := range profiles2 {

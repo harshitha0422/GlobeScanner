@@ -40,12 +40,12 @@
                   </div>
                 </div>
                 <hr>
-                <!-- <div class="row">
+                <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Mobile</h6>
                   </div>
                   <div class="col-sm-9 text-secondary form-group">
-                      <input type="text" class="form-control" value={{userProfile.mobile}} placeholder = "mobile" name = "mobile" formControlName="mobile">
+                    <input type="text" [(ngModel)]="form.mobile" value={{form.mobile}} name = "mobile" [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
                 <hr>
@@ -54,7 +54,7 @@
                     <h6 class="mb-0">Location</h6>
                   </div>
                   <div class="col-sm-9 text-secondary form-group">
-                      <input type="text" class="form-control" value={{userProfile.location}} placeholder = "location" name = "location" formControlName="location">
+                    <input type="text" [(ngModel)]="form.location" value={{form.location}} name = "location" [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
                 <hr>
@@ -63,7 +63,7 @@
                     <h6 class="mb-0">First Favourite Place</h6>
                   </div>
                   <div class="col-sm-9 text-secondary form-group">
-                      <input type="text" class="form-control" value={{userProfile.fav1}} placeholder = "first favourite place" name = "fav1" formControlName="fav1">
+                    <input type="text" [(ngModel)]="form.fav1" value={{form.fav1}} name = "fav1" [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
                 <hr>
@@ -72,7 +72,7 @@
                     <h6 class="mb-0">Second Favourite Place</h6>
                   </div>
                   <div class="col-sm-9 text-secondary form-group">
-                      <input type="text" class="form-control" value={{userProfile.fav2}} placeholder = "second favourite place" name = "fav2" formControlName="fav2">
+                    <input type="text" [(ngModel)]="form.fav2" value={{form.fav2}} name = "fav2" [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
                 <hr>
@@ -81,9 +81,9 @@
                     <h6 class="mb-0">Third Favourite Place</h6>
                   </div>
                   <div class="col-sm-9 text-secondary form-group">
-                      <input type="text" class="form-control" value={{userProfile.fav3}} placeholder = "third favourite place" name = "fav3" formControlName="fav3">
+                    <input type="text" [(ngModel)]="form.fav3" value={{form.fav3}} name = "fav3" [ngModelOptions]="{standalone: true}">
                   </div>
-                </div> -->
+                </div>
                 <hr>
                 
                 <div class="row">
