@@ -1,5 +1,12 @@
-<br><br><br>
-<div *ngFor = "let p of places">
+
+<div class="col-sm-9 add-package">
+  <button type="button" style="background-color:#b22222; font-size:15px;" class="btn btn-primary px-4" id="addPackage" routerLink="add-package" routerLinkActive="active">Add Package</button>
+&nbsp;
+<button type="button" style="background-color:#b22222; font-size:15px;" class="btn btn-primary px-4" id="viewPackages" routerLink="view-packages" routerLinkActive="active">View Packages</button>
+</div>
+<br>
+
+<div *ngFor = "let p of places" class="card-position">
 <mat-card class="example-card">
     <mat-card-title-group>
       <mat-card-title>{{p.name}}</mat-card-title>
