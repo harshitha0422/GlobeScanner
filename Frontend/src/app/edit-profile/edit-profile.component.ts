@@ -3,8 +3,6 @@ import { GetUserDataService} from '../get-user-data.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SendUserDataService} from '../send-user-data.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
 
 
 @Component({
@@ -19,8 +17,6 @@ export class EditProfileComponent implements OnInit {
   //   age: new FormControl('')
   // });
   form: any = {
-    // fullName: new FormControl(''),
-    // age: new FormControl('')
     name: null,
     age: null,
     mobile : null,
@@ -33,7 +29,7 @@ export class EditProfileComponent implements OnInit {
   constructor(private getUser :  GetUserDataService, private router: Router, private sendSavedChanges :  SendUserDataService, public fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.getUser.getUserInfo().subscribe(
+    this.getUser.getTouristInfo().subscribe(
       data => {
         this.userProfile = data;
         console.log("edit user info")
@@ -56,7 +52,7 @@ export class EditProfileComponent implements OnInit {
 
   saveProfileChanges(){
     console.log("FORM DATA:::::::",this.form);
-    this.sendSavedChanges.sendUserData(this.form).subscribe(
+    this.sendSavedChanges.sendTouristData(this.form).subscribe(
       data => {
           console.log(data);
       },

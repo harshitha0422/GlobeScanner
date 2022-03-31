@@ -16,7 +16,7 @@ export class LogInComponent implements OnInit {
     password: null,
     role: null
   };
-  role: any = null;
+  user: any = null;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -24,15 +24,15 @@ export class LogInComponent implements OnInit {
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router:Router, private dataSharingService:DataSharingService) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.role = this.tokenStorage.getUser().roles;
-    }
+    // if (this.tokenStorage.getToken()) {
+    //   this.isLoggedIn = true;
+    //   this.role = this.tokenStorage.getUser().role;
+    //   console.log("Role in ngInit ", this.role);
+    // }
   }
 
   onSubmit(): void {
     const { email, password, role} = this.form;
-    console.log(role);
     this.authService.login(email, password, role).subscribe(
       data => {
         console.log(data.access_token);
@@ -40,12 +40,15 @@ export class LogInComponent implements OnInit {
         this.tokenStorage.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.role = this.tokenStorage.getUser().roles;
+        this.user = this.tokenStorage.getUser();
+        // console.log("Role in ngInit ", this.role);
         // this.reloadPage();
         // this.router.navigateByUrl('/nav-bar');
         // this.router.navigate(['nav-bar']);
         // window.location.reload();
         this.dataSharingService.isUserLoggedIn.next(true);
+        this.dataSharingService.userRole.next(this.user.role);
+        this.dataSharingService.userEmail.next(this.user.email);
         this.router.navigateByUrl('/home-page');
       },
       err => {

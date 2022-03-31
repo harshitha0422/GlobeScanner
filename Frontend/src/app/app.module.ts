@@ -28,6 +28,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { DataSharingService } from './services/data-sharing.service';
+import { ViewGuideProfileComponent } from './view-guide-profile/view-guide-profile.component';
+import { EditGuideProfileComponent } from './edit-guide-profile/edit-guide-profile.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { DataSharingService } from './services/data-sharing.service';
     PlaceListComponent,
     ProfileComponent,
     ViewProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ViewGuideProfileComponent,
+    EditGuideProfileComponent
   ],
   imports: [
     BrowserModule,
