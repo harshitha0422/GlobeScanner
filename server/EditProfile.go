@@ -16,21 +16,34 @@ func updateUserProfile(c *gin.Context) {
 		return
 	}
 
+	// tokenAuth, err := ExtractTokenMetadata(c.Request)
+	// if err != nil {
+	// 	c.JSON(http.StatusUnauthorized, "unauthorized")
+	// 	return
+	// }
+	// email := FetchAuth(tokenAuth)
+	//role := FetchRole(tokenAuth)
 	tokenAuth, err := ExtractTokenMetadata(c.Request)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized")
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
 		return
 	}
-	email := FetchAuth(tokenAuth)
-	//role := FetchRole(tokenAuth)
-
+	err1 := FetchAuth(tokenAuth)
+	if err1 != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		fmt.Println(err1)
+		return
+	}
+	//email := c.Params.ByName("email")
+	email := FetchEmail(tokenAuth)
+	role := FetchRole(tokenAuth)
 	//if role == "Tourist" {
 	var userprofile UserProfile
 	// if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
 
 	userprofile = UserProfile{
-		Email:    profile.Email,
 		Name:     profile.Name,
+		Role:     role,
 		About:    profile.About,
 		Age:      profile.Age,
 		Mobile:   profile.Mobile,
@@ -60,17 +73,32 @@ func updateGuideProfile(c *gin.Context) {
 		return
 	}
 
+	// tokenAuth, err := ExtractTokenMetadata(c.Request)
+	// if err != nil {
+	// 	c.JSON(http.StatusUnauthorized, "unauthorized")
+	// 	return
+	// }
+	// email := FetchAuth(tokenAuth)
 	tokenAuth, err := ExtractTokenMetadata(c.Request)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized")
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
 		return
 	}
-	email := FetchAuth(tokenAuth)
+	err1 := FetchAuth(tokenAuth)
+	if err1 != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		fmt.Println(err1)
+		return
+	}
+	//email := c.Params.ByName("email")
+	email := FetchEmail(tokenAuth)
+	role := FetchRole(tokenAuth)
 	var guideprofile GuideProfile
 
 	guideprofile = GuideProfile{
-		Email:    profile.Email,
+		Email:    email,
 		Name:     profile.Name,
+		Role:     role,
 		About:    profile.About,
 		Age:      profile.Age,
 		Address:  profile.Address,

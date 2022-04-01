@@ -3,17 +3,17 @@ package main
 import "github.com/jinzhu/gorm"
 
 func seed(db *gorm.DB) {
-	reg := []Register{
-		{Email: "saduvishesha@gmail.com", Password: "vish", Role: "Tourist"},
-		{Email: "visheshasadu@gmail.com", Password: "sadu", Role: "Guide"},
-		{Email: "vish@gmail.com", Password: "vish", Role: "Guide"},
-		{Email: "harshitha@gmail.com", Password: "harsh", Role: "Tourist"},
-		{Email: "megh@gmail.com", Password: "megh", Role: "Tourist"},
-		{Email: "arijit@gmail.com", Password: "arijit", Role: "Tourist"},
-	}
-	for _, c := range reg {
-		db.Create(&c)
-	}
+	// reg := []Register{
+	// 	{Email: "saduvishesha@gmail.com", Password: "vish", Role: "Tourist"},
+	// 	{Email: "visheshasadu@gmail.com", Password: "sadu", Role: "Guide"},
+	// 	{Email: "vish@gmail.com", Password: "vish", Role: "Guide"},
+	// 	{Email: "harshitha@gmail.com", Password: "harsh", Role: "Tourist"},
+	// 	{Email: "megh@gmail.com", Password: "megh", Role: "Tourist"},
+	// 	{Email: "arijit@gmail.com", Password: "arijit", Role: "Tourist"},
+	// }
+	// for _, c := range reg {
+	// 	db.Create(&c)
+	// }
 
 	profiles := []UserProfile{
 		{Email: "saduvishesha@gmail.com", Name: "vishesha", About: "travel freak", Age: 23, Fav1: "Gainesville", Fav2: "Orlando", Fav3: "tampa"},      //User: sv, Register: sv_reg
@@ -51,8 +51,11 @@ func seed(db *gorm.DB) {
 	// 	Price        string `json:"price"`
 	// }
 	packages := []Package{
-		{GuideEmail: "visheshas@gmail.com", Duration: "2 weeks", Location: "Florida", Accomodation: "Hyatt Regency", Itinerary: "Day1:Miami, Day2: Fort Lauderdale, Day3: Orlando", Included: "Breakfast,Dinner, Sight-seeing", Price: "$100"},
-		{GuideEmail: "arijitd@gmail.com", Duration: "1 weeks", Location: "New Delhi", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "visheshas@gmail.com", Duration: "2 weeks", Location: "Florida", Accomodation: "Hyatt Regency", Itinerary: "Day1:Miami, Day2: Fort Lauderdale, Day3: Orlando", Included: "Breakfast,Dinner, Sight-seeing", Price: "$100"},
+		{Email: "arijitd@gmail.com", Duration: "1 weeks", Location: "New Delhi", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "New Delhi", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "Agra", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "Goa", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
 	}
 	for _, pkg := range packages {
 		db.Create(&pkg)

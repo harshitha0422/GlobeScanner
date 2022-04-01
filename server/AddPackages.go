@@ -10,9 +10,30 @@ import (
 func addPackages(c *gin.Context) {
 
 	fmt.Print("add package req")
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
+		return
+	}
+	err1 := FetchAuth(tokenAuth)
+	if err1 != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		fmt.Println(err1)
+		return
+	}
+	email := FetchEmail(tokenAuth)
+	role := FetchRole(tokenAuth)
+
+	if role == "Tourist" {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"error": "User needs to be a Guide. Please register as a Guide.",
+		})
+		return
+	}
+
 	// Parse input request
 	type Req struct {
-		GuideEmail   string `json:"guideEmail" gorm:"not null"`
+		Email        string `json:"email"`
 		Duration     string `json: "duration"`
 		Location     string `json:"location"`
 		Accomodation string `json:"accomodation"`
@@ -20,12 +41,12 @@ func addPackages(c *gin.Context) {
 		Included     string `json:"included"`
 		Price        string `json:"price"`
 	}
-	req := Req{}
+	//var req Req
 	//var newPackage Package
+	req := Req{}
+	error := c.BindJSON(&req)
 
-	err := c.BindJSON(&req)
-
-	if err != nil {
+	if error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "incorrect parameters",
 		})
@@ -33,9 +54,9 @@ func addPackages(c *gin.Context) {
 	}
 	// Check if guideemail exists
 	//register := Register{}
-	register := Register{}
+	guide := GuideProfile{}
 	//result := DB.Where("email = ?", newPackage.Email).First(&register)
-	result := DB.Where("email = ?", req.GuideEmail).First(&register)
+	result := DB.Where("email = ?", email).First(&guide)
 	if result.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Internal server error",
@@ -51,7 +72,7 @@ func addPackages(c *gin.Context) {
 	// Insert into database
 	//var newPackage Package
 	newPackage := Package{
-		GuideEmail:   req.GuideEmail,
+		Email:        email,
 		Duration:     req.Duration,
 		Location:     req.Location,
 		Accomodation: req.Accomodation,
