@@ -13,25 +13,25 @@ import (
 )
 
 //
-func showSearchPlacesPage(c *gin.Context) {
+// func showSearchPlacesPage(c *gin.Context) {
 
-	//fmt.Println("Inside showIndex")
-	name := c.Param("name")
-	// if len(name) == 0 {
-	// 	c.JSON(http.StatusNotFound, gin.H{
-	// 		"error": " Search name cannot be empty",
-	// 	})
-	// 	return
-	// }
+// 	//fmt.Println("Inside showIndex")
+// 	name := c.Param("name")
+// 	// if len(name) == 0 {
+// 	// 	c.JSON(http.StatusNotFound, gin.H{
+// 	// 		"error": " Search name cannot be empty",
+// 	// 	})
+// 	// 	return
+// 	// }
 
-	//fmt.Print(name)
-	places := searchPlaces(name)
+// 	//fmt.Print(name)
+// 	places := searchPlaces(name)
 
-	//fmt.Print(places)
+// 	//fmt.Print(places)
 
-	c.JSON(http.StatusOK, gin.H{"msg": places})
+// 	c.JSON(http.StatusOK, gin.H{"msg": places})
 
-}
+// }
 
 //fetch all the users (guide & tourist)
 // func getallUsers(c *gin.Context) {
