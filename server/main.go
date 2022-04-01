@@ -30,9 +30,10 @@ func main() {
 		panic("can't connect to database")
 	}
 	DB = db
+	db.Delete(&Register{})
 	db.Delete(&GuideProfile{})
 	db.Delete(&UserProfile{})
-	db.Delete(&Register{})
+
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
 	seed(db)
 
