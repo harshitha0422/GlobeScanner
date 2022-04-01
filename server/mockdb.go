@@ -53,6 +53,9 @@ func seed(db *gorm.DB) {
 	packages := []Package{
 		{Email: "visheshas@gmail.com", Duration: "2 weeks", Location: "Florida", Accomodation: "Hyatt Regency", Itinerary: "Day1:Miami, Day2: Fort Lauderdale, Day3: Orlando", Included: "Breakfast,Dinner, Sight-seeing", Price: "$100"},
 		{Email: "arijitd@gmail.com", Duration: "1 weeks", Location: "New Delhi", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "New Delhi", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "Agra", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "Goa", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
 	}
 	for _, pkg := range packages {
 		db.Create(&pkg)
