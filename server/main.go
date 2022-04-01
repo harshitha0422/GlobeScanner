@@ -33,6 +33,7 @@ func main() {
 	db.Delete(&Register{})
 	db.Delete(&GuideProfile{})
 	db.Delete(&UserProfile{})
+	db.Delete(&Package{})
 
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
 	seed(db)
