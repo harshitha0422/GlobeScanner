@@ -149,13 +149,13 @@ func userLogin(c *gin.Context) {
 		})
 		return
 	}
-	res1 := DB.Where("role = ?", req.Role).First(&register)
-	if res1.Error != nil {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "Role does not match",
-		})
-		return
-	}
+	// res1 := DB.Where("role = ?", req.Role).First(&register)
+	// if res1.Error != nil {
+	// 	c.JSON(http.StatusNotFound, gin.H{
+	// 		"error": "Role does not match",
+	// 	})
+	// 	return
+	// }
 	// Check if the password match
 	err = bcrypt.CompareHashAndPassword([]byte(register.Password), []byte(req.Password))
 	if err != nil {
