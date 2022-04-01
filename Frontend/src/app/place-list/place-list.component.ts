@@ -17,8 +17,9 @@ export class PlaceListComponent implements OnInit {
   getPlacesList(){
   this.plyFetch.getPlaces()
     .subscribe(
-      (data) => {console.log(data.msg[0]);
-        this.places = data.msg;
+      (data) => {console.log(data);
+        this.places = data;
+        console.log(this.places);
       }
       );
     }
