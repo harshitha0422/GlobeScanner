@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 	// "github.com/gorilla/mux"
 	// "github.com/jinzhu/gorm"
 )
@@ -28,13 +30,27 @@ func apiGet(method string, query string) string {
 	return otmAPI
 
 }
+func searchPlaces(c *gin.Context) {
+	fmt.Println("inside search package")
+	name := c.Param("location")
 
-func searchPlaces(name string) []SearchPlacesResponse {
-	var empty []SearchPlacesResponse
-	if name == "" {
-		return empty
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	fmt.Println(tokenAuth)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"error": "Unauthorized",
+		})
+		return
 	}
 
+	//var empty []SearchPlacesResponse
+	if name == "" {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Please enter a valid location name.",
+		})
+		return
+
+	}
 	// fmt.Println("Inside search Places")
 	// fmt.Println("Place" + name)
 	//w.Header().Set("Content-Type", "application/json")
@@ -107,6 +123,6 @@ func searchPlaces(name string) []SearchPlacesResponse {
 
 	}
 
-	return placesResponseList
+	c.JSON(200, placesResponseList)
 
 }

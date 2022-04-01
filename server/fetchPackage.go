@@ -40,7 +40,7 @@ func getPackage(c *gin.Context) {
 		})
 		return
 	} else {
-		c.JSON(200, packages)
+		c.JSON(200, pkg)
 	}
 }
 
