@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 type GeoResponse struct {
@@ -142,7 +142,7 @@ type GuideProfile struct {
 }
 
 type Comment struct {
-	gorm.Model
+	//gorm.Model
 	Comment  string `json:"comment"`
 	Email    string `json:"email"`
 	Name     string `json:"name"`
@@ -152,7 +152,7 @@ type Comment struct {
 }
 
 type Package struct {
-	gorm.Model
+	//gorm.Model
 	Email        string `json:"email"`
 	Duration     string `json: "duration"`
 	Location     string `json:"location"`
