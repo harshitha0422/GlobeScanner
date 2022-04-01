@@ -12,3 +12,21 @@
     position:relative;
     top:100px;
   }
+  .container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+  .centered {
+    position : relative;
+    top: 200px;
+    left: 150px;
+    transform: translate(-50%, -50%);
+  }
+
+  .myclass {
+    position: absolute;
+    left: 0px;
+    top : 0px;
+  }

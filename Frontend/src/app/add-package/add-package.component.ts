@@ -25,7 +25,6 @@ export class AddPackageComponent implements OnInit {
   };
 
   constructor(private ap :  AddPackageService, private router: Router) { }
-
   isPackage = false;
   isNotAdded = false;
   errorText = '';
@@ -48,18 +47,5 @@ export class AddPackageComponent implements OnInit {
    
   }
   onsubmit(){}
-  // saveProfileChanges(){
-  //   console.log("FORM DATA:::::::",this.form);
-  //   // this.sendSavedChanges.sendUserData(this.form).subscribe(
-  //   //   data => {
-  //   //       console.log(data);
-  //   //   },
-  //   //   err => {
-  //   //     console.log(err.error.message);
-  //   //   }
-  //   // );
-    
-  // }
 
- 
 }
