@@ -10,4 +10,5 @@ export class DataSharingService {
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public userRole: BehaviorSubject<string> = new BehaviorSubject<string>("");
   public userEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  public userName: BehaviorSubject<string> = new BehaviorSubject<string>("");
 }

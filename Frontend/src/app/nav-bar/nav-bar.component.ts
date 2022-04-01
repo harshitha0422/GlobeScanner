@@ -11,11 +11,11 @@ import { DataSharingService } from '../services/data-sharing.service';
 })
 export class NavBarComponent implements OnInit {
 
+  name?: string;
   email?: string;
   role?: string;
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
+  isTourist = false;
 
   constructor(private tokenStorageService:TokenStorageService, private router: Router, private getUserDataService:GetUserDataService, private dataSharingService:DataSharingService) {
     this.dataSharingService.isUserLoggedIn.subscribe( value => {
@@ -23,9 +23,14 @@ export class NavBarComponent implements OnInit {
     });
     this.dataSharingService.userRole.subscribe( value => {
       this.role = value;
+      if(this.role=="Tourist") this.isTourist = true;
+      else this.isTourist = false;
     });
     this.dataSharingService.userEmail.subscribe( value => {
       this.email = value;
+    });
+    this.dataSharingService.userName.subscribe( value => {
+      this.name = value;
     });
    }
 
@@ -35,6 +40,9 @@ export class NavBarComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.email = user.email;
       this.role = user.role;
+      this.name = user.name;
+      if(this.role=="Tourist") this.isTourist = true;
+      else this.isTourist = false;
     }
   }
   viewProfile(): void{
@@ -50,6 +58,10 @@ export class NavBarComponent implements OnInit {
       }
     }
   }
+  addReview(): void{
+    
+  }
+
   logout(): void {
     this.isLoggedIn = false;
     this.tokenStorageService.signOut();

@@ -49,6 +49,7 @@ export class LogInComponent implements OnInit {
         this.dataSharingService.isUserLoggedIn.next(true);
         this.dataSharingService.userRole.next(this.user.role);
         this.dataSharingService.userEmail.next(this.user.email);
+        this.dataSharingService.userName.next(this.user.name);
         this.router.navigateByUrl('/home-page');
       },
       err => {
