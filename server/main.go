@@ -30,9 +30,13 @@ func main() {
 		panic("can't connect to database")
 	}
 	DB = db
-	//db.Delete(&GuideProfile{})
+	db.Delete(&Register{})
+	db.Delete(&GuideProfile{})
+	db.Delete(&UserProfile{})
+	db.Delete(&Package{})
+
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
-	//seed(db)
+	seed(db)
 
 	db.LogMode(true)
 	r := gin.Default()
@@ -45,7 +49,8 @@ func main() {
 		AllowCredentials: true,
 	}))*/
 	r.Use(CORSMiddleware())
-	r.GET("/searchPlaces/:name", showSearchPlacesPage)
+
+	r.GET("/searchPlaces/:location", TokenAuthMiddleware(), searchPlaces)
 
 	r.GET("/searchPackage/:location", TokenAuthMiddleware(), searchPackage)
 	r.GET("/searchPackage", TokenAuthMiddleware(), getPackage)

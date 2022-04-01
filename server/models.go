@@ -1,6 +1,8 @@
 package main
 
-import "github.com/jinzhu/gorm"
+import (
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
+)
 
 type GeoResponse struct {
 	Country    string  `json:"country"`
@@ -104,7 +106,7 @@ type SearchPlacesResponse struct {
 // }
 
 type Register struct {
-	gorm.Model
+	//gorm.Model
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password" binding:"required,min=8,max=20"`
@@ -112,6 +114,7 @@ type Register struct {
 }
 
 type UserProfile struct {
+	//gorm.Model
 	Email string `gorm:"primaryKey" json:"email"`
 	Name  string `json:"name"`
 	//Password string `json:"password" binding:"required,min=8,max=20"`
@@ -126,6 +129,7 @@ type UserProfile struct {
 }
 
 type GuideProfile struct {
+	//gorm.Model
 	Email string `gorm:"primaryKey" json:"email"`
 	//Password string `json:"name"`
 	Name     string `json:"name"`
@@ -138,6 +142,7 @@ type GuideProfile struct {
 }
 
 type Comment struct {
+	//gorm.Model
 	Comment  string `json:"comment"`
 	Email    string `json:"email"`
 	Name     string `json:"name"`
@@ -147,7 +152,7 @@ type Comment struct {
 }
 
 type Package struct {
-	gorm.Model
+	//gorm.Model
 	Email        string `json:"email"`
 	Duration     string `json: "duration"`
 	Location     string `json:"location"`
