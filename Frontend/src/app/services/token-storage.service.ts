@@ -38,6 +38,7 @@ export class TokenStorageService {
     var currUser = JSON.stringify({
       email: decodedToken['email'],
       role: decodedToken['role'],
+      name: decodedToken['name'],
     });
     // console.log("Curret User after decode - ", currUser);
     window.sessionStorage.setItem(USER_KEY, currUser);

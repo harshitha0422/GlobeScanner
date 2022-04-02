@@ -18,6 +18,7 @@ export class EditProfileComponent implements OnInit {
   // });
   form: any = {
     name: null,
+    about: null,
     age: null,
     mobile : null,
     location : null,
@@ -35,6 +36,7 @@ export class EditProfileComponent implements OnInit {
         console.log("edit user info")
         console.log(data);
         this.form.name = data.name;
+        this.form.about = data.about;
         this.form.age = data.age;
         this.form.mobile = data.mobile;
         this.form.location = data.location;

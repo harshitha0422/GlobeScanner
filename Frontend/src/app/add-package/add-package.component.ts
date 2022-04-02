@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddPackageService} from '../add-package.service';
+import { DataSharingService } from '../services/data-sharing.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -13,9 +14,7 @@ import { NgModule } from '@angular/core';
 })
 export class AddPackageComponent implements OnInit {
   form: any = {
-    // fullName: new FormControl(''),
-    // age: new FormControl('')
-    guidEmail: null,
+    email: null,
     location: null,
     included : null,
     duration : null,
@@ -23,18 +22,24 @@ export class AddPackageComponent implements OnInit {
     accomodation : null,
     price: null
   };
-
-  constructor(private ap :  AddPackageService, private router: Router) { }
-
   isPackage = false;
   isNotAdded = false;
   errorText = '';
+  email?: string;
+
+  constructor(private addPackage :  AddPackageService, private router: Router, private dataSharingService:DataSharingService) {
+    this.dataSharingService.userEmail.subscribe( value => {
+      this.email = value;
+    });
+   }
+
   ngOnInit(): void {
     document.body.className = "";
   }
-  addPackage(){
+  savePackage(){
     console.log("inside add package function now");
-    this.ap.addNewPackage(this.form).subscribe(
+    this.form.email=this.email;
+    this.addPackage.addNewPackage(this.form).subscribe(
       data => {
           console.log(data);
           this.isPackage = true;
@@ -48,18 +53,5 @@ export class AddPackageComponent implements OnInit {
    
   }
   onsubmit(){}
-  // saveProfileChanges(){
-  //   console.log("FORM DATA:::::::",this.form);
-  //   // this.sendSavedChanges.sendUserData(this.form).subscribe(
-  //   //   data => {
-  //   //       console.log(data);
-  //   //   },
-  //   //   err => {
-  //   //     console.log(err.error.message);
-  //   //   }
-  //   // );
-    
-  // }
 
- 
 }

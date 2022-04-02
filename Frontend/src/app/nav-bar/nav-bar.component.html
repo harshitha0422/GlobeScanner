@@ -5,8 +5,9 @@
       <a mat-button routerLink="login">Log in</a>
       <a mat-button routerLink="register">Register</a>
     </div>
-    <div routerLinkActive="active" *ngIf="isLoggedIn"> 
-      <a mat-button (click)="viewProfile()">{{email}}</a>
+    <div routerLinkActive="active" *ngIf="isLoggedIn">
+      <a mat-button *ngIf="isTourist" (click)="addReview()">Add Review</a>
+      <a mat-button (click)="viewProfile()">{{name}}</a>
       <a mat-button (click)="logout()">LogOut</a>
     </div>
 </mat-toolbar>
