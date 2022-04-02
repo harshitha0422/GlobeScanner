@@ -4,7 +4,7 @@ describe('register', () => {
     cy.url().should('include','register');
     cy.get('[name="username"]').type('guide9');
     cy.wait(2000)
-    cy.get('[name="email"]').type('guide9@gmail.com');
+    cy.get('[name="email"]').type('megan12@gmail.com');
     cy.wait(2000)
     cy.get('[name="password"]').type('password123');
     cy.wait(2000)

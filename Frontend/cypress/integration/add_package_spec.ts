@@ -2,8 +2,6 @@ describe('Travel Guide adds package to a place', () => {
 it('Fill the package info page , if the post doesnot work then the package should not be added', () => {
     cy.visit('/place-list/add-package')
     cy.wait(20)
-    cy.get('[name="guideEmail"]').type('guide12@gmail.com');
-    cy.wait(20)
     cy.get('[name="location"]').type('Florida');
     cy.wait(20)
     cy.get('[name="included"]').type('Meals');
