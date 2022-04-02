@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="col-sm-9 add-package">
   <div *ngFor = "let p of packages" class="card-position">
   <mat-card class="example-card card-position" (click)="navigate()">
@@ -21,7 +21,81 @@
     </mat-card>
 
     </div>
-    </div>
+    </div> -->
+
+
+<div class="container">        
+      <div class="content" style="padding-top: 8rem;">
+        <mat-card-header>
+          <mat-card-title>Packages</mat-card-title>
+        </mat-card-header>
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+          <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor = "let package of packages">
+            <mat-card class="mat-elevation-z4" style="background-color: aliceblue;">
+              <mat-card-header>
+                <mat-card-title>{{package.location}}</mat-card-title>
+                <mat-card-subtitle><b>Guide Email:</b> {{package.email}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h4 class="mb-0">Accomodation</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary text-center">
+                    {{package.accomodation}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h4 class="mb-0">Included</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary text-center" >
+                    {{package.included}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h4 class="mb-0">Duration</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary text-center">
+                    {{package.Duration}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h4 class="mb-0">Itinerary</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary text-center">
+                    {{package.itinerary}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h4 class="mb-0">Price</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary text-center">
+                    {{package.price}}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3"></div>
+                  <div class="col-sm-9 text-secondary">
+                      <button type="button" class="btn btn-primary px-4"
+                      >Book Package</button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+</div>
+
     
     
     
