@@ -36,7 +36,7 @@ func main() {
 	db.Delete(&Package{})
 
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
-	seed(db)
+	//seed(db)
 
 	db.LogMode(true)
 	r := gin.Default()

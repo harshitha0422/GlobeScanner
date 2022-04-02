@@ -42,7 +42,7 @@ func searchPlaces(c *gin.Context) {
 		})
 		return
 	}
-
+	fmt.Println(name)
 	//var empty []SearchPlacesResponse
 	if name == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -123,6 +123,6 @@ func searchPlaces(c *gin.Context) {
 
 	}
 
-	c.JSON(200, placesResponseList)
+	c.JSON(http.StatusOK, gin.H{"msg": placesResponseList})
 
 }
