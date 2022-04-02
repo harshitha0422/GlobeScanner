@@ -3,7 +3,7 @@ describe('Tourist and Trvele guide can edit their profile', () => {
     it('Should login if the credentials are correct', () => {
         cy.visit('/login')
         cy.url().should('include','login');
-        cy.get('[name="email"]').type('guide12@gmail.com');
+        cy.get('[name="email"]').type('xia@gmail.com');
         cy.wait(2000)
         cy.get('[name="password"]').type('password123');
         cy.wait(2000)
@@ -17,14 +17,10 @@ describe('Tourist and Trvele guide can edit their profile', () => {
     it('Fill the edit profile page , if the post doesnot work then the profile should not be editable', () => {
         cy.visit('/view-profile/edit-profile')
         cy.wait(20)
-       
-        cy.get('[name="fullName"]').clear().type('guide12');
         cy.wait(20)
-  
-        cy.get('[name="age"]').clear().type('12');
+        cy.get('[name="age"]').type('12');
         cy.wait(20)
-        
-        cy.get('[name="mobile"]').clear().type('+91 12345677889');
+        cy.get('[name="mobile"]').type('+91 12345677889');
         cy.wait(20)
         cy.get('[name="location"]').clear();
         cy.get('[name="location"]').type('Florida');
