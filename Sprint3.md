@@ -8,7 +8,7 @@ User can view packages corresponding to a particular location
 Users can check travel packages in an area.
 Few other bugs like CORS error and logout token deletion are also taken care of.
 
-Video link - SE_Sprint3
+Video link - https://drive.google.com/drive/folders/1KBgnRkbSJnNvbFj6pbzOePTbTq08tdNg?usp=sharing
 
 Testing has been done in the Frontend. Various features like login, register, edit, view profile have been tested. 
 Also various features in the backend have also been tested.
