@@ -115,6 +115,30 @@ func getallComments(c *gin.Context) {
 
 }
 
+func getGuideProfileLocation(c *gin.Context) {
+
+	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized1")
+		return
+	}
+	err1 := FetchAuth(tokenAuth)
+	if err1 != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized2")
+		fmt.Println(err1)
+		return
+	}
+
+	location := c.Params.ByName("location")
+	var guidesprofiles []GuideProfile
+	if err := DB.Where("location = ?", location).Find(&guidesprofiles).Error; err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, guidesprofiles)
+	}
+}
+
 // get one particular user(tourist and travel guide) by email
 // func getUser(c *gin.Context) {
 
@@ -338,4 +362,17 @@ func upload(c *gin.Context) {
 	}
 	filepath := "http://localhost:8080/file/" + filename
 	c.JSON(http.StatusOK, gin.H{"filepath": filepath})
+}
+
+func registerExist(email string, c *gin.Context) bool {
+
+	register := Register{}
+	result := DB.Where("email = ?", email).Find(&register)
+	if result.Error != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "course not found",
+		})
+		return false
+	}
+	return true
 }

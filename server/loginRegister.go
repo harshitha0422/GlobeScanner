@@ -120,7 +120,7 @@ func userRegister(c *gin.Context) {
 			})
 			return
 		}
-		c.JSON(http.StatusOK, user)
+		c.JSON(200, user)
 	}
 
 }

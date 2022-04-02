@@ -61,13 +61,14 @@ func main() {
 	r.POST("/login", userLogin)
 
 	r.GET("/userprofile", TokenAuthMiddleware(), getUserProfile)
-	r.DELETE("/deleteProfile/", TokenAuthMiddleware(), DeleteUserProfile)
+	r.DELETE("/deleteProfile", TokenAuthMiddleware(), DeleteUserProfile)
 
 	r.PUT("/updateUserProfile", TokenAuthMiddleware(), updateUserProfile)
 	r.PUT("/updateGuideProfile", TokenAuthMiddleware(), updateGuideProfile)
 
 	r.GET("/userprofiles", TokenAuthMiddleware(), getallTouristprofile)
 	r.GET("/guideprofiles", TokenAuthMiddleware(), getallGuideprofile)
+	r.GET("/guideprofiles/:location", TokenAuthMiddleware(), getGuideProfileLocation)
 
 	//r.GET("/users", getUser)
 	//r.POST("/userprofile", TokenAuthMiddleware(), createUserProfile)
