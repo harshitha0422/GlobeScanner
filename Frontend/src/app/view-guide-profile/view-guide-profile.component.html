@@ -1,26 +1,29 @@
 
 <div class="container">
-    <div class="main-body">
-          <div class="row gutters-sm">
-            <div class="col-md-4">
-              <div class="card mb-3" style="background-color: aliceblue; height: fit-content;">
-                <div class="card-body">
+  <div class="main-body">
+    <div class="row gutters-sm">
+          <div class="col-md-4" style="padding-top: 2rem;">
+              <mat-card class="mat-elevation-z4" style="background-color: aliceblue;">
+                <mat-card-content>
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="assets/images/profile_image.jpeg" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4>{{userProfile.name}}</h4>
-                      <p class="text-secondary mb-1">{{userProfile.about}}</p>
-                      <!-- <button class="btn btn-primary">Follow</button>
-                      <button class="btn btn-outline-primary">Message</button> -->
+                      <p class="text-secondary">{{userProfile.about}}</p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                </mat-card-content>
+              </mat-card>
+          </div>
 
-            <div class="col-md-8">
-              <div class="card mb-3" style="background-color: aliceblue; height: fit-content;">
-                <div class="card-body">
+
+
+            <div class="col-md-8" style="padding-top: 2rem;">
+              <mat-card class="mat-elevation-z4" style="background-color: aliceblue;">
+                <mat-card-header>
+                  <mat-card-title>Profile</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
                   <div class="row">
                     <div class="col-sm-3">
                       <h4 class="mb-0">Full Name</h4>
@@ -82,12 +85,15 @@
                         (click)='editInfoPage()'>Edit Profile</button>
                     </div>
                   </div>
-                </div>
-              </div>
+                </mat-card-content>
+              </mat-card>
             </div>
+    </div>
+  </div>
 
 
-        <div class="content">
+
+        <div class="content" style="padding-top: 8rem;">
           <mat-card-header>
             <mat-card-title>Your Packages</mat-card-title>
           </mat-card-header>
@@ -151,11 +157,9 @@
                     </div>
                   </div>
                 </mat-card-content>
-                <!-- <mat-card-actions>
-                  <button color="primary" mat-button>Edit</button>
-                </mat-card-actions> -->
               </mat-card>
             </div>
           </div>
-          </div>
+        </div>
+</div>
   

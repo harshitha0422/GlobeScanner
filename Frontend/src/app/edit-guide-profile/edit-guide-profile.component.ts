@@ -14,6 +14,7 @@ export class EditGuideProfileComponent implements OnInit {
   public userProfile:any = [] ;
   form: any = {
     name: null,
+    about: null,
     age: null,
     address : null,
     location : null,
@@ -28,6 +29,7 @@ export class EditGuideProfileComponent implements OnInit {
         console.log("edit user info")
         console.log(data);
         this.form.name = data.name;
+        this.form.about = data.about
         this.form.age = data.age;
         this.form.address = data.address;
         this.form.location = data.location;
