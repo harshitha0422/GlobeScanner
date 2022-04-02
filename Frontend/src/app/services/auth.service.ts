@@ -30,10 +30,10 @@ export class AuthService {
       role
     }, httpOptions);
   }
-  register(username: string, email: string, password: string, role: string): Observable<any> {
-    console.log(username,email,password,role);
+  register(name: string, email: string, password: string, role: string): Observable<any> {
+    console.log(name,email,password,role);
     return this.http.post(AUTH_API + 'signup', {
-      username,
+      name,
       email,
       password,
       role

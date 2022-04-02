@@ -1,112 +1,113 @@
 <div class="container">
   <div class="main-body">
-        <br><br><br>
-        <div class="row gutters-sm">
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column align-items-center text-center">
-                  <img src="assets/images/profile_image.jpeg" alt="Admin" class="rounded-circle" width="150">
-                  <div class="mt-3">
-                    <h4>{{userProfile.name}}</h4>
-                    <p class="text-secondary mb-1">{{userProfile.about}}</p>
-                    <button class="btn btn-primary">Follow</button>
-                    <button class="btn btn-outline-primary">Message</button>
-                  </div>
-                </div>
+    <div class="row gutters-sm">
+
+
+      <div class="col-md-4" style="padding-top: 2rem;">
+        <mat-card class="mat-elevation-z4" style="background-color: aliceblue;">
+          <mat-card-content>
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="assets/images/profile_image.jpeg" alt="Admin" class="rounded-circle" width="150">
+              <div class="mt-3">
+                <h4>{{userProfile.name}}</h4>
+                <p class="text-secondary">{{userProfile.about}}</p>
               </div>
             </div>
-          
-          </div>
-          <div class="col-md-8">
-            <div class="card mb-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Full Name</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    {{userProfile.name}}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Email</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    {{userProfile.email}}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Age</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    {{userProfile.age}}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Mobile</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    {{userProfile.mobile}}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Location</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    {{userProfile.location}}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">First Favourite Place</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    {{userProfile.fav1}}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Second Favourite Place</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    {{userProfile.fav2}}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Third Favourite Place</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    {{userProfile.fav3}}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3"></div>
-                  <div class="col-sm-9 text-secondary">
-<button type="button" class="btn btn-primary px-4"
-      (click)='editInfoPage()'>Edit Profile</button>
-                  </div>
+          </mat-card-content>
+        </mat-card>
+    </div>
+
+
+
+      <div class="col-md-8" style="padding-top: 2rem;">
+        <mat-card class="mat-elevation-z4" style="background-color: aliceblue;">
+          <mat-card-header>
+            <mat-card-title>Profile</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0">Full Name</h4>
               </div>
-               
-              
+              <div class="col-sm-9 text-secondary">
+                {{userProfile.name}}
               </div>
             </div>
-
-          </div>
-        </div>
-
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0">Email</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{userProfile.email}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0">Age</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{userProfile.age}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0">Mobile</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{userProfile.mobile}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0">Location</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{userProfile.location}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0">First Favourite Place</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{userProfile.fav1}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0">Second Favourite Place</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{userProfile.fav2}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0">Third Favourite Place</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{userProfile.fav3}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-9 text-secondary">
+                  <button type="button" class="btn btn-primary px-4"
+                  (click)='editInfoPage()'>Edit Profile</button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
       </div>
+
+    </div>
   </div>
+</div>
