@@ -9,13 +9,6 @@ import (
 	// "github.com/jinzhu/gorm"
 )
 
-// fmt.Println("Inside search Places")
-// fmt.Println("Place" + name)
-//w.Header().Set("Content-Type", "application/json")
-
-// calling the geoname api
-//eg: https://api.opentripmap.com/0.1/en/places/geoname?apikey=5ae2e3f221c38a28845f05b6ddba4f8e8b04b5c6bbb6c180ea77c286&name=London
-
 func searchPackage(c *gin.Context) {
 	fmt.Println("inside search package")
 	location := c.Param("location")
@@ -29,18 +22,18 @@ func searchPackage(c *gin.Context) {
 	}
 	role := FetchRole(tokenAuth)
 	fmt.Println(role)
-	/*if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized2")
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized")
 		fmt.Println(err)
 		return
-	}*/
+	}
 
-	// if role == "Guide" {
-	// 	c.JSON(http.StatusUnauthorized, gin.H{
-	// 		"error": "User needs to be a tourist. Please register as a tourist.",
-	// 	})
-	// 	return
-	// }
+	if role == "Guide" {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"error": "User needs to be a tourist. Please register as a tourist.",
+		})
+		return
+	}
 
 	if location == "" {
 		c.JSON(http.StatusBadRequest, gin.H{

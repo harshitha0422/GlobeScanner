@@ -11,18 +11,21 @@ func addPackages(c *gin.Context) {
 
 	fmt.Print("add package req")
 	tokenAuth, err := ExtractTokenMetadata(c.Request)
+	fmt.Println(tokenAuth)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized1")
+		c.JSON(http.StatusUnauthorized, "Error extracting the token")
 		return
 	}
-	err1 := FetchAuth(tokenAuth)
-	if err1 != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized2")
-		fmt.Println(err1)
-		return
-	}
+	//err1 := FetchAuth(tokenAuth)
+
 	email := FetchEmail(tokenAuth)
+
 	role := FetchRole(tokenAuth)
+	// if err1 != nil {
+	// 	c.JSON(http.StatusUnauthorized, "Unauthorized")
+	// 	fmt.Println(err1)
+	// 	return
+	// }
 
 	if role == "Tourist" {
 		c.JSON(http.StatusUnauthorized, gin.H{

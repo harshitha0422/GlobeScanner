@@ -1,45 +1,55 @@
 package main
 
-import (
-	"reflect"
-	"testing"
-)
+// func TestInvalidSearchPlaces(t *testing.T) {
+// 	var response map[string]string
 
-func TestPlaceSpace(t *testing.T) {
-	// var msg []SearchPlacesResponse
-	msg := searchPlaces(" ")
-	if len(msg) != 0 {
-		t.Errorf("Expected empty list for empty search string, got msg %v", msg)
-	}
-}
-func TestPlaceValid(t *testing.T) {
-	// var msg []SearchPlacesResponse
-	msg := searchPlaces("Gainesville")
-	if !(len(msg) >= 1) {
-		t.Errorf("Expected list of nearby places, got msg %v", msg)
-	}
-}
+// 	token, err := CreateToken("megan12@gmail.com", "Tourist", "Megan")
+// 	assert.NoError(t, err)
 
-func TestPlaceClosestMatch(t *testing.T) {
-	// var msg []SearchPlacesResponse
-	msg1 := searchPlaces("New Yrk")
-	msg2 := searchPlaces("New York")
-	if !(reflect.DeepEqual(msg1, msg2)) {
-		t.Errorf("Expected search string to return place list for closest match, got msg %v", msg1)
-	}
-}
-func TestPlaceNoMatch(t *testing.T) {
-	// var msg []SearchPlacesResponse
-	msg1 := searchPlaces("New Yr")
-	if len(msg1) != 0 {
-		t.Errorf("Expected empty list for invalid search string, got msg %v", msg1)
-	}
-}
-func TestPlaceEmpty(t *testing.T) {
-	// var msg []SearchPlacesResponse
-	msg1 := searchPlaces("")
-	var msg2 []SearchPlacesResponse
-	if !(reflect.DeepEqual(msg1, msg2)) {
-		t.Errorf("Expected empty result for empty search string, got %v", msg1)
-	}
-}
+// 	router := gin.Default()
+
+// 	router.GET("/searchPlaces/:location", TokenAuthMiddleware(), searchPlaces)
+
+// 	w := httptest.NewRecorder()
+
+// 	req, _ := http.NewRequest("GET", "/searchPlaces/", nil)
+// 	//mt.Sprintf("Bearer %+v", token)
+// 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token.AccessToken))
+
+// 	router.ServeHTTP(w, req)
+
+// 	err = json.Unmarshal(w.Body.Bytes(), &response)
+// 	assert.NoError(t, err)
+
+// 	assert.Equal(t, 400, w.Code)
+// 	assert.Equal(t, "Please enter a valid location name.", response["error"])
+// 	// assert.Equal(t, "Test User", response.Name)
+
+//
+// }
+
+// func TestValidSearchPlaces(t *testing.T) {
+
+// 	token, err := CreateToken("megan12@gmail.com", "Tourist", "Megan")
+// 	assert.NoError(t, err)
+
+// 	router := gin.Default()
+
+// 	router.GET("/searchPlaces/:location", TokenAuthMiddleware(), searchPlaces)
+
+// 	w := httptest.NewRecorder()
+
+// 	req, _ := http.NewRequest("GET", "/searchPlaces/Gainesville", nil)
+// 	//fmt.Sprintf("Bearer %+v", token)
+// 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token.AccessToken))
+
+// 	router.ServeHTTP(w, req)
+
+// 	//err = json.Unmarshal(w.Body, &response)
+// 	assert.NoError(t, err)
+
+// 	assert.Equal(t, 200, w.Code)
+// 	// assert.Equal(t, "test@email.com", response.Email)
+// 	// assert.Equal(t, "Test User", response.Name)
+
+// }
