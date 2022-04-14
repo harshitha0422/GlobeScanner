@@ -3,6 +3,7 @@ import { GetUserDataService} from '../get-user-data.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SendUserDataService} from '../send-user-data.service';
+import { DataSharingService } from '../services/data-sharing.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class EditProfileComponent implements OnInit {
     fav3 : null
   };
   
-  constructor(private getUser :  GetUserDataService, private router: Router, private sendSavedChanges :  SendUserDataService, public fb: FormBuilder) {}
+  constructor(private getUser :  GetUserDataService, private router: Router, private sendSavedChanges :  SendUserDataService, private dataSharingService:DataSharingService, public fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getUser.getTouristInfo().subscribe(
@@ -54,6 +55,7 @@ export class EditProfileComponent implements OnInit {
 
   saveProfileChanges(){
     console.log("FORM DATA:::::::",this.form);
+    this.dataSharingService.userName.next(this.form.name);
     this.sendSavedChanges.sendTouristData(this.form).subscribe(
       data => {
           console.log(data);

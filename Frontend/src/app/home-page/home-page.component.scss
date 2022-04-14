@@ -1,3 +1,24 @@
+
+body,
+html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+//   background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).webp");
+  background-image: url("../../assets/images/homepage.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  // background-size: contain;
+}
+// img{
+//   display:block;
+//  }
   .container {
     position: relative;
     top: 250px;
@@ -76,7 +97,8 @@
     width:100px;
     font-size:1.5em;
     justify-content: space-between;
-    background-color: #dac5c5;
+    // background-color: #dac5c5;
+    background: rgba(247, 243, 243, 0.683)
     
   }
 

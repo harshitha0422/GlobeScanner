@@ -1,0 +1,204 @@
+body,
+html {
+  height: 100%;
+}
+
+.bg {
+  background-image: url("https://mdbootstrap.com/img/Photos/Others/img%20(42).webp");
+//   background-image: url("../../assets/images/edit.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  overflow: scroll;
+}
+
+.main-body {
+    position: relative;
+    top:60px;
+    padding: 15px;
+}
+
+.mat-card{
+    background-color: rgba(252, 255, 252, 0.268);
+}
+.mat-card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.mat-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    // word-wrap: break-word;
+    // background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+
+    padding: 60px 50px 40px 50px;
+    width: 100%;
+    // background: #fff;
+    border-radius: 10px;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    z-index: 5;
+    max-width: 330px;
+}
+
+.mat-card-body {
+    flex: 1 1 auto;
+    height: 100%;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.btn-block{
+    background-color: rgba(252, 255, 252, 0.268);
+}
+
+.float-container {
+    // top: 20rem;
+    // border: 3px solid #fff;
+    padding: 150px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    // border: 2px solid red;
+}
+
+//////////////@at-root
+// .spacer {
+//   flex: 1 1 auto;
+// }
+.info_section {
+    position: absolute;
+    // top: 800px;
+    width: 100%;
+    background-color: #0b214d;
+    color: #fffbfb;
+    padding: 75px 0 30px 0;
+    font-size: small;
+  }
+  
+  .info_section .info_col {
+    margin-bottom: 40px;
+  }
+  
+  .info_section h5 {
+    position: relative;
+    margin-bottom: 20px;
+    font-family: 'Russo One', sans-serif;
+  }
+  
+  .info_section .info_form input {
+    width: 100%;
+    border: none;
+    height: 45px;
+    margin-bottom: 15px;
+    padding-left: 25px;
+    background-color: #eaeaea;
+    outline: none;
+    color: #101010;
+  }
+  
+  .info_section .info_form button {
+    display: inline-block;
+    padding: 10px 45px;
+    border: 1px solid #54e346;
+    background-color: #54e346;
+    color: #ffffff;
+    border-radius: 0px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .info_section .info_form button:hover {
+    background-color: transparent;
+    color: #54e346;
+  }
+  
+  .info_section .info_form button img {
+    width: 20px;
+  }
+  
+  .info_section .info_contact a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  .info_section .info_contact a i {
+    margin-right: 10px;
+  }
+  
+  .info_section .info_contact a:hover {
+    color: #54e346;
+  }
+  
+  .info_section .social_box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 25px;
+  }
+  
+  .info_section .social_box a {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-right: 10px;
+    color: #54e346;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  
+  .info_section .social_box a:hover {
+    background-color: #54e346;
+    color: #ffffff;
+  }
+  
+  .containernew {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .info_contact {
+    a {
+      display: flex;
+      align-items: center;
+      color: white;
+      margin-bottom: 10px;
+
+      i {
+        margin-right: 10px;
+      }
+    }
+  }
+

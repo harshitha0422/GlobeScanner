@@ -1,89 +1,134 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Register</mat-card-title>
-      </mat-card-header>
-  
-      <form class="example-form"
-            *ngIf="!isSuccessful"
-            name="form"
-            (ngSubmit)="f.form.valid && onSubmit()"
-            #f="ngForm"
-            novalidate
-      >
-  
-        <mat-card-content>
-          
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username"
-                  type="text"
-                  name="username"
-                  [(ngModel)]="form.username"
-                  required
-                  minlength="3"
-                  maxlength="20"
-                  #username="ngModel"
-          />
-          <div class="alert-danger" *ngIf="username.errors && f.submitted">
-            <div *ngIf="username.errors.required">Username is required</div>
-            <div *ngIf="username.errors.minlength">
-              Username must be at least 3 characters
-            </div>
-            <div *ngIf="username.errors.maxlength">
-              Username must be at most 20 characters
+<div class="bg"> 
+    <div class="float-container">
+      <div class="float-child">
+
+
+        <!-- <div class="col-md-6 text-center text-md-left mb-5"> -->
+          <div class="white-text">
+            <h1 style="font-size: 30pt;">Sign up right now! </h1>
+            <hr class="hr-light wow fadeInLeft">
+            <h3>Sign up using your email and name to unlock a world of tourism. Search places or book packages, all in one single website. Move around the world with accurate information about all the tourist places and the asscoiated tourist guides. Book packages and enjoy your holidays like no other.<p>Happy Journey users!</p></h3>
+            <br>
+            <!-- <a mdbBtn color="white" outline="true" class="wow fadeInLeft waves-light" data-wow-delay="0.3s" mdbWavesEffect>Learn more</a> -->
+            <div class="info_contact">
+              <a href="#">
+                <i class="fa fa-map-marker" aria-hidden="true" style="color: black; font-size: large;"></i>
+                <span style="color: black; font-size: medium;">
+                  Location
+                </span>
+              </a>
+              <a href="tel:01123456789">
+                <i class="fa fa-phone" aria-hidden="true" style="color: black; font-size: large;"></i>
+                <span style="color: black; font-size: medium;">
+                  Call +01 1234567890
+                </span>
+              </a>
+              <a href="mailto:info@yourdomain.com">
+                <i class="fa fa-envelope" style="color: black; font-size: large;"></i>
+                <span style="color: black; font-size: medium;">
+                  demo@gmail.com
+                </span>
+              </a>
             </div>
           </div>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email"
-                  type="email"
-                  name="email"
-                  [(ngModel)]="form.email"
-                  required
-                  email
-                  #email="ngModel"
-          />
-          <div class="alert-danger" *ngIf="email.errors && f.submitted">
-            <div *ngIf="email.errors.required">Email is required</div>
-            <div *ngIf="email.errors.email">
-              Email must be a valid email address
-            </div>
-          </div>
-          </mat-form-field>
-  
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password"
-                  type="password"
-                  name="password"
-                  [(ngModel)]="form.password"
-                  required
-                  minlength="6"
-                  #password="ngModel"
-          />
-          <div class="alert-danger" *ngIf="password.errors && f.submitted">
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">
-              Password must be at least 6 characters
-            </div>
-          </div>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Choose a role...</mat-label>
-            <mat-select type="role" name="role" [(ngModel)]="form.role" #role="ngModel">
-              <mat-option [value]="roles" *ngFor="let roles of Roles" >{{roles}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-  
-        </mat-card-content>
-  
-        <button mat-stroked-button color="accent" class="btn-block">Register</button>
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-          Signup failed!<br />{{ errorMessage }}
-        </div>
-      </form>
-      <div class="alert alert-success" *ngIf="isSuccessful">
-        Your registration is successful!
+        <!-- </div> -->
+
+
       </div>
-    </mat-card>
-  </div>
+
+      <div class="float-child">
+
+        <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+          <mat-card class="box">
+            <mat-card-header>
+              <mat-card-title>Register</mat-card-title>
+            </mat-card-header>
+        
+            <form class="example-form"
+                  *ngIf="!isSuccessful"
+                  name="form"
+                  (ngSubmit)="f.form.valid && onSubmit()"
+                  #f="ngForm"
+                  novalidate
+            >
+        
+              <mat-card-content>
+                
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Username"
+                        type="text"
+                        name="username"
+                        [(ngModel)]="form.username"
+                        required
+                        minlength="3"
+                        maxlength="20"
+                        #username="ngModel"
+                />
+                <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                  <div *ngIf="username.errors.required">Username is required</div>
+                  <div *ngIf="username.errors.minlength">
+                    Username must be at least 3 characters
+                  </div>
+                  <div *ngIf="username.errors.maxlength">
+                    Username must be at most 20 characters
+                  </div>
+                </div>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Email"
+                        type="email"
+                        name="email"
+                        [(ngModel)]="form.email"
+                        required
+                        email
+                        #email="ngModel"
+                />
+                <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                  <div *ngIf="email.errors.required">Email is required</div>
+                  <div *ngIf="email.errors.email">
+                    Email must be a valid email address
+                  </div>
+                </div>
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Password"
+                        type="password"
+                        name="password"
+                        [(ngModel)]="form.password"
+                        required
+                        minlength="6"
+                        #password="ngModel"
+                />
+                <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                  <div *ngIf="password.errors.required">Password is required</div>
+                  <div *ngIf="password.errors.minlength">
+                    Password must be at least 6 characters
+                  </div>
+                </div>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Choose a role...</mat-label>
+                  <mat-select type="role" name="role" [(ngModel)]="form.role" #role="ngModel">
+                    <mat-option [value]="roles" *ngFor="let roles of Roles" >{{roles}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+        
+              </mat-card-content>
+        
+              <button mat-stroked-button color="accent"  class="btn-block">Sign Up</button>
+              <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Signup failed!<br />{{ errorMessage }}
+              </div>
+            </form>
+            <div class="alert alert-success" *ngIf="isSuccessful">
+              Your registration is successful!
+            </div>
+          </mat-card>
+        </div>
+
+      </div>
+
+    </div>
+</div>
