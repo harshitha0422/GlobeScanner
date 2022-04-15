@@ -34,37 +34,37 @@ A package is a travel plan that a guide gives to a tourist and helps the tourist
 
 API Docs-
 
-Signup: http://localhost:8080/signup
-  Inputs - {name, email, password, role}
-  Output - none
+Signup: http://localhost:8080/signup<br />
+  Inputs - {name, email, password, role}<br />
+  Output - none<br />
 
-Login: http://localhost:8080/login
-  Inputs - {email, password, role}
-  Output - {Authorization Token}
+Login: http://localhost:8080/login<br />
+  Inputs - {email, password, role}<br />
+  Output - {Authorization Token}<br />
 
-View User Profile: http://localhost:8080/userprofile
-  Inputs - none
-  Outputs - {name, email, age, mobile, location, first favorite place, second favorite place, third favorite place}
+View User Profile: http://localhost:8080/userprofile<br />
+  Inputs - none<br />
+  Outputs - {name, email, age, mobile, location, first favorite place, second favorite place, third favorite place}<br />
 
-Search Packages: http://localhost:8080/searchPackage
-  Inputs - none
-  Outputs - {list of packages corresponding to a guide - {guide email, accommodation, included, duration, itinerary, price}}
+Search Packages: http://localhost:8080/searchPackage<br />
+  Inputs - none<br />
+  Outputs - {list of packages corresponding to a guide - {guide email, accommodation, included, duration, itinerary, price}}<br />
 
-Search Places: http://localhost:8080/searchPlaces/<place name>
-  Inputs - none
-  Outputs - {list of tourist places corresponding to the input place - {place.name, place.kinds, p.preview, p.wikipedia_extracts.text,    p.wikipedia_extracts.title}}
+Search Places: http://localhost:8080/searchPlaces/<place name><br />
+  Inputs - none<br />
+  Outputs - {list of tourist places corresponding to the input place - {place.name, place.kinds, p.preview, p.wikipedia_extracts.text,    p.wikipedia_extracts.title}}<br />
 
-Update Tourist Profile: http://localhost:8080/updateUserProfile
-  Inputs - {name, about, age, mobile, location, first favorite place, second favorite place, third favorite place}
-  Outputs - none
+Update Tourist Profile: http://localhost:8080/updateUserProfile<br />
+  Inputs - {name, about, age, mobile, location, first favorite place, second favorite place, third favorite place}<br />
+  Outputs - none<br />
 
-Update Guide Profile: http://localhost:8080/updateGuideProfile
-  Inputs - {name, about, age, address, location, vehicle}
-  Outputs - none
+Update Guide Profile: http://localhost:8080/updateGuideProfile<br />
+  Inputs - {name, about, age, address, location, vehicle}<br />
+  Outputs - none<br />
 
-Add Package: http://localhost:8080/addPackages
-  Inputs - {email, location, included, duration, itinerary, accommodation, price}
-  Outputs - none
+Add Package: http://localhost:8080/addPackages<br />
+  Inputs - {email, location, included, duration, itinerary, accommodation, price}<br />
+  Outputs - none<br />
 
 
 
