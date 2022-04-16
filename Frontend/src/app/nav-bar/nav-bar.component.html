@@ -1,14 +1,14 @@
 <mat-toolbar color="primary" class="app-header">
-    <span><a mat-button routerLink="home-page" routerLinkActive="active">Home</a></span>
+    <span><a style="font-size: medium;" mat-button routerLink="home-page" routerLinkActive="active">Home</a></span>
     <span class="spacer"></span>
     <div routerLinkActive="active" *ngIf="!isLoggedIn"> 
-      <a mat-button routerLink="login">Log in</a>
-      <a mat-button routerLink="register">Register</a>
+      <a style="font-size: medium;" mat-button routerLink="login">Log in</a>
+      <a style="font-size: medium;" mat-button routerLink="register">Register</a>
     </div>
     <div routerLinkActive="active" *ngIf="isLoggedIn">
-      <a mat-button *ngIf="isTourist" (click)="addReview()">Add Review</a>
-      <a mat-button (click)="viewProfile()">{{name}}</a>
-      <a mat-button (click)="logout()">LogOut</a>
+      <a style="font-size: medium;" mat-button *ngIf="isTourist" (click)="addReview()">Add Review</a>
+      <a style="font-size: medium;" mat-button (click)="viewProfile()">{{name}}</a>
+      <a style="font-size: medium;" mat-button (click)="logout()">LogOut</a>
     </div>
 </mat-toolbar>
   

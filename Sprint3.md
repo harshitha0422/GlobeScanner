@@ -30,3 +30,43 @@ In the case of a travel guide, he/she can view and edit his profile. If a guide 
 Users can search for tourist spots in places and view packages corresponding to that place.
 A travel guide can add a package for a place in addition to viewing them.
 A package is a travel plan that a guide gives to a tourist and helps the tourist visit places in exchange for money.
+
+
+API Docs-
+
+Signup: http://localhost:8080/signup<br />
+  Inputs - {name, email, password, role}<br />
+  Output - none<br />
+
+Login: http://localhost:8080/login<br />
+  Inputs - {email, password, role}<br />
+  Output - {Authorization Token}<br />
+
+View User Profile: http://localhost:8080/userprofile<br />
+  Inputs - none<br />
+  Outputs - {name, email, age, mobile, location, first favorite place, second favorite place, third favorite place}<br />
+
+Search Packages: http://localhost:8080/searchPackage<br />
+  Inputs - none<br />
+  Outputs - {list of packages corresponding to a guide - {guide email, accommodation, included, duration, itinerary, price}}<br />
+
+Search Places: http://localhost:8080/searchPlaces/<place name><br />
+  Inputs - none<br />
+  Outputs - {list of tourist places corresponding to the input place - {place.name, place.kinds, p.preview, p.wikipedia_extracts.text,    p.wikipedia_extracts.title}}<br />
+
+Update Tourist Profile: http://localhost:8080/updateUserProfile<br />
+  Inputs - {name, about, age, mobile, location, first favorite place, second favorite place, third favorite place}<br />
+  Outputs - none<br />
+
+Update Guide Profile: http://localhost:8080/updateGuideProfile<br />
+  Inputs - {name, about, age, address, location, vehicle}<br />
+  Outputs - none<br />
+
+Add Package: http://localhost:8080/addPackages<br />
+  Inputs - {email, location, included, duration, itinerary, accommodation, price}<br />
+  Outputs - none<br />
+
+
+
+
+

@@ -26,9 +26,6 @@ export class ViewPackagesComponent implements OnInit {
     .subscribe(
       (data) => {console.log(data);
       this.packages = data;
-      
-     
-      
       },
       err => {
         console.log(err.error.message);

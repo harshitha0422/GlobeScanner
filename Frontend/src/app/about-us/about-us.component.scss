@@ -1,10 +1,14 @@
+// .spacer {
+//   flex: 1 1 auto;
+// }
 .info_section {
     position: absolute;
-    top: 890px;
+    // top: 800px;
     width: 100%;
     background-color: #0b214d;
     color: #ffffff;
     padding: 75px 0 30px 0;
+    font-size: small;
   }
   
   .info_section .info_col {
@@ -120,7 +124,6 @@
       i {
         margin-right: 10px;
       }
-
-      
     }
   }
+
