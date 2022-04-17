@@ -44,5 +44,5 @@ export class PlaceListComponent implements OnInit {
         console.log("Place List:"+this.places);
       }
       );
-    }
+  }
 }

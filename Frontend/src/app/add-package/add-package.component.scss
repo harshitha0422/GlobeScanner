@@ -1,34 +1,92 @@
-body{
-    margin-top:20px;
-    color: #1a202c;
-    text-align: left;
-    background-color: #e2e8f0;    
+// body{
+//     margin-top:20px;
+//     color: #1a202c;
+//     text-align: left;
+//     background-color: #e2e8f0;    
+// }
+// .main-body {
+//     position:relative;
+//     top: 60px;
+//     left: 140px;
+//     padding: 15px;
+//     width:1200px;
+// }
+// .card {
+//     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+// }
+
+// .card {
+//     position: relative;
+//     display: flex;
+//     flex-direction: column;
+//     min-width: 0;
+//     word-wrap: break-word;
+//     background-color: #fff;
+//     background-clip: border-box;
+//     border: 0 solid rgba(0,0,0,.125);
+//     border-radius: .25rem;
+// }
+
+
+// .card-body {
+//     flex: 1 1 auto;
+//     height: 100%;
+//     min-height: 1px;
+//     padding: 1rem;
+// }
+
+body,
+html {
+  height: 100%;
 }
+
+.bg {
+  background-image: url("../../assets/images/login.jpg");
+//   background-image: url("../../assets/images/edit.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  overflow: scroll;
+}
+
 .main-body {
-    position:relative;
-    top: 60px;
-    left: 140px;
+    position: relative;
+    top:60px;
     padding: 15px;
-    width:1200px;
+    // width:1200px;
 }
-.card {
+
+.mat-card{
+    background-color: rgba(252, 255, 252, 0.445);
+}
+.mat-card {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
 }
 
-.card {
+.mat-card {
     position: relative;
     display: flex;
     flex-direction: column;
     min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
+    // word-wrap: break-word;
+    // background-color: #fff;
     background-clip: border-box;
     border: 0 solid rgba(0,0,0,.125);
     border-radius: .25rem;
+
+    padding: 60px 50px 40px 50px;
+    width: 100%;
+    // background: #fff;
+    border-radius: 10px;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    z-index: 5;
+    max-width: 330px;
 }
 
-
-.card-body {
+.mat-card-body {
     flex: 1 1 auto;
     height: 100%;
     min-height: 1px;
