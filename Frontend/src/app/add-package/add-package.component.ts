@@ -50,7 +50,7 @@ export class AddPackageComponent implements OnInit {
         this.errorText = err.error.message;
       }
     );
-   
+    // this.router.navigateByUrl('/home-page');
   }
   onsubmit(){}
 
