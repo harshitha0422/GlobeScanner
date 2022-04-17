@@ -11,7 +11,7 @@ import (
 func updateUserProfile(c *gin.Context) {
 
 	var profile UserProfile
-	if err := c.BindJSON(&profile); err != nil {
+	if err := c.ShouldBindJSON(&profile); err != nil {
 		c.JSON(http.StatusUnprocessableEntity, "invalid input")
 		return
 	}
@@ -39,6 +39,7 @@ func updateUserProfile(c *gin.Context) {
 	role := FetchRole(tokenAuth)
 	//if role == "Tourist" {
 	var userprofile UserProfile
+	var register Register
 	// if err := DB.Where("email = ?", email).First(&userprofile).Error; err != nil {
 
 	userprofile = UserProfile{
@@ -52,10 +53,21 @@ func updateUserProfile(c *gin.Context) {
 		Fav2:     profile.Fav2,
 		Fav3:     profile.Fav3,
 	}
+	register = Register{
+		//gorm.Model
+		Name: profile.Name,
+	}
+
 	//DB.Save(&userprofile)
 	result := DB.Model(&userprofile).Where("email = ?", email).Updates(&userprofile)
+	result1 := DB.Model(&register).Where("email = ?", email).Updates(&register)
 
 	if result.Error != nil {
+
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	}
+	if result1.Error != nil {
 
 		c.AbortWithStatus(404)
 		fmt.Println(err)
@@ -94,6 +106,7 @@ func updateGuideProfile(c *gin.Context) {
 	email := FetchEmail(tokenAuth)
 	role := FetchRole(tokenAuth)
 	var guideprofile GuideProfile
+	var register Register
 
 	guideprofile = GuideProfile{
 		Email:    email,
@@ -105,6 +118,10 @@ func updateGuideProfile(c *gin.Context) {
 		Location: profile.Location,
 		Vehicle:  profile.Vehicle,
 	}
+	register = Register{
+		//gorm.Model
+		Name: profile.Name,
+	}
 	// if err := DB.Where("email = ?", email).First(&guideprofile).Error; err != nil {
 	// 	c.AbortWithStatus(404)
 	// 	fmt.Println(err)
@@ -113,8 +130,14 @@ func updateGuideProfile(c *gin.Context) {
 	// DB.Save(&guideprofile)
 
 	result := DB.Model(&guideprofile).Where("email = ?", email).Updates(&guideprofile)
+	result1 := DB.Model(&register).Where("email = ?", email).Updates(&register)
 
 	if result.Error != nil {
+
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	}
+	if result1.Error != nil {
 
 		c.AbortWithStatus(404)
 		fmt.Println(err)
