@@ -8,6 +8,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PlaceListComponent } from './place-list/place-list.component';
 import { AddPackageComponent } from './add-package/add-package.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AddReviewComponent } from './add-review/add-review.component';
 import { ViewPackagesComponent } from './view-packages/view-packages.component';
 import { ViewGuideProfileComponent } from './view-guide-profile/view-guide-profile.component';
 import { EditGuideProfileComponent } from './edit-guide-profile/edit-guide-profile.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'nav-bar', component: NavBarComponent},
   { path: 'place-list', component: PlaceListComponent},
   { path: 'view-profile', component: ViewProfileComponent},
+  { path: 'add-review', component: AddReviewComponent},
   { path: 'view-guide-profile', component: ViewGuideProfileComponent},
   { path: 'edit-guide-profile', component: EditGuideProfileComponent},
   { path:'view-profile/edit-profile',component:EditProfileComponent},
