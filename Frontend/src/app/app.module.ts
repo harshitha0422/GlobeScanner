@@ -32,6 +32,7 @@ import { DataSharingService } from './services/data-sharing.service';
 import { ViewPackagesComponent } from './view-packages/view-packages.component';
 import { ViewGuideProfileComponent } from './view-guide-profile/view-guide-profile.component';
 import { EditGuideProfileComponent } from './edit-guide-profile/edit-guide-profile.component';
+import { AddReviewComponent } from './add-review/add-review.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { EditGuideProfileComponent } from './edit-guide-profile/edit-guide-profi
     EditProfileComponent,
     ViewPackagesComponent,
     ViewGuideProfileComponent,
-    EditGuideProfileComponent
+    EditGuideProfileComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,
