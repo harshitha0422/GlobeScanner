@@ -88,29 +88,29 @@ func getallGuideprofile(c *gin.Context) {
 }
 
 // get all comments
-func getallComments(c *gin.Context) {
+// func getallComments(c *gin.Context) {
 
-	tokenAuth, err := ExtractTokenMetadata(c.Request)
-	if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized1")
-		return
-	}
-	err1 := FetchAuth(tokenAuth)
-	if err1 != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized2")
-		fmt.Println(err1)
-		return
-	}
+// 	tokenAuth, err := ExtractTokenMetadata(c.Request)
+// 	if err != nil {
+// 		c.JSON(http.StatusUnauthorized, "unauthorized1")
+// 		return
+// 	}
+// 	err1 := FetchAuth(tokenAuth)
+// 	if err1 != nil {
+// 		c.JSON(http.StatusUnauthorized, "unauthorized2")
+// 		fmt.Println(err1)
+// 		return
+// 	}
 
-	var comments []Comment
-	if err := DB.Find(&comments).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
-	} else {
-		c.JSON(200, comments)
-	}
+// 	var comments []Comment
+// 	if err := DB.Find(&comments).Error; err != nil {
+// 		c.AbortWithStatus(404)
+// 		fmt.Println(err)
+// 	} else {
+// 		c.JSON(200, comments)
+// 	}
 
-}
+// }
 
 func getGuideProfileLocation(c *gin.Context) {
 
