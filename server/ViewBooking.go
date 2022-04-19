@@ -75,9 +75,18 @@ func viewBooking(c *gin.Context) {
 	// Where("instructors.email = ?", email).
 	// Where("courses.id = ?", courseId).
 	// First(&course)
-
-	var pkg []Package
-	res := DB.Select("*").
+	type PackageResponse struct {
+		Id           string
+		Email        string
+		Duration     string
+		Location     string
+		Accomodation string
+		Itinerary    string
+		Included     string
+		Price        string
+	}
+	pkg := []PackageResponse{}
+	res := DB.Table("packages").Select("*").
 		Joins("inner join bookings on packages.id = bookings.package_id").
 		Where("bookings.email = ?", email).
 		Find(&pkg)
