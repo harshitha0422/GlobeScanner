@@ -147,7 +147,7 @@ type Comment struct {
 	Title     string `json:"title"`
 	Name      string `json:"name"`
 	Email     string `json:"email"`
-	packageId string `json:"location"`
+	PackageId string `json:"packageId"`
 	Review    string `json:"review"`
 	//Register Register `gorm:"foreignKey:Email; json:"register"`
 }
