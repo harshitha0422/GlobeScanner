@@ -1,55 +1,66 @@
 package main
 
-// func TestInvalidSearchPlaces(t *testing.T) {
-// 	var response map[string]string
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"net/http/httptest"
+	"testing"
 
-// 	token, err := CreateToken("megan12@gmail.com", "Tourist", "Megan")
-// 	assert.NoError(t, err)
+	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
+)
 
-// 	router := gin.Default()
+func TestInvalidSearchPlaces(t *testing.T) {
+	var response map[string]string
 
-// 	router.GET("/searchPlaces/:location", TokenAuthMiddleware(), searchPlaces)
+	token, err := CreateToken("vishesha@gmail.com", "Tourist", "vishesha@123")
+	assert.NoError(t, err)
+	saveErr := CreateAuth("vishesha@gmail.com", "Tourist", token)
+	assert.NoError(t, saveErr)
 
-// 	w := httptest.NewRecorder()
+	router := gin.Default()
 
-// 	req, _ := http.NewRequest("GET", "/searchPlaces/", nil)
-// 	//mt.Sprintf("Bearer %+v", token)
-// 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token.AccessToken))
+	router.GET("/searchPlaces/:location", TokenAuthMiddleware(), searchPlaces)
 
-// 	router.ServeHTTP(w, req)
+	w := httptest.NewRecorder()
 
-// 	err = json.Unmarshal(w.Body.Bytes(), &response)
-// 	assert.NoError(t, err)
+	req, _ := http.NewRequest("GET", "/searchPlaces/", nil)
+	//mt.Sprintf("Bearer %+v", token)
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token.AccessToken))
 
-// 	assert.Equal(t, 400, w.Code)
-// 	assert.Equal(t, "Please enter a valid location name.", response["error"])
-// 	// assert.Equal(t, "Test User", response.Name)
+	router.ServeHTTP(w, req)
 
-//
-// }
+	err = json.Unmarshal(w.Body.Bytes(), &response)
+	assert.NoError(t, err)
 
-// func TestValidSearchPlaces(t *testing.T) {
+	assert.Equal(t, 400, w.Code)
+	assert.Equal(t, "Please enter a valid location name.", response["error"])
+	// assert.Equal(t, "Test User", response.Name)
 
-// 	token, err := CreateToken("megan12@gmail.com", "Tourist", "Megan")
-// 	assert.NoError(t, err)
+}
 
-// 	router := gin.Default()
+func TestValidSearchPlaces(t *testing.T) {
 
-// 	router.GET("/searchPlaces/:location", TokenAuthMiddleware(), searchPlaces)
+	token, err := CreateToken("vishesha@gmail.com", "Tourist", "vishesha@123")
+	assert.NoError(t, err)
+	saveErr := CreateAuth("vishesha@gmail.com", "Tourist", token)
+	assert.NoError(t, saveErr)
 
-// 	w := httptest.NewRecorder()
+	router := gin.Default()
 
-// 	req, _ := http.NewRequest("GET", "/searchPlaces/Gainesville", nil)
-// 	//fmt.Sprintf("Bearer %+v", token)
-// 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token.AccessToken))
+	router.GET("/searchPlaces/:location", TokenAuthMiddleware(), searchPlaces)
 
-// 	router.ServeHTTP(w, req)
+	w := httptest.NewRecorder()
 
-// 	//err = json.Unmarshal(w.Body, &response)
-// 	assert.NoError(t, err)
+	req, _ := http.NewRequest("GET", "/searchPlaces/Gainesville", nil)
 
-// 	assert.Equal(t, 200, w.Code)
-// 	// assert.Equal(t, "test@email.com", response.Email)
-// 	// assert.Equal(t, "Test User", response.Name)
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token.AccessToken))
 
-// }
+	router.ServeHTTP(w, req)
+
+	assert.NoError(t, err)
+
+	assert.Equal(t, 200, w.Code)
+
+}

@@ -175,38 +175,38 @@ func fakeGuideProfileGenerate() GuideProfile {
 	return newprofile2
 }
 
-func fakeCommentGenerate() Comment {
+// func fakeCommentGenerate() Comment {
 
-	newregister := fakeRegisterGenerate()
-	// Create course
+// 	newregister := fakeRegisterGenerate()
+// 	// Create course
 
-	// Create fake course
-	type fakeCommentStruct struct {
-		Comment  string `faker:"comment"`
-		Email    string `faker:"email"`
-		Name     string `faker:"name"`
-		Location string `faker:"location"`
-		Rating   string `faker:"rating"`
-	}
-	fakecomment := fakeCommentStruct{}
-	err := faker.FakeData(&fakecomment)
-	if err != nil {
-		panic("Failed to create fake profile")
-	}
-	comments := Comment{
-		Comment:  fakecomment.Comment,
-		Email:    newregister.Email,
-		Name:     fakecomment.Name,
-		Location: fakecomment.Location,
-		Rating:   fakecomment.Rating,
-	}
-	result := DB.Create(&comments)
-	if result.Error != nil {
-		panic("Failed to create a course")
-	}
-	// courseId := int(newCourse.ID)
-	return comments
-}
+// 	// Create fake course
+// 	type fakeCommentStruct struct {
+// 		Comment  string `faker:"comment"`
+// 		Email    string `faker:"email"`
+// 		Name     string `faker:"name"`
+// 		Location string `faker:"location"`
+// 		Rating   string `faker:"rating"`
+// 	}
+// 	fakecomment := fakeCommentStruct{}
+// 	err := faker.FakeData(&fakecomment)
+// 	if err != nil {
+// 		panic("Failed to create fake profile")
+// 	}
+// 	comments := Comment{
+// 		Comment:  fakecomment.Comment,
+// 		Email:    newregister.Email,
+// 		Name:     fakecomment.Name,
+// 		Location: fakecomment.Location,
+// 		Rating:   fakecomment.Rating,
+// 	}
+// 	result := DB.Create(&comments)
+// 	if result.Error != nil {
+// 		panic("Failed to create a course")
+// 	}
+// 	// courseId := int(newCourse.ID)
+// 	return comments
+// }
 
 func fakePackageGenerate() Package {
 
