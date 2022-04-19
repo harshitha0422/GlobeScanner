@@ -18,7 +18,7 @@ func bookPackages(c *gin.Context) {
 	}
 	//err1 := FetchAuth(tokenAuth)
 
-	//email := FetchEmail(tokenAuth)
+	email := FetchEmail(tokenAuth)
 
 	role := FetchRole(tokenAuth)
 	// if err1 != nil {
@@ -54,7 +54,7 @@ func bookPackages(c *gin.Context) {
 	//register := Register{}
 	tourist := UserProfile{}
 	//result := DB.Where("email = ?", newPackage.Email).First(&register)
-	result := DB.Where("email = ?", req.Email).First(&tourist)
+	result := DB.Where("email = ?", email).First(&tourist)
 	if result.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Internal server error",
@@ -86,16 +86,16 @@ func bookPackages(c *gin.Context) {
 	}
 	// Insert into database
 	//var newPackage Package
-	// newBooking := Booking{
-	// 	Email:     req.Email,
-	// 	PackageId: req.PackageId,
-	// }
-	bookingRes := DB.Create(&req)
+	newBooking := Booking{
+		Email:     email,
+		PackageId: req.PackageId,
+	}
+	bookingRes := DB.Create(&newBooking)
 	if bookingRes.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "internal server error",
 		})
 		return
 	}
-	c.JSON(http.StatusOK, req)
+	c.JSON(http.StatusOK, "msg:Booking created successfully.")
 }
