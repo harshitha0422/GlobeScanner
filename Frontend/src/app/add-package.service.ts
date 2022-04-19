@@ -11,5 +11,5 @@ export class AddPackageService {
   addNewPackage(addPackage: any){
     console.log("This is the final json before update req",addPackage);
     return this.http.post<any>("http://localhost:8080/addPackages", addPackage);
-}
+  }
 }

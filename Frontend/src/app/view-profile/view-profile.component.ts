@@ -36,7 +36,7 @@ export class ViewProfileComponent implements OnInit {
     this.getUser.getTouristBookedPackage().subscribe(
       data => {
         this.bookedPackage = data;
-        console.log("get guide package", this.bookedPackage);
+        console.log("get booked package", this.bookedPackage);
       },
       err => {
         console.log(err.error.message);

@@ -1,33 +1,33 @@
-
-<div class="col-sm-9 add-package" *ngIf="!isTourist">
-  <button type="button" name="addPackage" style="background-color:#0b214d; font-size:15px;" class="btn btn-primary px-4" id="addPackage" routerLink="add-package" routerLinkActive="active">Add Package </button>
-  &nbsp;
-  <button type="button" style="background-color:#0b214d; font-size:15px;" class="btn btn-primary px-4" id="viewPackages" routerLink="view-packages" routerLinkActive="active">View Packages</button>
+<div class="bg">
+  <div>
+  <div class="col-sm-9 add-package" *ngIf="!isTourist">
+    <button type="button" name="addPackage" style="background-color:#0b214d; font-size:15px;" class="btn btn-primary px-4" id="addPackage" routerLink="add-package" routerLinkActive="active">Add Package </button>
+    &nbsp;
+    <button type="button" style="background-color:#0b214d; font-size:15px;" class="btn btn-primary px-4" id="viewPackages" routerLink="view-packages" routerLinkActive="active">View Packages</button>
+  </div>
+  <div class="col-sm-9 add-package" *ngIf="isTourist">
+    <!-- &nbsp; -->
+    <button type="button" style="background-color:#0b214d; font-size:15px;" class="btn btn-primary px-4" id="viewPackages" routerLink="view-packages" routerLinkActive="active">View Packages</button>
+  </div>
+  </div>
+  <br><br><br>
+  <!-- <div style="position: relative;top: 160px;"> -->
+    
+  <div *ngFor = "let p of places" class="card-position"> 
+    <mat-card class="example-card">
+      <mat-card-title-group>
+        <mat-card-title>{{p.name}}</mat-card-title>
+        <mat-card-subtitle>{{p.kinds}}</mat-card-subtitle>
+        <img mat-card-xl-image [src]=p.preview.source  >
+      </mat-card-title-group>
+      <mat-card-content>
+        {{p.wikipedia_extracts.text}}
+      </mat-card-content>
+      <mat-card-content>
+        {{p.wikipedia_extracts.title}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- </div> -->
 </div>
-<div class="col-sm-9 add-package" *ngIf="isTourist">
-  <!-- &nbsp; -->
-  <button type="button" style="background-color:#0b214d; font-size:15px;" class="btn btn-primary px-4" id="viewPackages" routerLink="view-packages" routerLinkActive="active">View Packages</button>
-</div>
-<br>
-
-<div *ngFor = "let p of places" class="card-position">
-  <mat-card class="example-card">
-    <mat-card-title-group>
-      <mat-card-title>{{p.name}}</mat-card-title>
-      <mat-card-subtitle>{{p.kinds}}</mat-card-subtitle>
-      <img mat-card-xl-image [src]=p.preview.source  >
-    </mat-card-title-group>
-    <mat-card-content>
-      {{p.wikipedia_extracts.text}}
-    </mat-card-content>
-    <mat-card-content>
-      {{p.wikipedia_extracts.title}}
-    </mat-card-content>
-  </mat-card>
-</div>
-  
-  
-  
-  
-   
-  
+    
