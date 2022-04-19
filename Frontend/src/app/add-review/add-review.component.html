@@ -1,0 +1,60 @@
+<div class="bg">
+    <div class="container">
+      <div class="main-body">
+        <div class="row gutters-sm">
+  
+          <div class="col-md-8" style="padding-top: 2rem;">
+            <mat-card class="mat-elevation-z4">
+              <mat-card-header>
+                <mat-card-title style="padding-bottom: 1rem;">Review a place you have visited!</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <form>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Title of your Review</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-9 text-secondary form-group">
+                        <input type="text"style="width:620px; " [(ngModel)]="form.title" value={{form.title}} name = "title" placeholder = "title" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h4 class="mb-0">Your Review</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-9 text-secondary form-group">
+                        <textarea type="text"  rows="4" cols="75" [(ngModel)]="form.reviewtext" value={{form.reviewtext}} name = "reviewtext" placeholder = "reviewtext" [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                  </div>
+                  <hr>
+                 <div class="row">
+                    <div class="col-sm-9 text-secondary form-group">
+                        <mat-checkbox [(ngModel)]="form.checkAgreement" value={{form.checkAgreement}} name = "checkAgreement" placeholder = "checkAgreement" [ngModelOptions]="{standalone: true}">
+                            I certify that this review is based on my own experience and is my genuine opinion of <br> this restaurant,
+                             and that I have no personal or business relationship with  this  establishment,<br> and have not been offered any incentive or payment originating from the establishment<br> to write this review.
+                        </mat-checkbox>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-9 text-secondary form-group">
+                        <button type="button" class="btn btn-primary px-4" id="saveChanges"
+                      (click)='addReview()'>Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </mat-card-content>
+            </mat-card>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div> 
+  
