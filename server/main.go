@@ -81,9 +81,9 @@ func main() {
 
 	//r.POST("/userprofiles", createTouristProfile)
 	//r.POST("/guideprofiles", createGuideProfile)
-	r.GET("/comments", TokenAuthMiddleware(), getallComments)
-	r.GET("/mycomments", TokenAuthMiddleware(), getUserComments)
-	//r.POST("/comments", TokenAuthMiddleware(), createComments)
+	r.GET("/comments", TokenAuthMiddleware(), getallpackageComments)
+	r.GET("/mycomments", TokenAuthMiddleware(), getalluserComments)
+	r.POST("/comments", TokenAuthMiddleware(), createComments)
 	r.GET("/comments/:location", TokenAuthMiddleware(), getLocationComments)
 
 	r.POST("/token/refresh", Refresh)
