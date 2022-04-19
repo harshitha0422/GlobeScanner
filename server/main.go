@@ -31,12 +31,15 @@ func main() {
 	}
 	DB = db
 	db.Delete(&Register{})
-	db.Delete(&GuideProfile{})
 	db.Delete(&UserProfile{})
-	db.Delete(&Package{})
+	db.Delete(&GuideProfile{})
 
-	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{})
-	//seed(db)
+	db.Delete(&Comment{})
+	db.Delete(&Package{})
+	db.Delete(&Booking{})
+
+	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{}, &Booking{})
+	seed(db)
 
 	db.LogMode(true)
 	r := gin.Default()
@@ -53,9 +56,11 @@ func main() {
 	r.GET("/searchPlaces/:location", TokenAuthMiddleware(), searchPlaces)
 
 	r.GET("/searchPackage/:location", TokenAuthMiddleware(), searchPackage)
-	r.GET("/searchPackage", TokenAuthMiddleware(), getPackage)
+	r.GET("/viewOwnPackage", TokenAuthMiddleware(), getPackage)
+	r.GET("/viewBooking", TokenAuthMiddleware(), viewBooking)
 	r.GET("/getAllPackage", TokenAuthMiddleware(), getallPackages)
 	r.POST("/addPackages", TokenAuthMiddleware(), addPackages)
+	r.POST("/bookPackages", TokenAuthMiddleware(), bookPackages)
 
 	r.POST("/signup", userRegister)
 	r.POST("/login", userLogin)

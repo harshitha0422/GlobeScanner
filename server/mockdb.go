@@ -16,8 +16,7 @@ func seed(db *gorm.DB) {
 	// }
 
 	profiles := []UserProfile{
-		{Email: "saduvishesha@gmail.com", Name: "vishesha", About: "travel freak", Age: 23, Fav1: "Gainesville", Fav2: "Orlando", Fav3: "tampa"},      //User: sv, Register: sv_reg
-		{Email: "meghamalagupta@gmail.com", Name: "meghamala", About: "loves travel!", Age: 24, Fav1: "Miami", Fav2: "Gainesville", Fav3: "New york"}, // User: sv, Register: sv_reg
+		{Email: "saduvishesha@gmail.com", Name: "vishesha", About: "travel freak", Age: 23, Fav1: "Gainesville", Fav2: "Orlando", Fav3: "tampa"}, //User: sv, Register: sv_reg
 	}
 	for _, m := range profiles {
 		db.Create(&m)
@@ -53,12 +52,19 @@ func seed(db *gorm.DB) {
 	packages := []Package{
 		{Email: "visheshas@gmail.com", Duration: "2 weeks", Location: "Florida", Accomodation: "Hyatt Regency", Itinerary: "Day1:Miami, Day2: Fort Lauderdale, Day3: Orlando", Included: "Breakfast,Dinner, Sight-seeing", Price: "$100"},
 		{Email: "arijitd@gmail.com", Duration: "1 weeks", Location: "New Delhi", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
-		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "New Delhi", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
-		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "Agra", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
-		{Email: "megan12@gmail.com", Duration: "1 weeks", Location: "Goa", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "arijitd@gmail.com", Duration: "1 weeks", Location: "Lucknow", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
+		{Email: "arijitd@gmail.com", Duration: "1 weeks", Location: "Kolkata", Accomodation: "Hyatt Regency", Itinerary: "Day1:Red Fort, Day2: Fatehpur Sikhri, Day3: Agra", Included: "Breakfast,Dinner, Sight-seeing", Price: "Rs. 10000"},
 	}
 	for _, pkg := range packages {
 		db.Create(&pkg)
 
 	}
+
+	// bookings := []Booking{
+	// 	{Email: "meghamalagupta@gmail.com", PackageId: "133"},
+	// 	{Email: "meghamalagupta@gmail.com", PackageId: "134"}, // User: sv, Register: sv_reg
+	// }
+	// for _, m := range bookings {
+	// 	db.Create(&m)
+	// }
 }
