@@ -30,13 +30,13 @@ func main() {
 		panic("can't connect to database")
 	}
 	DB = db
-	db.Delete(&Register{})
-	db.Delete(&UserProfile{})
-	db.Delete(&GuideProfile{})
+	// db.Delete(&Register{})
+	// db.Delete(&UserProfile{})
+	// db.Delete(&GuideProfile{})
 
-	db.Delete(&Comment{})
-	db.Delete(&Package{})
-	db.Delete(&Booking{})
+	// db.Delete(&Comment{})
+	// db.Delete(&Package{})
+	// db.Delete(&Booking{})
 
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{}, &Booking{})
 	//seed(db)
