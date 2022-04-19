@@ -32,14 +32,14 @@ func seed(db *gorm.DB) {
 		db.Create(&pr2)
 	}
 
-	comments := []Comment{
-		{Comment: "Gainesville is peaceful and has nice greenery", Email: "visheshasadu@gmail.com", Location: "Gainesville"},   //User: sv, Register: sv_reg
-		{Comment: "Orlando is well developed and has many nice places to visit", Email: "vish@gmail.com", Location: "Orlando"}, // User: sv, Register: sv_reg
-	}
-	for _, cmnt := range comments {
-		db.Create(&cmnt)
+	// comments := []Comment{
+	// 	{Comment: "Gainesville is peaceful and has nice greenery", Email: "visheshasadu@gmail.com", Location: "Gainesville"},   //User: sv, Register: sv_reg
+	// 	{Comment: "Orlando is well developed and has many nice places to visit", Email: "vish@gmail.com", Location: "Orlando"}, // User: sv, Register: sv_reg
+	// }
+	// for _, cmnt := range comments {
+	// 	db.Create(&cmnt)
 
-	}
+	// }
 	// type Req struct {
 	// 	GuideEmail   string `json:"guideEmail" gorm:"not null"`
 	// 	Duration     string `json: "duration"`

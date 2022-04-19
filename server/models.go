@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"gorm.io/gorm"
 )
 
 type GeoResponse struct {
@@ -106,7 +107,7 @@ type SearchPlacesResponse struct {
 // }
 
 type Register struct {
-	//gorm.Model
+	gorm.Model
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password" binding:"required,min=8,max=20"`
@@ -114,8 +115,8 @@ type Register struct {
 }
 
 type UserProfile struct {
-	//gorm.Model
-	Email string `gorm:"primaryKey" json:"email"`
+	gorm.Model
+	Email string `gorm:"unique" json:"email"`
 	Name  string `json:"name"`
 	//Password string `json:"password" binding:"required,min=8,max=20"`
 	Role     string `json:"role"`
@@ -129,8 +130,8 @@ type UserProfile struct {
 }
 
 type GuideProfile struct {
-	//gorm.Model
-	Email string `gorm:"primaryKey" json:"email"`
+	gorm.Model
+	Email string `gorm:"unique" json:"email"`
 	//Password string `json:"name"`
 	Name     string `json:"name"`
 	Role     string `json:"role"`
@@ -142,17 +143,17 @@ type GuideProfile struct {
 }
 
 type Comment struct {
-	//gorm.Model
-	Comment  string `json:"comment"`
-	Email    string `json:"email"`
-	Name     string `json:"name"`
-	Location string `json:"location"`
-	Rating   string `json:"rating"`
+	gorm.Model
+	Title     string `json:"title"`
+	Name      string `json:"name"`
+	Email     string `json:"email"`
+	packageId string `json:"location"`
+	Review    string `json:"review"`
 	//Register Register `gorm:"foreignKey:Email; json:"register"`
 }
 
 type Package struct {
-	//gorm.Model
+	gorm.Model
 	// PackageId    string `gorm:"primaryKey;autoIncrement:true"`
 	Email        string `json:"email"`
 	Duration     string `json: "duration"`
@@ -164,7 +165,7 @@ type Package struct {
 }
 
 type Booking struct {
-	//gorm.Model
+	gorm.Model
 	Email     string `gorm:"primaryKey" json:"email"`
 	PackageId string `gorm:"primaryKey" json:"packageId"`
 }

@@ -4,10 +4,7 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"log"
 	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -293,76 +290,76 @@ func createUserProfile(c *gin.Context) {
 
 }
 
-func createComments(c *gin.Context) {
-	tokenAuth, err := ExtractTokenMetadata(c.Request)
-	if err != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized1")
-		return
-	}
-	err1 := FetchAuth(tokenAuth)
-	if err1 != nil {
-		c.JSON(http.StatusUnauthorized, "unauthorized2")
-		fmt.Println(err1)
-		return
-	}
-	email := FetchEmail(tokenAuth)
-	role := FetchRole(tokenAuth)
-	name := FetchName(tokenAuth)
-	if role == "Guide" {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"error": "User needs to be a tourist to create a comment",
-		})
-		return
-	}
-	type cmnt struct {
-		Comment  string `json:"comment"`
-		Location string `json:"location"`
-		Rating   string `json:"rating"`
-	}
+// func createComments(c *gin.Context) {
+// 	tokenAuth, err := ExtractTokenMetadata(c.Request)
+// 	if err != nil {
+// 		c.JSON(http.StatusUnauthorized, "unauthorized1")
+// 		return
+// 	}
+// 	err1 := FetchAuth(tokenAuth)
+// 	if err1 != nil {
+// 		c.JSON(http.StatusUnauthorized, "unauthorized2")
+// 		fmt.Println(err1)
+// 		return
+// 	}
+// 	email := FetchEmail(tokenAuth)
+// 	role := FetchRole(tokenAuth)
+// 	name := FetchName(tokenAuth)
+// 	if role == "Guide" {
+// 		c.JSON(http.StatusUnauthorized, gin.H{
+// 			"error": "User needs to be a tourist to create a comment",
+// 		})
+// 		return
+// 	}
+// 	type cmnt struct {
+// 		Comment  string `json:"comment"`
+// 		Location string `json:"location"`
+// 		Rating   string `json:"rating"`
+// 	}
 
-	req := cmnt{}
-	error := c.ShouldBindJSON(&req)
-	if error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "incorrect parameters, password should be between 6 to 20 chars",
-		})
-		return
-	}
-	comment := Comment{
-		Name:     name,
-		Email:    email,
-		Comment:  req.Comment,
-		Location: req.Location,
-		Rating:   req.Rating,
-	}
-	c.BindJSON(&comment)
-	if err := DB.Create(&comment).Error; err != nil {
-		fmt.Println("cannot create comment", err)
-		c.AbortWithStatus(502)
+// 	req := cmnt{}
+// 	error := c.ShouldBindJSON(&req)
+// 	if error != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{
+// 			"error": "incorrect parameters, password should be between 6 to 20 chars",
+// 		})
+// 		return
+// 	}
+// 	comment := Comment{
+// 		Name:     name,
+// 		Email:    email,
+// 		Comment:  req.Comment,
+// 		Location: req.Location,
+// 		Rating:   req.Rating,
+// 	}
+// 	c.BindJSON(&comment)
+// 	if err := DB.Create(&comment).Error; err != nil {
+// 		fmt.Println("cannot create comment", err)
+// 		c.AbortWithStatus(502)
 
-	}
-	c.JSON(200, comment)
-}
+// 	}
+// 	c.JSON(200, comment)
+// }
 
-func upload(c *gin.Context) {
-	file, header, err := c.Request.FormFile("file")
-	if err != nil {
-		c.String(http.StatusBadRequest, fmt.Sprintf("file err : %s", err.Error()))
-		return
-	}
-	filename := header.Filename
-	out, err := os.Create("public/" + filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer out.Close()
-	_, err = io.Copy(out, file)
-	if err != nil {
-		log.Fatal(err)
-	}
-	filepath := "http://localhost:8080/file/" + filename
-	c.JSON(http.StatusOK, gin.H{"filepath": filepath})
-}
+// func upload(c *gin.Context) {
+// 	file, header, err := c.Request.FormFile("file")
+// 	if err != nil {
+// 		c.String(http.StatusBadRequest, fmt.Sprintf("file err : %s", err.Error()))
+// 		return
+// 	}
+// 	filename := header.Filename
+// 	out, err := os.Create("public/" + filename)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	defer out.Close()
+// 	_, err = io.Copy(out, file)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	filepath := "http://localhost:8080/file/" + filename
+// 	c.JSON(http.StatusOK, gin.H{"filepath": filepath})
+// }
 
 func registerExist(email string, c *gin.Context) bool {
 
