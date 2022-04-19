@@ -12,9 +12,11 @@ import { AddreviewService } from '../addreview.service';
 export class AddReviewComponent implements OnInit {
   form: any = {
     title: null,
-    reviewtext: null
+    review: null
   };
-
+  isReviewAdded = false;
+  isNotAdded = false;
+  errorText='';
   constructor(private router: Router, private ar : AddreviewService) { }
 
   ngOnInit(): void {
@@ -24,9 +26,12 @@ export class AddReviewComponent implements OnInit {
     this.ar.addReview(this.form).subscribe(
       data => {
           console.log(data);
+          this.isReviewAdded = true;
       },
       err => {
         console.log(err.error.message);
+        this.isReviewAdded = true;
+        this.errorText = err.error.message;
       }
     ); 
   }

@@ -28,7 +28,7 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-9 text-secondary form-group">
-                        <textarea type="text"  rows="4" cols="84" [(ngModel)]="form.reviewtext" value={{form.reviewtext}} name = "reviewtext" [ngModelOptions]="{standalone: true}"></textarea>
+                        <textarea type="text"  rows="4" cols="84" [(ngModel)]="form.review" value={{form.review}} name = "review" [ngModelOptions]="{standalone: true}"></textarea>
                     </div>
                   </div>
                   <hr>
@@ -48,7 +48,13 @@
                       (click)='addReview()'>Submit</button>
                     </div>
                   </div>
+                  <div class="alert alert-warning" *ngIf=" isNotAdded">
+                    Package not added!<br />{{ errorText }}
+                  </div>
                 </form>
+                <div class="alert alert-success" *ngIf="isReviewAdded">
+                  Your package is successfully added!
+                </div>
               </mat-card-content>
             </mat-card>
           </div>
