@@ -39,7 +39,7 @@ func main() {
 	db.Delete(&Booking{})
 
 	DB.AutoMigrate(&Register{}, &UserProfile{}, &GuideProfile{}, &Comment{}, &Package{}, &Booking{})
-	seed(db)
+	//seed(db)
 
 	db.LogMode(true)
 	r := gin.Default()
@@ -83,7 +83,7 @@ func main() {
 	//r.POST("/guideprofiles", createGuideProfile)
 	r.GET("/comments", TokenAuthMiddleware(), getallComments)
 	r.GET("/mycomments", TokenAuthMiddleware(), getUserComments)
-	r.POST("/comments", TokenAuthMiddleware(), createComments)
+	//r.POST("/comments", TokenAuthMiddleware(), createComments)
 	r.GET("/comments/:location", TokenAuthMiddleware(), getLocationComments)
 
 	r.POST("/token/refresh", Refresh)
