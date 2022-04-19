@@ -12,6 +12,8 @@ import { AddReviewComponent } from './add-review/add-review.component';
 import { ViewPackagesComponent } from './view-packages/view-packages.component';
 import { ViewGuideProfileComponent } from './view-guide-profile/view-guide-profile.component';
 import { EditGuideProfileComponent } from './edit-guide-profile/edit-guide-profile.component';
+import { ListBookedPackagesComponent } from './list-booked-packages/list-booked-packages.component';
+
 
 
 const routes: Routes = [
@@ -23,6 +25,7 @@ const routes: Routes = [
   { path: 'place-list', component: PlaceListComponent},
   { path: 'view-profile', component: ViewProfileComponent},
   { path: 'add-review', component: AddReviewComponent},
+  { path: 'list-booked-packages', component:ListBookedPackagesComponent},
   { path: 'view-guide-profile', component: ViewGuideProfileComponent},
   { path: 'edit-guide-profile', component: EditGuideProfileComponent},
   { path:'view-profile/edit-profile',component:EditProfileComponent},

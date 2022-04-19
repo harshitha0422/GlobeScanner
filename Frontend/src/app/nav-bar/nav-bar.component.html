@@ -6,7 +6,7 @@
       <a style="font-size: medium;" mat-button routerLink="register">Register</a>
     </div>
     <div routerLinkActive="active" *ngIf="isLoggedIn">
-      <a style="font-size: medium;" mat-button *ngIf="isTourist" (click)="addReview()">Add Review</a>
+      <a style="font-size: medium;" mat-button *ngIf="isTourist" (click)="addReview()" routerLink="list-booked-packages" routerLinkActive="active">Add Review</a>
       <a style="font-size: medium;" mat-button (click)="viewProfile()">{{name}}</a>
       <a style="font-size: medium;" mat-button (click)="logout()">LogOut</a>
     </div>

@@ -33,6 +33,7 @@ import { ViewPackagesComponent } from './view-packages/view-packages.component';
 import { ViewGuideProfileComponent } from './view-guide-profile/view-guide-profile.component';
 import { EditGuideProfileComponent } from './edit-guide-profile/edit-guide-profile.component';
 import { AddReviewComponent } from './add-review/add-review.component';
+import { ListBookedPackagesComponent } from './list-booked-packages/list-booked-packages.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { AddReviewComponent } from './add-review/add-review.component';
     ViewPackagesComponent,
     ViewGuideProfileComponent,
     EditGuideProfileComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    ListBookedPackagesComponent
   ],
   imports: [
     BrowserModule,
