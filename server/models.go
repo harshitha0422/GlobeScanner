@@ -153,6 +153,7 @@ type Comment struct {
 
 type Package struct {
 	//gorm.Model
+	// PackageId    string `gorm:"primaryKey;autoIncrement:true"`
 	Email        string `json:"email"`
 	Duration     string `json: "duration"`
 	Location     string `json:"location"`
@@ -160,4 +161,10 @@ type Package struct {
 	Itinerary    string `json:"itinerary"`
 	Included     string `json:"included"`
 	Price        string `json:"price"`
+}
+
+type Booking struct {
+	//gorm.Model
+	Email     string `gorm:"primaryKey" json:"email"`
+	PackageId string `gorm:"primaryKey" json:"packageId"`
 }

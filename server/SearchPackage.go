@@ -44,8 +44,19 @@ func searchPackage(c *gin.Context) {
 	}
 
 	//email := c.Params.ByName("email"
-	pkg := []Package{}
-	packages := DB.Where("location = ?", location).Find(&pkg)
+
+	type PackageResponse struct {
+		Id           string
+		Email        string
+		Duration     string
+		Location     string
+		Accomodation string
+		Itinerary    string
+		Included     string
+		Price        string
+	}
+	pkg := []PackageResponse{}
+	packages := DB.Table("packages").Where("location = ?", location).Find(&pkg)
 	if packages.Error != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": "No package currently available for this location.",

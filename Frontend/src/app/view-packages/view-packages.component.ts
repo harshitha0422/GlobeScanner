@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewPackageService } from '../view-package.service';
 import { Router } from '@angular/router';
+import { BookPackageService } from '../book-package.service';
 
 @Component({
   selector: 'app-view-packages',
@@ -9,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ViewPackagesComponent implements OnInit {
   public packages:any = [] ;
- 
-  constructor(private viewPackage : ViewPackageService, private router:Router ) { }
+  public booked:any;
+  constructor(private viewPackage : ViewPackageService, private router:Router, private bookPackageService : BookPackageService) { }
 
 
   ngOnInit(): void {
@@ -26,10 +27,24 @@ export class ViewPackagesComponent implements OnInit {
     .subscribe(
       (data) => {console.log(data);
       this.packages = data;
+      console.log("Packages array size is ",this.packages.length);
       },
       err => {
         console.log(err.error.message);
         
+      }
+    );
+  }
+  bookPackage(packageId:any){
+    console.log("Package ID in component is ", packageId)
+    this.bookPackageService.bookTourPackage(packageId)
+    .subscribe(
+      (data) => {console.log(data);
+        this.booked = true;
+      },
+      err => {
+        console.log(err.error.message);
+        this.booked = false;
       }
     );
   }

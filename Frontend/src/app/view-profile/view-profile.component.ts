@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ViewProfileComponent implements OnInit {
   public userProfile:any = [];
+  public bookedPackage:any = [];
   constructor(private getUser :  GetUserDataService, private router: Router) { }
 
   ngOnInit(): void {
@@ -31,10 +32,26 @@ export class ViewProfileComponent implements OnInit {
         // this.isSignUpFailed = true;
       }
     );
+
+    this.getUser.getTouristBookedPackage().subscribe(
+      data => {
+        this.bookedPackage = data;
+        console.log("get booked package", this.bookedPackage);
+      },
+      err => {
+        console.log(err.error.message);
+        // this.errorMessage = err.error.message;
+        // this.isSignUpFailed = true;
+      }
+    );
   }
  
   editInfoPage(){
     this.router.navigateByUrl('/view-profile/edit-profile');
+  }
+
+  addReviewPage(){
+    // this.router.navigateByUrl('/view-profile/edit-profile');
   }
 
 }
