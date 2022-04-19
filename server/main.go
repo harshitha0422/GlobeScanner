@@ -83,7 +83,7 @@ func main() {
 	//r.POST("/guideprofiles", createGuideProfile)
 	r.GET("/comments", TokenAuthMiddleware(), getallComments)
 	r.GET("/mycomments", TokenAuthMiddleware(), getUserComments)
-	//r.POST("/comments", TokenAuthMiddleware(), createComments)
+	r.POST("/comments", TokenAuthMiddleware(), createComments)
 	r.GET("/comments/:location", TokenAuthMiddleware(), getLocationComments)
 
 	r.POST("/token/refresh", Refresh)
