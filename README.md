@@ -20,6 +20,19 @@ The United Nations World Tourism Organization (UNWTO) estimates that internation
 9. Tourists can see their booked packages on their profile.
 10. Guides can see the packages they have added on their profile.
 11. Tourists can add reviews of any tour packages that they have booked.
+# Demo video functionality:
+
+# Cypress Testing:
+
+# Backend Testing:
+
+# Link to API Documentation:
+
+# Link to Project Board:
+
+# Link to Sprint4 deliverables:
+
+# Link to Deployed application:
 
 # Team Members:
 1. Harshitha Patel Velpula (Frontend)
