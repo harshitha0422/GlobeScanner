@@ -24,20 +24,21 @@ func createComments(c *gin.Context) {
 	name := FetchName(tokenAuth)
 
 	if role == "Guide" {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"error": "User needs to be a tourist to create a comment",
-		})
+		c.JSON(401, "error: User needs to be a tourist to create a comment")
+		// c.JSON(http.StatusUnauthorized, gin.H{
+		// 	"error": "User needs to be a tourist to create a comment",
+		// })
 		return
 	}
 
 	type ip struct {
-		PackageId string `gorm:"primaryKey" json:"packageId"`
+		PackageId string `json:"packageId"`
 		Title     string `json:"title"`
 		Review    string `json:"review"`
 	}
 
 	req := ip{}
-	error := c.ShouldBindJSON(&req)
+	error := c.BindJSON(&req)
 	if error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "incorrect parameters",
@@ -75,11 +76,11 @@ func getallpackageComments(c *gin.Context) {
 		return
 	}
 	type inp struct {
-		PackageId string `gorm:"primaryKey" json:"packageId"`
+		PackageId string `json:"packageId"`
 	}
 
 	req := inp{}
-	error := c.ShouldBindJSON(&req)
+	error := c.BindJSON(&req)
 	if error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "incorrect parameters",
