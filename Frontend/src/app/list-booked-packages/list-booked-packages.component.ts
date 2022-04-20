@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetUserDataService} from '../get-user-data.service';
+
 
 @Component({
   selector: 'app-list-booked-packages',
@@ -9,7 +11,7 @@ import { GetUserDataService} from '../get-user-data.service';
 export class ListBookedPackagesComponent implements OnInit {
   public bookedPackage:any = [];
 
-  constructor(private getUser :  GetUserDataService) { }
+  constructor(private getUser :  GetUserDataService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUser.getTouristBookedPackage().subscribe(
@@ -25,6 +27,8 @@ export class ListBookedPackagesComponent implements OnInit {
     );
   }
   addReviewPage(){
+    this.router.navigateByUrl('/list-booked-packages/add-review');
   }
+  
 
 }
