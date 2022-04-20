@@ -5,8 +5,8 @@ Project topic and motivation:
 The United Nations World Tourism Organization (UNWTO) estimates that internationally there were just 25 million tourist arrivals in 1950. 68 years later this number has increased to 1.4 billion international arrivals per year. This is a 56-fold increase. Thus, it is necessary that the tourists can plan their trip effectively and find the places they can visit and their reviews on a single platform. Also, with the boom in the tourism sector many agencies and small scale tourist guides need a platform to advertise their deals. GlobeScanner brings in a platform to connect the agencies providing tour packages with the people planning their trips. Using Globescanner, it will be easier for local tour guides to market their tour packages to the tourists directly and the tourists will also be able to make an informed choice on which tour package or tour guide will suit their budget and requirements to the best.
 
 We have two types of users in our application:-
-Tourist - People who wants to plan a trip and are searching for places to visit along with tour packages.
-Tour guide - People/Agencies that provide tour packages and aid tourists visiting a location.
+1. Tourist - People who wants to plan a trip and are searching for places to visit along with tour packages.
+2. Tour guide - People/Agencies that provide tour packages and aid tourists visiting a location.
 
 Functionality:
 1. Users can register as a tourist or guide to the application with their username, email, password and role(Tourist/Guide).
