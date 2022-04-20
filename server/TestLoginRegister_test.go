@@ -42,7 +42,7 @@ func TestSignUpTourist(t *testing.T) {
 	fmt.Println("5")
 	var reg = []byte(`{
 		"name": "vvishesha",
-		"email":"vvish4@gmail.com",
+		"email":"vvish8@gmail.com",
 		"password":"Vishesha@123",
 		"role":"Tourist"
 	 }`)
@@ -84,7 +84,7 @@ func TestSignUpGuide(t *testing.T) {
 	fmt.Println("5")
 	var reg = []byte(`{
 		"name": "vvishesha1",
-		"email":"vvish4@gmail.com",
+		"email":"vvish8@gmail.com",
 		"password":"Vishesha@123",
 		"role":"Guide"
 	 }`)
@@ -112,7 +112,7 @@ func TestLoginTourist(t *testing.T) {
 	fmt.Println("5")
 	var reg = []byte(`{
 		"name": "vvishesha",
-		"email":"vvish4@gmail.com",
+		"email":"vvish8@gmail.com",
 		"password":"Vishesha@123",
 		"role":"Tourist"
 	 }`)
@@ -154,7 +154,7 @@ func TestLoginGuide(t *testing.T) {
 	fmt.Println("5")
 	var reg = []byte(`{
 		"name": "vvishesha1",
-		"email":"vvish4@gmail.com",
+		"email":"vvish8@gmail.com",
 		"password":"Vishesha@123",
 		"role":"Guide"
 	 }`)
