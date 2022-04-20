@@ -65,7 +65,7 @@
                         (click)="bookPackage(package.Id)">Book Package</button>
                     </div>
                   </div>
-                  <div class="alert alert-success" *ngIf="booked">
+                  <div class="alert alert-success" *ngIf="booked && bookedPackageId==package.Id">
                     Booking successful!
                   </div>
                 </mat-card-content>

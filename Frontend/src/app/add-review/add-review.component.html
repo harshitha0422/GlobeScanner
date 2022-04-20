@@ -34,7 +34,7 @@
                   <hr>
                  <div class="row">
                     <div class="col-sm-9 text-secondary form-group">
-                        <mat-checkbox [(ngModel)]="form.checkAgreement" value={{form.checkAgreement}} name = "checkAgreement" placeholder = "checkAgreement" [ngModelOptions]="{standalone: true}">
+                        <mat-checkbox #confirmed [(ngModel)]="form.checkAgreement" value={{form.checkAgreement}} name = "checkAgreement" placeholder = "checkAgreement" [ngModelOptions]="{standalone: true}">
                             I certify that this review is based on my own experience and is my genuine opinion of this  <br>restaurant,
                              and that I have no personal or business relationship with  this  establishment, and <br>have not been offered any incentive or payment originating from the establishment<br> to write this review.
                         </mat-checkbox>
@@ -44,7 +44,7 @@
                   <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-9 text-secondary form-group">
-                        <button type="button" class="btn btn-primary px-4" id="saveChanges" style="position:relative; left:110px;"
+                        <button type="button"  [disabled]="!confirmed.checked" class="btn btn-primary px-4" id="saveChanges" style="position:relative; left:110px;"
                       (click)='addReview()'>Submit</button>
                     </div>
                   </div>
