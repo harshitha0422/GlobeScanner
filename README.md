@@ -1,6 +1,7 @@
 # GlobeScanner
 A travel advisory web application.
 
+
 Team Members:
 1. Harshitha Patel Velpula (Frontend)
 2. Vishesha Sadu  (Backend)
