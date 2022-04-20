@@ -27,9 +27,10 @@ func getPackage(c *gin.Context) {
 	fmt.Println(role)
 
 	if role == "Tourist" {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"error": "User needs to be a Guide. Please register as a Guide.",
-		})
+		c.JSON(500, "User needs to be a Guide. Please register as a Guide.")
+		// c.JSON(http.StatusUnauthorized, gin.H{
+		// 	"error": "User needs to be a Guide. Please register as a Guide.",
+		// })
 		return
 	}
 	var pkg []Package
