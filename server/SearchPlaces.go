@@ -44,10 +44,19 @@ func searchPlaces(c *gin.Context) {
 	}
 	fmt.Println(name)
 	//var empty []SearchPlacesResponse
+	if name == "" {
+		c.JSON(500, "Please enter a valid location name.")
+		// c.JSON(http.StatusBadRequest, gin.H{
+		// 	"error": "Please enter a valid location name.",
+		// })
+		return
+
+	}
 	if name == " " {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Please enter a valid location name.",
-		})
+		c.JSON(500, "Please enter a valid location name.")
+		// c.JSON(http.StatusBadRequest, gin.H{
+		// 	"error": "Please enter a valid location name.",
+		// })
 		return
 
 	}
