@@ -84,7 +84,7 @@ func main() {
 	r.GET("/comments", TokenAuthMiddleware(), getallpackageComments)
 	r.GET("/mycomments", TokenAuthMiddleware(), getalluserComments)
 	r.POST("/comments", TokenAuthMiddleware(), createComments)
-	r.GET("/comments/:location", TokenAuthMiddleware(), getLocationComments)
+	//r.GET("/comments/:location", TokenAuthMiddleware(), getLocationComments)
 
 	r.POST("/token/refresh", Refresh)
 	r.POST("/todo", TokenAuthMiddleware(), CreateTodo)
