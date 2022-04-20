@@ -28,9 +28,10 @@ func bookPackages(c *gin.Context) {
 	// }
 
 	if role == "Guide" {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"error": "User needs to be a Tourist. Please register as a Tourist.",
-		})
+		c.JSON(401, "User needs to be a Guide. Please register as a Guide.")
+		// c.JSON(http.StatusUnauthorized, gin.H{
+		// 	"error": "User needs to be a Tourist. Please register as a Tourist.",
+		// })
 		return
 	}
 
@@ -52,38 +53,38 @@ func bookPackages(c *gin.Context) {
 	}
 	// Check if touristemail exists
 	//register := Register{}
-	tourist := UserProfile{}
-	//result := DB.Where("email = ?", newPackage.Email).First(&register)
-	result := DB.Where("email = ?", email).First(&tourist)
-	if result.Error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Internal server error",
-		})
-		return
-	}
-	if result.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Tourist account needs to be created.",
-		})
-		return
-	}
+	// tourist := UserProfile{}
+	// //result := DB.Where("email = ?", newPackage.Email).First(&register)
+	// result := DB.Where("email = ?", email).First(&tourist)
+	// if result.Error != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"error": "Internal server error",
+	// 	})
+	// 	return
+	// }
+	// if result.RowsAffected == 0 {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"error": "Tourist account needs to be created.",
+	// 	})
+	// 	return
+	// }
 
 	//checking if packageId is correct
-	pkg := Package{}
-	//result := DB.Where("email = ?", newPackage.Email).First(&register)
-	res := DB.Where("id = ?", req.PackageId).First(&pkg)
-	if res.Error != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Internal server error",
-		})
-		return
-	}
-	if res.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Package id is wrong.",
-		})
-		return
-	}
+	// pkg := Package{}
+	// //result := DB.Where("email = ?", newPackage.Email).First(&register)
+	// res := DB.Where("id = ?", req.PackageId).First(&pkg)
+	// if res.Error != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"error": "Internal server error",
+	// 	})
+	// 	return
+	// }
+	// if res.RowsAffected == 0 {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"error": "Package id is wrong.",
+	// 	})
+	// 	return
+	// }
 	// Insert into database
 	//var newPackage Package
 	newBooking := Booking{
@@ -97,5 +98,5 @@ func bookPackages(c *gin.Context) {
 		})
 		return
 	}
-	c.JSON(http.StatusOK, "msg:Booking created successfully.")
+	c.JSON(200, "msg:Booking created successfully.")
 }

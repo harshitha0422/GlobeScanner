@@ -156,7 +156,7 @@ type Package struct {
 	gorm.Model
 	// PackageId    string `gorm:"primaryKey;autoIncrement:true"`
 	Email        string `json:"email"`
-	Duration     string `json: "duration"`
+	Duration     string `json:"duration"`
 	Location     string `json:"location"`
 	Accomodation string `json:"accomodation"`
 	Itinerary    string `json:"itinerary"`
