@@ -14,6 +14,12 @@ it('Fill the package info page , if the post doesnot work then the package shoul
     cy.wait(20)
     cy.get('[name="price"]').type('1000$');
     cy.get('button').click();
+    cy.request({
+      url: 'http://localhost:8080/addPackages', 
+      failOnStatusCode: false 
+    }).then((response) => {
+      expect(response.status).to.eq(505);
+    })
     cy.url().should('not.include', '/home-page');
   })
 });
