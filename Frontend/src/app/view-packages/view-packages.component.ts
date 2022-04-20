@@ -11,6 +11,7 @@ import { BookPackageService } from '../book-package.service';
 export class ViewPackagesComponent implements OnInit {
   public packages:any = [] ;
   public booked:any;
+  public bookedPackageId: any;
   constructor(private viewPackage : ViewPackageService, private router:Router, private bookPackageService : BookPackageService) { }
 
 
@@ -37,6 +38,7 @@ export class ViewPackagesComponent implements OnInit {
   }
   bookPackage(packageId:any){
     console.log("Package ID in component is ", packageId)
+    this.bookedPackageId = packageId;
     this.bookPackageService.bookTourPackage(packageId)
     .subscribe(
       (data) => {console.log(data);
