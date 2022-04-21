@@ -29,6 +29,7 @@ http://107.20.193.99:4200
 The application has been deployed using AWS and AWS EC2.
 
 ## Demo video functionality:
+https://user-images.githubusercontent.com/31062202/164365612-a338115d-38d4-41fc-bcbe-124ba68bf686.mp4
 
 ## Cypress Testing:
 https://user-images.githubusercontent.com/31062202/164363001-72815b66-8167-4342-bcfa-09477c2e969e.mp4
