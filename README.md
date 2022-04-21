@@ -24,6 +24,8 @@ The United Nations World Tourism Organization (UNWTO) estimates that internation
 ## Link to Deployed application:
 http://107.20.193.99:4200
 
+The application has been deployed using AWS and AWS EC2.
+
 ## Demo video functionality:
 
 ## Cypress Testing:
