@@ -31,6 +31,9 @@
 # Backend Unit Testing
 https://user-images.githubusercontent.com/39860389/164355913-e90828b7-9e56-4491-91be-c39266bf5224.mp4
 
+# Frontend Cypress Testing
+https://user-images.githubusercontent.com/31062202/164366256-e83c7889-38ea-490e-92d9-76149f503d20.mp4
+
 # Frontend Web development
 Run the below commands to start the development server.
 
