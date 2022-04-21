@@ -39,9 +39,10 @@ https://user-images.githubusercontent.com/39860389/164360088-8496e629-7af3-482f-
 https://github.com/arijitd97/GlobeScanner/wiki/GlobeScanner-API-documentation
 
 ## Link to Project Board:
+[Sprint 4](https://github.com/arijitd97/GlobeScanner/projects/4) -- [https://github.com/arijitd97/GlobeScanner/projects/4](https://github.com/arijitd97/GlobeScanner/projects/4)
 
 ## Link to Sprint4 deliverables:
-
+[Sprint4.md](https://github.com/arijitd97/GlobeScanner/blob/main/Sprint4.md) -- [https://github.com/arijitd97/GlobeScanner/blob/main/Sprint4.md](https://github.com/arijitd97/GlobeScanner/blob/main/Sprint4.md)
 
 
 ## Team Members:
