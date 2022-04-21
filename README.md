@@ -31,6 +31,7 @@ The application has been deployed using AWS and AWS EC2.
 ## Demo video functionality:
 
 ## Cypress Testing:
+https://user-images.githubusercontent.com/31062202/164363001-72815b66-8167-4342-bcfa-09477c2e969e.mp4
 
 ## Backend Testing:
 https://user-images.githubusercontent.com/39860389/164360088-8496e629-7af3-482f-94ad-c6f33639f8f4.mp4
