@@ -46,35 +46,41 @@ ng serve
 
 <img width="1679" alt="Screen Shot 2022-04-20 at 10 53 12 PM" src="https://user-images.githubusercontent.com/31062202/164364291-b97849c6-0f56-4e8c-9c6c-590d91189550.png">
 
-# Torist Places in an Area
+
+# Tourist Places in an Area
 <img width="1675" alt="Screen Shot 2022-04-20 at 10 54 48 PM" src="https://user-images.githubusercontent.com/31062202/164364677-db6fb2dc-8e62-4fba-9e83-e92db07c759f.png">
 <img width="1680" alt="Screen Shot 2022-04-20 at 10 55 11 PM" src="https://user-images.githubusercontent.com/31062202/164364717-e492c0d7-80ce-4bf3-b1e8-9947f0373b01.png">
 
+
 # Packages in an Area
 <img width="1677" alt="Screen Shot 2022-04-20 at 10 55 37 PM" src="https://user-images.githubusercontent.com/31062202/164364797-6e475f49-019b-4bfb-877e-49c5efbadf36.png">
-
 
 
 # Tourist Profile Page
 
 <img width="1680" alt="Screen Shot 2022-04-20 at 10 53 24 PM" src="https://user-images.githubusercontent.com/31062202/164364369-5f0f0e92-5609-487a-be7a-c769159964b9.png">
 
+
 # Tourist Edit Profile Page
 
 <img width="1661" alt="Screen Shot 2022-04-20 at 10 53 37 PM" src="https://user-images.githubusercontent.com/31062202/164364408-cdfce5b2-3579-4ff9-b511-e3145bd72c3d.png">
+
 
 # Tourist Booked Packages 
 
 <img width="1675" alt="Screen Shot 2022-04-20 at 10 53 59 PM" src="https://user-images.githubusercontent.com/31062202/164364483-fafd2a71-caa5-41bd-8b4a-b03d17360027.png">
 
 
+
 # Add Review Form for a booked Package
 
 <img width="1677" alt="Screen Shot 2022-04-20 at 10 54 23 PM" src="https://user-images.githubusercontent.com/31062202/164364624-25a8f92d-978e-42fa-90ec-c6e9fdb7a5dc.png">
 
+
 # Tour Guide Profile Page
 
 <img width="1680" alt="Screen Shot 2022-04-20 at 10 55 55 PM" src="https://user-images.githubusercontent.com/31062202/164365082-84f9f9a9-dd51-4a71-9786-aafe665cf41b.png">
+
 
 # Tour Guide Add Package page
 <img width="1676" alt="Screen Shot 2022-04-20 at 10 56 33 PM" src="https://user-images.githubusercontent.com/31062202/164365273-3243be0b-d12f-4ae6-b170-6fb86627226e.png">
