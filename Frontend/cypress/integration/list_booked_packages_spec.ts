@@ -10,16 +10,7 @@ describe('Tourist can book a package and see the list of booked packages under h
         cy.get('button').click();
         cy.wait(200)
         cy.url().should('include', 'home-page');
-        cy.get('[name="something"]').type('gainesville');
-        cy.wait(200)
-        cy.get('[name="searchButton"]').click();
-        cy.url().should('include', '/place-list');
-        cy.wait(10000)
-        cy.contains('View Packages');
-        cy.wait(200)
-        cy.get('[name="viewP"]').click();
-        cy.wait(200)
-        cy.url().should('include', '/place-list/view-packages');
-        cy.contains('Sorry, no packages for this place found');
+        cy.get('[name="addreview"]').click();
+        cy.url().should('include', '/list-booked-packages');
       })
     });

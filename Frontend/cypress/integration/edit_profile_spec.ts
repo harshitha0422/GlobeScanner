@@ -1,4 +1,4 @@
-describe('Tourist and Trvele guide can edit their profile', () => {
+describe('Tourist and Travel guide can edit their profile', () => {
 
     it('Should login if the credentials are correct', () => {
         cy.visit('/login')
@@ -14,25 +14,28 @@ describe('Tourist and Trvele guide can edit their profile', () => {
     
       });
 
-    it('Fill the edit profile page , if the post doesnot work then the profile should not be editable', () => {
+    it('Fill the edit profile page , if the post does not work then the edited changes should not be saved', () => {
         cy.visit('/view-profile/edit-profile')
         cy.wait(20)
-        cy.wait(20)
+        cy.wait(2000)
+        cy.get('[name="age"]').clear();
         cy.get('[name="age"]').type('12');
-        cy.wait(20)
+        cy.wait(2000)
+        cy.get('[name="mobile"]').clear();
         cy.get('[name="mobile"]').type('+91 12345677889');
-        cy.wait(20)
+        cy.wait(2000)
         cy.get('[name="location"]').clear();
         cy.get('[name="location"]').type('Florida');
-        cy.wait(20)
+        cy.wait(2000)
         cy.get('[name="fav1"]').clear();
         cy.get('[name="fav1"]').type('Tampa');
-        cy.wait(20)
+        cy.wait(2000)
         cy.get('[name="fav2"]').clear();
         cy.get('[name="fav2"]').type('Orlando');
-        cy.wait(20)
+        cy.wait(2000)
         cy.get('[name="fav3"]').clear();
         cy.get('[name="fav3"]').type('Miami');
+        cy.wait(2000)
         cy.get('button').click();
         cy.url().should('include', '/view-profile');
       })
