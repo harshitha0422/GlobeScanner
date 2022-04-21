@@ -18,7 +18,7 @@ it('Fill the package info page , if the post doesnot work then the package shoul
       url: 'http://localhost:8080/addPackages', 
       failOnStatusCode: false 
     }).then((response) => {
-      expect(response.status).to.eq(505);
+      expect(response.status).to.eq(500);
     })
     cy.url().should('not.include', '/home-page');
   })
