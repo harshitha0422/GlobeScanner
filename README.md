@@ -21,6 +21,9 @@ The United Nations World Tourism Organization (UNWTO) estimates that internation
 10. Guides can see the packages they have added on their profile.
 11. Tourists can add reviews of any tour packages that they have booked.
 
+## Link to Deployed application:
+http://107.20.193.99:4200
+
 ## Demo video functionality:
 
 ## Cypress Testing:
@@ -34,7 +37,7 @@ https://github.com/arijitd97/GlobeScanner/wiki/GlobeScanner-API-documentation
 
 ## Link to Sprint4 deliverables:
 
-## Link to Deployed application:
+
 
 ##Team Members:
 1. Harshitha Patel Velpula (Frontend)
