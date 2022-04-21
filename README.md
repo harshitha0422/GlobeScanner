@@ -1,3 +1,5 @@
+
+
 # GlobeScanner
 
 ## Project topic and motivation:
@@ -31,6 +33,7 @@ The application has been deployed using AWS and AWS EC2.
 ## Cypress Testing:
 
 ## Backend Testing:
+https://user-images.githubusercontent.com/39860389/164360088-8496e629-7af3-482f-94ad-c6f33639f8f4.mp4
 
 ## Link to API Documentation:
 https://github.com/arijitd97/GlobeScanner/wiki/GlobeScanner-API-documentation
