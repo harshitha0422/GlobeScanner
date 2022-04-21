@@ -41,11 +41,11 @@ https://github.com/arijitd97/GlobeScanner/wiki/GlobeScanner-API-documentation
 
 
 
-##Team Members:
-1. Harshitha Patel Velpula (Frontend)
-2. Arijit Dutta (Frontend)
-3. Vishesha Sadu  (Backend)
-4. Meghamala Gupta (Backend)
+## Team Members:
+1. Harshitha Patel Velpula (harshitha0422)- Frontend
+2. Arijit Dutta (arijitd97) - Frontend
+3. Vishesha Sadu(Vishesha)- Backend
+4. Meghamala Gupta (Meghamala26) -Backend
  
 
 ## Tech Stack:
