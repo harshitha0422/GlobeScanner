@@ -21,3 +21,5 @@
 #### Tourists can view booked packages on their profile[#78](https://github.com/arijitd97/GlobeScanner/projects/4#card-80851101)
 #### The name of a user does not get updated in the registers table when the user edits his/her name[#76](https://github.com/arijitd97/GlobeScanner/projects/4#card-80644954)
 ####  Backend Unit tests[#97](https://github.com/arijitd97/GlobeScanner/projects/4#card-80911068)
+ 
+ ### [Backend API Documentation](https://github.com/arijitd97/GlobeScanner/wiki/GlobeScanner-API-documentation)
